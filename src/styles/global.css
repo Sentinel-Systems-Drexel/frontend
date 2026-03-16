@@ -1,1 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+
 @import "tailwindcss";
+
+:root {
+    --bg: #fafafa;
+    --bg-subtle: #f0f0f0;
+    --border: #e4e4e4;
+    --fg: #0f0f0f;
+    --fg-muted: #555555;
+    --fg-subtle: #999999;
+    --accent: #0f0f0f;
+    --accent-dim: rgba(15, 15, 15, 0.06);
+    --red: #c0392b;
+    --green: #1a7f4f;
+    --radius: 7px;
+}
+
+html {
+    font-family: 'DM Mono', 'Fira Mono', 'Menlo', monospace;
+    background: var(--bg);
+    color: var(--fg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    color: inherit;
+}
