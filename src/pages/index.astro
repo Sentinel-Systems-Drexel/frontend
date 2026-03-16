@@ -1,17 +1,566 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Email Parser — Sentinel Systems">
+    <main class="flex items-start justify-center px-6 py-12">
+        <div class="flex w-full max-w-140 flex-col gap-5">
+            <!-- Page header -->
+            <div class="mb-1">
+                <h1
+                    class="mb-1.5 text-[22px] font-semibold tracking-tight text-neutral-900"
+                >
+                    Email Parser
+                </h1>
+                <p class="text-[13px] leading-relaxed text-neutral-500">
+                    Upload a <code
+                        class="rounded bg-neutral-100 px-1 py-px text-[12px]"
+                        >.eml</code
+                    > file to extract headers, body, and attachments.
+                </p>
+            </div>
+
+            <div class="grid">
+                <label for="endpointUrl">Endpoint URL</label>
+                <input
+                    id="endpointUrl"
+                    class="w-full bg-neutral-100 px-3 py-2 rounded-md border border-neutral-200"
+                    type="text"
+                    placeholder="https://dev.georgejosef.com/sentinel-systems/api/"
+                />
+                <span class="text-gray-400 text-xs"
+                    >For development purposes only.</span
+                >
+            </div>
+            <!-- API status -->
+            <div
+                id="api-status"
+                class="flex items-center gap-2 rounded-md border border-neutral-200 bg-neutral-100 px-3 py-2 text-[12px] text-neutral-500"
+                data-state="checking"
+            >
+                <span
+                    id="status-dot"
+                    class="size-1.75 shrink-0 rounded-full bg-neutral-400 transition-colors"
+                ></span>
+                <span id="status-text">Checking API…</span>
+            </div>
+
+            <!-- Drop zone -->
+            <div
+                id="dropzone"
+                role="button"
+                tabindex="0"
+                aria-label="Upload EML file"
+                class="cursor-pointer rounded-md border border-dashed border-neutral-300 bg-neutral-50 px-6 py-9 text-center transition-colors hover:border-neutral-900 hover:bg-black/3"
+            >
+                <input
+                    type="file"
+                    id="file-input"
+                    accept=".eml"
+                    class="hidden"
+                />
+                <div class="mb-2.5 inline-flex text-neutral-400">
+                    <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 20 20"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M10 2L10 13M10 2L6.5 5.5M10 2L13.5 5.5"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        <path
+                            d="M3 14V16C3 17.1046 3.89543 18 5 18H15C16.1046 18 17 17.1046 17 16V14"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"></path>
+                    </svg>
+                </div>
+                <p class="mb-1 text-[13px] text-neutral-500">
+                    Drop file here or <span
+                        class="cursor-pointer text-neutral-900 underline underline-offset-2"
+                        >browse</span
+                    >
+                </p>
+                <p class="text-[11px] text-neutral-400">Supports .eml files</p>
+            </div>
+
+            <!-- Selected file chip -->
+            <div
+                id="file-chip"
+                class="hidden items-center gap-2 rounded-md border border-neutral-200 bg-neutral-100 px-3 py-2 text-[13px] text-neutral-900"
+            >
+                <svg
+                    class="shrink-0 text-neutral-400"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                >
+                    <rect
+                        x="2"
+                        y="1"
+                        width="8"
+                        height="12"
+                        rx="1"
+                        stroke="currentColor"
+                        stroke-width="1.2"></rect>
+                    <path
+                        d="M4 4.5H8M4 7H8M4 9.5H6.5"
+                        stroke="currentColor"
+                        stroke-width="1.2"
+                        stroke-linecap="round"></path>
+                </svg>
+                <span id="file-chip-name"></span>
+                <span
+                    id="file-chip-size"
+                    class="ml-0.5 text-[11px] text-neutral-400"></span>
+                <button
+                    id="chip-remove"
+                    aria-label="Remove file"
+                    class="ml-auto cursor-pointer rounded border-0 bg-transparent px-1 py-0.5 text-[16px] leading-none text-neutral-400 transition-colors hover:bg-red-50 hover:text-red-600"
+                    >✕</button
+                >
+            </div>
+
+            <!-- Parse button -->
+            <button
+                id="parse-btn"
+                disabled
+                class="w-full cursor-pointer rounded-md border-0 bg-neutral-900 px-4 py-2.5 text-[14px] font-medium tracking-wide text-white transition-opacity active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-30 enabled:hover:opacity-85"
+            >
+                Parse Email
+            </button>
+
+            <!-- Error -->
+            <div
+                id="inline-error"
+                class="hidden rounded-md border border-red-200 bg-red-50 px-3 py-2.5 text-[13px] text-red-700"
+            >
+            </div>
+
+            <!-- Loading -->
+            <div
+                id="loading-row"
+                class="items-center gap-2.5 py-1 text-[13px] text-neutral-500"
+            >
+                <span
+                    id="loading-spinner"
+                    hidden
+                    class="loader size-3.5 shrink-0 rounded-full border border-neutral-200 border-t-neutral-900"
+                ></span>
+                <span id="loading-text">Ready to receive files.</span>
+            </div>
+
+            <!-- Results -->
+            <div id="results" class="hidden flex-col gap-6">
+                <div class="h-px bg-neutral-200"></div>
+
+                <!-- Overview -->
+                <section class="flex flex-col gap-2.5">
+                    <h2
+                        class="text-[11px] font-semibold uppercase tracking-widest text-neutral-400"
+                    >
+                        Overview
+                    </h2>
+                    <dl
+                        class="overflow-hidden rounded-md border border-neutral-200"
+                    >
+                        <div
+                            class="grid min-h-9 grid-cols-[100px_1fr] items-center"
+                        >
+                            <dt
+                                class="flex h-full items-center border-r border-neutral-200 bg-neutral-50 px-3 text-[12px] text-neutral-400"
+                            >
+                                Email ID
+                            </dt>
+                            <dd
+                                id="r-email-id"
+                                class="m-0 break-all px-3 py-2 text-[13px] text-neutral-900"
+                            >
+                            </dd>
+                        </div>
+                        <div
+                            class="grid min-h-9 grid-cols-[100px_1fr] items-center border-t border-neutral-200"
+                        >
+                            <dt
+                                class="flex h-full items-center border-r border-neutral-200 bg-neutral-50 px-3 text-[12px] text-neutral-400"
+                            >
+                                Output Dir
+                            </dt>
+                            <dd
+                                id="r-output-dir"
+                                class="m-0 break-all px-3 py-2 text-[11px] text-neutral-500"
+                            >
+                            </dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <!-- Headers -->
+                <section class="flex flex-col gap-2.5">
+                    <h2
+                        class="text-[11px] font-semibold uppercase tracking-widest text-neutral-400"
+                    >
+                        Headers
+                    </h2>
+                    <dl
+                        class="overflow-hidden rounded-md border border-neutral-200"
+                    >
+                        <div
+                            class="grid min-h-9 grid-cols-[100px_1fr] items-center"
+                        >
+                            <dt
+                                class="flex h-full items-center border-r border-neutral-200 bg-neutral-50 px-3 text-[12px] text-neutral-400"
+                            >
+                                Subject
+                            </dt>
+                            <dd
+                                id="r-subject"
+                                class="m-0 break-all px-3 py-2 text-[13px] text-neutral-900"
+                            >
+                            </dd>
+                        </div>
+                        <div
+                            class="grid min-h-9 grid-cols-[100px_1fr] items-center border-t border-neutral-200"
+                        >
+                            <dt
+                                class="flex h-full items-center border-r border-neutral-200 bg-neutral-50 px-3 text-[12px] text-neutral-400"
+                            >
+                                From
+                            </dt>
+                            <dd
+                                id="r-from"
+                                class="m-0 break-all px-3 py-2 text-[13px] text-neutral-900"
+                            >
+                            </dd>
+                        </div>
+                        <div
+                            class="grid min-h-9 grid-cols-[100px_1fr] items-center border-t border-neutral-200"
+                        >
+                            <dt
+                                class="flex h-full items-center border-r border-neutral-200 bg-neutral-50 px-3 text-[12px] text-neutral-400"
+                            >
+                                To
+                            </dt>
+                            <dd
+                                id="r-to"
+                                class="m-0 break-all px-3 py-2 text-[13px] text-neutral-900"
+                            >
+                            </dd>
+                        </div>
+                        <div
+                            class="grid min-h-9 grid-cols-[100px_1fr] items-center border-t border-neutral-200"
+                        >
+                            <dt
+                                class="flex h-full items-center border-r border-neutral-200 bg-neutral-50 px-3 text-[12px] text-neutral-400"
+                            >
+                                Date
+                            </dt>
+                            <dd
+                                id="r-date"
+                                class="m-0 break-all px-3 py-2 text-[13px] text-neutral-900"
+                            >
+                            </dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <!-- Files -->
+                <section class="flex flex-col gap-2.5">
+                    <h2
+                        class="text-[11px] font-semibold uppercase tracking-widest text-neutral-400"
+                    >
+                        Files
+                    </h2>
+                    <dl
+                        class="overflow-hidden rounded-md border border-neutral-200"
+                    >
+                        <div
+                            class="grid min-h-9 grid-cols-[100px_1fr] items-center"
+                        >
+                            <dt
+                                class="flex h-full items-center border-r border-neutral-200 bg-neutral-50 px-3 text-[12px] text-neutral-400"
+                            >
+                                Headers
+                            </dt>
+                            <dd
+                                id="r-headers-file"
+                                class="m-0 break-all px-3 py-2 text-[11px] text-neutral-500"
+                            >
+                            </dd>
+                        </div>
+                        <div
+                            class="grid min-h-9 grid-cols-[100px_1fr] items-center border-t border-neutral-200"
+                        >
+                            <dt
+                                class="flex h-full items-center border-r border-neutral-200 bg-neutral-50 px-3 text-[12px] text-neutral-400"
+                            >
+                                Body
+                            </dt>
+                            <dd
+                                id="r-body-file"
+                                class="m-0 break-all px-3 py-2 text-[11px] text-neutral-500"
+                            >
+                            </dd>
+                        </div>
+                        <div
+                            class="grid min-h-9 grid-cols-[100px_1fr] items-center border-t border-neutral-200"
+                        >
+                            <dt
+                                class="flex h-full items-center border-r border-neutral-200 bg-neutral-50 px-3 text-[12px] text-neutral-400"
+                            >
+                                Attachments
+                            </dt>
+                            <dd
+                                id="r-attachment-count"
+                                class="m-0 break-all px-3 py-2 text-[13px] text-neutral-900"
+                            >
+                            </dd>
+                        </div>
+                    </dl>
+                    <ul id="r-attachments" class="flex flex-col gap-1.5"></ul>
+                </section>
+            </div>
+        </div>
+    </main>
+</BaseLayout>
+
+<style>
+    /* Spin keyframe for loader — not expressible in Tailwind utilities */
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+    .loader {
+        animation: spin 0.7s linear infinite;
+    }
+
+    /* Ensure [hidden] always wins over display utilities */
+    [hidden] {
+        display: none !important;
+    }
+
+    /* flex containers that start hidden — show as flex when unhidden */
+    #results:not([hidden]) {
+        display: flex;
+    }
+    #file-chip:not([hidden]) {
+        display: flex;
+    }
+    #loading-row {
+        display: flex;
+    }
+
+    /* Drag-over state toggled by JS */
+    #dropzone.over {
+        border-color: #171717;
+        background-color: rgba(0, 0, 0, 0.03);
+    }
+
+    /* API status colour swaps via data-state attribute */
+    #api-status[data-state="online"] {
+        border-color: #c3e6d4;
+        background-color: #f0faf5;
+        color: #1a7f4f;
+    }
+    #api-status[data-state="online"] #status-dot {
+        background-color: #1a7f4f;
+    }
+    #api-status[data-state="offline"] {
+        border-color: #f5c6c2;
+        background-color: #fdf3f2;
+        color: #c0392b;
+    }
+    #api-status[data-state="offline"] #status-dot {
+        background-color: #c0392b;
+    }
+</style>
+
+<script>
+    const DEFAULT_API_URL = "https://dev.georgejosef.com/sentinel-systems/api/";
+    const STORAGE_KEY = "endpointUrl";
+
+    const endpointInput = document.getElementById(
+        "endpointUrl",
+    ) as HTMLInputElement;
+
+    const savedUrl = localStorage.getItem(STORAGE_KEY);
+    let API_URL = savedUrl || DEFAULT_API_URL;
+    if (savedUrl) endpointInput.value = savedUrl;
+
+    let endpointDebounce: number | undefined;
+
+    endpointInput.addEventListener("input", () => {
+        clearTimeout(endpointDebounce);
+
+        endpointDebounce = window.setTimeout(() => {
+            const newUrl = endpointInput.value.trim();
+
+            API_URL = newUrl || DEFAULT_API_URL;
+            if (newUrl) {
+                localStorage.setItem(STORAGE_KEY, newUrl);
+            } else {
+                localStorage.removeItem(STORAGE_KEY);
+            }
+
+            checkApi();
+        }, 1000);
+    });
+
+    const dropzone = document.getElementById("dropzone")!;
+    const fileInput = document.getElementById("file-input") as HTMLInputElement;
+    const fileChip = document.getElementById("file-chip")!;
+    const chipName = document.getElementById("file-chip-name")!;
+    const chipSize = document.getElementById("file-chip-size")!;
+    const chipRemove = document.getElementById("chip-remove")!;
+    const parseBtn = document.getElementById("parse-btn") as HTMLButtonElement;
+    const inlineError = document.getElementById("inline-error")!;
+    const loadingSpinner = document.getElementById("loading-spinner")!;
+    const loadingText = document.getElementById("loading-text")!;
+    const results = document.getElementById("results")!;
+    const apiStatus = document.getElementById("api-status")!;
+    const statusText = document.getElementById("status-text")!;
+
+    let selectedFile: File | null = null;
+
+    async function checkApi() {
+        try {
+            const r = await fetch(API_URL);
+            if (r.ok) {
+                apiStatus.dataset.state = "online";
+                statusText.textContent = "API online";
+            } else throw new Error();
+        } catch {
+            apiStatus.dataset.state = "offline";
+            statusText.textContent =
+                "API Offline";
+        }
+    }
+    checkApi();
+    setInterval(checkApi, 30000);
+
+    function fmt(bytes: number) {
+        if (bytes < 1024) return `${bytes} B`;
+        if (bytes < 1048576) return `${(bytes / 1024).toFixed(1)} KB`;
+        return `${(bytes / 1048576).toFixed(1)} MB`;
+    }
+
+    function setFile(file: File) {
+        if (!file.name.endsWith(".eml")) {
+            showError("Please select a .eml file.");
+            return;
+        }
+        selectedFile = file;
+        chipName.textContent = file.name;
+        chipSize.textContent = fmt(file.size);
+        fileChip.hidden = false;
+        dropzone.hidden = true;
+        parseBtn.disabled = false;
+        hideError();
+        results.hidden = true;
+    }
+
+    function clearFile() {
+        selectedFile = null;
+        fileInput.value = "";
+        fileChip.hidden = true;
+        dropzone.hidden = false;
+        parseBtn.disabled = true;
+        results.hidden = true;
+        hideError();
+    }
+
+    function showError(msg: string) {
+        inlineError.textContent = msg;
+        inlineError.hidden = false;
+    }
+    function hideError() {
+        inlineError.hidden = true;
+    }
+
+    dropzone.addEventListener("click", () => fileInput.click());
+    dropzone.addEventListener("keydown", (e) => {
+        if ((e as KeyboardEvent).key === "Enter") fileInput.click();
+    });
+    fileInput.addEventListener("change", () => {
+        if (fileInput.files?.[0]) setFile(fileInput.files[0]);
+    });
+    dropzone.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        dropzone.classList.add("over");
+    });
+    dropzone.addEventListener("dragleave", () =>
+        dropzone.classList.remove("over"),
+    );
+    dropzone.addEventListener("drop", (e) => {
+        e.preventDefault();
+        dropzone.classList.remove("over");
+        const file = (e as DragEvent).dataTransfer?.files[0];
+        if (file) setFile(file);
+    });
+
+    chipRemove.addEventListener("click", clearFile);
+
+    parseBtn.addEventListener("click", async () => {
+        if (!selectedFile) return;
+        hideError();
+        results.hidden = true;
+        loadingSpinner.hidden = false;
+        loadingText.textContent = "Parsing…";
+        parseBtn.disabled = true;
+
+        try {
+            const fd = new FormData();
+            fd.append("file", selectedFile);
+            const res = await fetch(`${API_URL}/parse-email`, {
+                method: "POST",
+                body: fd,
+            });
+            const data = await res.json();
+            console.log("API response:", data);
+            if (!res.ok) throw new Error(data.detail || "Error parsing email.");
+            displayResults(data);
+        } catch (err: any) {
+            showError(err.message || "Could not connect to API.");
+        } finally {
+            loadingSpinner.hidden = true;
+            loadingText.textContent = "Ready to receive files.";
+            parseBtn.disabled = false;
+        }
+    });
+
+    function set(id: string, val: string) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = val ?? "—";
+    }
+
+    function displayResults(data: any) {
+        set("r-email-id", data.email_id);
+        set("r-output-dir", data.output_directory);
+        set("r-subject", data.summary.subject);
+        set("r-from", data.summary.from);
+        set("r-to", data.summary.to);
+        set("r-date", data.summary.date);
+        set("r-headers-file", data.files_created.headers);
+        set("r-body-file", data.files_created.body);
+        set("r-attachment-count", String(data.summary.attachment_count));
+
+        const list = document.getElementById("r-attachments")!;
+        list.innerHTML = "";
+        (data.files_created.attachments as string[]).forEach((name) => {
+            const li = document.createElement("li");
+            li.className =
+                "flex items-center gap-2 rounded-md border border-neutral-200 bg-neutral-50 px-3 py-1.5 text-[12px] text-neutral-500";
+            li.textContent = name;
+            list.appendChild(li);
+        });
+
+        results.hidden = false;
+    }
+</script>
