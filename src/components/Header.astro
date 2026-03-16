@@ -1,0 +1,37 @@
+---
+import { url } from "../scripts/url"
+---
+
+<header class="sticky px-20 top-0 z-50 border-b border-neutral-200 bg-neutral-50 antialiased">
+    <div
+        class="flex h-13 justify-between max-w-190 mx-auto"
+    >
+        <a
+            href={url("/")}
+            class="flex items-center gap-2 text-[15px] font-semibold text-neutral-900 no-underline"
+        >
+            <span>Sentinel Systems</span>
+        </a>
+
+        <nav class="flex items-center gap-4">
+            <a
+                href={url("/")}
+                class="rounded-md px-2.5 py-1.5 text-[13px] text-neutral-500 transition-colors hover:bg-neutral-100 hover:text-neutral-900"
+            >
+                Parser
+            </a>
+            <a
+                href={url("/docs/")}
+                class="rounded-md px-2.5 py-1.5 text-[13px] text-neutral-500 transition-colors hover:bg-neutral-100 hover:text-neutral-900"
+            >
+                Docs
+            </a>
+            <a
+                href={url("/api/")}
+                class="rounded-md px-2.5 py-1.5 text-[13px] text-neutral-500 transition-colors hover:bg-neutral-100 hover:text-neutral-900"
+            >
+                API
+            </a>
+        </nav>
+    </div>
+</header>
