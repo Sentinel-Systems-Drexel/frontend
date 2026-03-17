@@ -90,7 +90,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             <!-- Selected file chip -->
             <div
                 id="file-chip"
-                class="hidden items-center gap-2 rounded-md border border-neutral-200 bg-neutral-100 px-3 py-2 text-[13px] text-neutral-900"
+                hidden
+                class="items-center gap-2 rounded-md border border-neutral-200 bg-neutral-100 px-3 py-2 text-[13px] text-neutral-900"
             >
                 <svg
                     class="shrink-0 text-neutral-400"
@@ -137,7 +138,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             <!-- Error -->
             <div
                 id="inline-error"
-                class="hidden rounded-md border border-red-200 bg-red-50 px-3 py-2.5 text-[13px] text-red-700"
+                hidden
+                class="rounded-md border border-red-200 bg-red-50 px-3 py-2.5 text-[13px] text-red-700"
             >
             </div>
 
@@ -155,7 +157,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             </div>
 
             <!-- Results -->
-            <div id="results" class="hidden flex-col gap-6">
+            <div id="results" hidden class="flex-col gap-6">
                 <div class="h-px bg-neutral-200"></div>
 
                 <!-- Overview -->
@@ -436,8 +438,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             } else throw new Error();
         } catch {
             apiStatus.dataset.state = "offline";
-            statusText.textContent =
-                "API Offline";
+            statusText.textContent = "API Offline";
         }
     }
     checkApi();
