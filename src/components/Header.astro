@@ -1,5 +1,5 @@
 ---
-import { url } from "../scripts/url"
+import { url } from "../scripts/url";
 ---
 
 <header
@@ -8,8 +8,13 @@ import { url } from "../scripts/url"
     <div class="flex h-13 justify-between max-w-270 mx-auto">
         <a
             href={url("/")}
-            class="flex items-center gap-2 text-[15px] font-semibold text-neutral-900 no-underline"
+            class="flex items-center align-middle gap-1 text-[15px] font-semibold text-neutral-900 no-underline"
         >
+            <img
+                class="h-8 w-8 m-auto"
+                src={url("/bastion-logo.svg")}
+                alt="Bastion Logo"
+            />
             <span>Sentinel Systems</span>
         </a>
 
