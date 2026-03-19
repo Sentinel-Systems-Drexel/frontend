@@ -269,7 +269,22 @@ const base = import.meta.env.BASE_URL;
                             >
                             </dd>
                         </div>
+                        <div
+                            class="grid min-h-9 grid-cols-[100px_1fr] items-center border-t border-neutral-200"
+                        >
+                            <dt
+                                class="flex h-full items-center border-r border-neutral-200 bg-neutral-50 px-3 text-[12px] text-neutral-400"
+                            >
+                                Sender IPs
+                            </dt>
+                            <dd
+                                id="r-sender-ips"
+                                class="m-0 flex flex-wrap gap-1 px-2 py-2 text-[13px] text-neutral-900"
+                            >
+                            </dd>
+                        </div>   
                     </dl>
+                    <span class="text-[10px] text-neutral-400 tracking-tight [word-spacing:-0.15rem] mt-0.5">Emails may gain sender addresses when forwarded through mail networks. The most likely sender addresses are highlighted in yellow.</span>
                 </section>
 
                 <!-- Files -->
@@ -658,12 +673,38 @@ const base = import.meta.env.BASE_URL;
         set("r-attachment-count", String(data.summary.attachment_count));
 
         const senderIps = data.summary?.sender_ips;
-        const firstSenderIp =
-            Array.isArray(senderIps) && senderIps.length > 0
-                ? senderIps[0]
-                : null;
-        const mapUrl = Array.isArray(senderIps)
-            ? senderIps.find((ip: any) => ip?.map_url)?.map_url
+        const senderIpsEl = document.getElementById("r-sender-ips");
+        if (senderIpsEl) {
+            senderIpsEl.innerHTML = "";
+
+            if (Array.isArray(senderIps) && senderIps.length > 0) {
+                senderIps.forEach((ip: any, index: number) => {
+                    const query = ip?.query;
+                    const hasReverse =
+                        ip.reverse != null &&
+                        ip.reverse != "" &&
+                        ip.reverse !== "-" &&
+                        ip.reverse !== "—";
+
+                    const chip = document.createElement("span");
+                    chip.className =
+                        "inline-flex items-center px-2 py-0.5 text-[12px] text-neutral-900";
+
+                    if (hasReverse) {
+                        chip.classList.add("bg-yellow-200");
+                        chip.title = `Reverse DNS: ${ip.reverse}`;
+                    }
+                    chip.textContent = query || "—";
+                    if (index < senderIps.length - 1) chip.textContent += ",";
+                    senderIpsEl.appendChild(chip);
+                });
+            } else {
+                senderIpsEl.textContent = "—";
+            }
+        }
+
+        const senderIpWithMap = Array.isArray(senderIps)
+            ? senderIps.find((ip: any) => ip?.map_url)
             : null;
         map.src = mapUrl ? `${API_URL}${mapUrl}` : "";
 
