@@ -1,20 +1,20 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="Email Parser — Sentinel Systems">
-    <main class="flex items-start justify-center px-6 py-12">
-        <div class="flex w-full max-w-140 flex-col gap-5">
+    <main class="flex items-start justify-center px-6 md:px-20 lg:px-40 py-12">
+        <div class="flex w-full max-w-270 flex-col gap-5">
             <!-- Page header -->
             <div class="mb-1">
-                <h1
-                    class="mb-1.5 text-[22px] font-semibold tracking-tight text-neutral-900"
-                >
+                <h1 class="mb-1.5 text-[22px] font-semibold text-neutral-900">
                     Email Parser
                 </h1>
                 <p class="text-[13px] leading-relaxed text-neutral-500">
                     Upload a <code
-                        class="rounded bg-neutral-100 px-1 py-px text-[12px]"
+                        class="rounded bg-neutral-200 px-1 py-px text-[12px]"
                         >.eml</code
                     > file to extract headers, body, and attachments.
                 </p>
@@ -28,7 +28,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                     type="text"
                     placeholder="https://dev.georgejosef.com/sentinel-systems/api/"
                 />
-                <span class="text-gray-400 text-xs"
+                <span class="text-neutral-400 text-xs"
                     >For development purposes only.</span
                 >
             </div>
@@ -92,7 +92,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             <!-- Selected file chip -->
             <div
                 id="file-chip"
-                class="hidden items-center gap-2 rounded-md border border-neutral-200 bg-neutral-100 px-3 py-2 text-[13px] text-neutral-900"
+                hidden
+                class="items-center gap-2 rounded-md border border-neutral-200 bg-neutral-100 px-3 py-2 text-[13px] text-neutral-900"
             >
                 <svg
                     class="shrink-0 text-neutral-400"
@@ -139,7 +140,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             <!-- Error -->
             <div
                 id="inline-error"
-                class="hidden rounded-md border border-red-200 bg-red-50 px-3 py-2.5 text-[13px] text-red-700"
+                hidden
+                class="rounded-md border border-red-200 bg-red-50 px-3 py-2.5 text-[13px] text-red-700"
             >
             </div>
 
@@ -157,7 +159,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             </div>
 
             <!-- Results -->
-            <div id="results" class="hidden flex-col gap-6">
+            <div id="results" hidden class="flex-col gap-6">
                 <div class="h-px bg-neutral-200"></div>
 
                 <!-- Overview -->
@@ -194,7 +196,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                             </dt>
                             <dd
                                 id="r-output-dir"
-                                class="m-0 break-all px-3 py-2 text-[11px] text-neutral-500"
+                                class="m-0 break-all px-3 py-2 text-[13px] text-neutral-500"
                             >
                             </dd>
                         </div>
@@ -202,9 +204,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                 </section>
 
                 <!-- Headers -->
-                <section class="flex flex-col gap-2.5">
+                <section class="flex flex-col">
                     <h2
-                        class="text-[11px] font-semibold uppercase tracking-widest text-neutral-400"
+                        class="text-[11px] font-semibold uppercase tracking-widest text-neutral-400 mb-2.5"
                     >
                         Headers
                     </h2>
@@ -267,7 +269,22 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                             >
                             </dd>
                         </div>
+                        <div
+                            class="grid min-h-9 grid-cols-[100px_1fr] items-center border-t border-neutral-200"
+                        >
+                            <dt
+                                class="flex h-full items-center border-r border-neutral-200 bg-neutral-50 px-3 text-[12px] text-neutral-400"
+                            >
+                                Sender IPs
+                            </dt>
+                            <dd
+                                id="r-sender-ips"
+                                class="m-0 flex flex-wrap gap-1 px-2 py-2 text-[13px] text-neutral-900"
+                            >
+                            </dd>
+                        </div>   
                     </dl>
+                    <span class="text-[10px] text-neutral-400 tracking-tight [word-spacing:-0.15rem] mt-0.5">Emails may gain sender addresses when forwarded through mail networks. The most likely sender addresses are highlighted in yellow.</span>
                 </section>
 
                 <!-- Files -->
@@ -324,6 +341,126 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                         </div>
                     </dl>
                     <ul id="r-attachments" class="flex flex-col gap-1.5"></ul>
+                    <div>
+                        <div id="sender-origin-section">
+                            <h2 class="font-bold text-xl mb-2">
+                                Sender Origin
+                            </h2>
+                            <div class="flex">
+                                <div class="flex-1 relative overflow-hidden">
+                                    <img
+                                        id="map"
+                                        src=""
+                                        class="rounded-xl absolute inset-0 w-full h-full object-cover"
+                                        alt="MAP: Sender IP address place of origin"
+                                    />
+                                </div>
+                                <div class="flex-1 pl-4">
+                                    <table
+                                        class="w-full overflow-hidden rounded-md border border-neutral-200 text-left"
+                                    >
+                                        <tbody>
+                                            <tr
+                                                class="border-b border-neutral-200"
+                                            >
+                                                <th
+                                                    class="w-28 bg-neutral-50 px-3 py-2 text-[12px] text-neutral-400 font-medium"
+                                                    >Query</th
+                                                >
+                                                <td
+                                                    id="r-ip-query"
+                                                    class="copyable-cell px-3 py-2 text-[13px] text-neutral-900 break-all"
+                                                    title="Click to copy"></td>
+                                            </tr>
+                                            <tr
+                                                class="border-b border-neutral-200"
+                                            >
+                                                <th
+                                                    class="w-28 bg-neutral-50 px-3 py-2 text-[12px] text-neutral-400 font-medium"
+                                                    >Continent</th
+                                                >
+                                                <td
+                                                    id="r-ip-continent"
+                                                    class="copyable-cell px-3 py-2 text-[13px] text-neutral-900 break-all"
+                                                    title="Click to copy"></td>
+                                            </tr>
+                                            <tr
+                                                class="border-b border-neutral-200"
+                                            >
+                                                <th
+                                                    class="w-28 bg-neutral-50 px-3 py-2 text-[12px] text-neutral-400 font-medium"
+                                                    >Country</th
+                                                >
+                                                <td
+                                                    id="r-ip-country"
+                                                    class="copyable-cell px-3 py-2 text-[13px] text-neutral-900 break-all"
+                                                    title="Click to copy"></td>
+                                            </tr>
+                                            <tr
+                                                class="border-b border-neutral-200"
+                                            >
+                                                <th
+                                                    class="w-28 bg-neutral-50 px-3 py-2 text-[12px] text-neutral-400 font-medium"
+                                                    >Region</th
+                                                >
+                                                <td
+                                                    id="r-ip-region"
+                                                    class="copyable-cell px-3 py-2 text-[13px] text-neutral-900 break-all"
+                                                    title="Click to copy"></td>
+                                            </tr>
+                                            <tr
+                                                class="border-b border-neutral-200"
+                                            >
+                                                <th
+                                                    class="w-28 bg-neutral-50 px-3 py-2 text-[12px] text-neutral-400 font-medium"
+                                                    >City</th
+                                                >
+                                                <td
+                                                    id="r-ip-city"
+                                                    class="copyable-cell px-3 py-2 text-[13px] text-neutral-900 break-all"
+                                                    title="Click to copy"></td>
+                                            </tr>
+                                            <tr
+                                                class="border-b border-neutral-200"
+                                            >
+                                                <th
+                                                    class="w-28 bg-neutral-50 px-3 py-2 text-[12px] text-neutral-400 font-medium flex items-center align-middle"
+                                                    title="Name of the company that owns this IP address."
+                                                    >Org<img
+                                                        class="ml-1 h-3.5 w-3.5"
+                                                        src={base + "/info.svg"}
+                                                    /></th
+                                                >
+                                                <td
+                                                    id="r-ip-org"
+                                                    class="copyable-cell px-3 py-2 text-[13px] text-neutral-900 break-all"
+                                                    title="Click to copy"></td>
+                                            </tr>
+                                            <tr>
+                                                <th
+                                                    class="w-28 bg-neutral-50 px-3 py-2 text-[12px] text-neutral-400 font-medium flex items-center align-middle"
+                                                    title="Name of the server that sent the email."
+                                                    >Hostname<img
+                                                        class="ml-1 h-3.5 w-3.5"
+                                                        src={base + "/info.svg"}
+                                                    /></th
+                                                >
+                                                <td
+                                                    id="r-ip-reverse"
+                                                    class="copyable-cell px-3 py-2 text-[13px] text-neutral-900 break-all"
+                                                    title="Click to copy"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <span
+                                class="text-xs m-0 p-0 text-neutral-400 hover:text-neutral-600 transition-colors"
+                            >
+                                &copy;Mapbox&nbsp;&copy;OpenStreetMap
+                            </span>
+                        </div>
+                    </div>
                 </section>
             </div>
         </div>
@@ -380,10 +517,36 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     #api-status[data-state="offline"] #status-dot {
         background-color: #c0392b;
     }
+
+    .copyable-cell {
+        position: relative;
+        cursor: pointer;
+        padding-right: 2rem;
+        transition: color 0.15s ease;
+    }
+    .copyable-cell::after {
+        content: "⧉";
+        position: absolute;
+        right: 0.65rem;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0;
+        font-size: 16px;
+        color: #171717;
+        pointer-events: none;
+        transition: opacity 0.15s ease;
+    }
+    .copyable-cell:hover::after {
+        opacity: 1;
+    }
+    .copyable-cell.copied {
+        text-decoration: underline dotted;
+        text-underline-offset: 2px;
+    }
 </style>
 
 <script>
-    const DEFAULT_API_URL = "https://dev.georgejosef.com/sentinel-systems/api/";
+    const DEFAULT_API_URL = "https://dev.georgejosef.com/sentinel-systems/api";
     const STORAGE_KEY = "endpointUrl";
 
     const endpointInput = document.getElementById(
@@ -426,6 +589,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     const results = document.getElementById("results")!;
     const apiStatus = document.getElementById("api-status")!;
     const statusText = document.getElementById("status-text")!;
+    const map = document.getElementById("map") as HTMLImageElement;
+    const copyableSenderOriginIds = [
+        "r-ip-query",
+        "r-ip-continent",
+        "r-ip-country",
+        "r-ip-region",
+        "r-ip-city",
+        "r-ip-org",
+        "r-ip-reverse",
+    ];
 
     let selectedFile: File | null = null;
 
@@ -438,8 +611,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             } else throw new Error();
         } catch {
             apiStatus.dataset.state = "offline";
-            statusText.textContent =
-                "API Offline";
+            statusText.textContent = "API Offline";
         }
     }
     checkApi();
@@ -540,6 +712,55 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         if (el) el.textContent = val ?? "—";
     }
 
+    async function copyTextToClipboard(text: string) {
+        if (navigator.clipboard?.writeText) {
+            await navigator.clipboard.writeText(text);
+            return;
+        }
+
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-9999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+    }
+
+    function markCellCopied(cell: HTMLElement) {
+        cell.classList.add("copied");
+        const originalTitle = cell.title;
+        cell.title = "Copied";
+        setTimeout(() => {
+            cell.classList.remove("copied");
+            cell.title = originalTitle || "Click to copy";
+        }, 900);
+    }
+
+    function initSenderOriginCopy() {
+        copyableSenderOriginIds.forEach((id) => {
+            const cell = document.getElementById(id) as HTMLElement | null;
+            if (!cell || cell.dataset.copyBound === "true") return;
+
+            cell.dataset.copyBound = "true";
+            cell.addEventListener("click", async () => {
+                const value = cell.textContent?.trim();
+                if (!value || value === "—") return;
+
+                try {
+                    await copyTextToClipboard(value);
+                    markCellCopied(cell);
+                } catch {
+                    showError("Could not copy value to clipboard.");
+                }
+            });
+        });
+    }
+
+    initSenderOriginCopy();
+
     function displayResults(data: any) {
         set("r-email-id", data.email_id);
         set("r-output-dir", data.output_directory);
@@ -550,6 +771,59 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         set("r-headers-file", data.files_created.headers);
         set("r-body-file", data.files_created.body);
         set("r-attachment-count", String(data.summary.attachment_count));
+
+        const senderIps = data.summary?.sender_ips;
+        const senderIpsEl = document.getElementById("r-sender-ips");
+        if (senderIpsEl) {
+            senderIpsEl.innerHTML = "";
+
+            if (Array.isArray(senderIps) && senderIps.length > 0) {
+                senderIps.forEach((ip: any, index: number) => {
+                    const query = ip?.query;
+                    const hasReverse =
+                        ip.reverse != null &&
+                        ip.reverse != "" &&
+                        ip.reverse !== "-" &&
+                        ip.reverse !== "—";
+
+                    const chip = document.createElement("span");
+                    chip.className =
+                        "inline-flex items-center px-2 py-0.5 text-[12px] text-neutral-900";
+
+                    if (hasReverse) {
+                        chip.classList.add("bg-yellow-200");
+                        chip.title = `Reverse DNS: ${ip.reverse}`;
+                    }
+                    chip.textContent = query || "—";
+                    if (index < senderIps.length - 1) chip.textContent += ",";
+                    senderIpsEl.appendChild(chip);
+                });
+            } else {
+                senderIpsEl.textContent = "—";
+            }
+        }
+
+        const senderIpWithMap = Array.isArray(senderIps)
+            ? senderIps.find((ip: any) => ip?.map_url)
+            : null;
+        const mapUrl = senderIpWithMap?.map_url;
+        map.src = mapUrl ? `${API_URL}${mapUrl}` : "";
+
+        const senderOriginSection = document.getElementById(
+            "sender-origin-section",
+        );
+        if (mapUrl && senderIpWithMap) {
+            if (senderOriginSection) senderOriginSection.hidden = false;
+            set("r-ip-query", senderIpWithMap?.query);
+            set("r-ip-continent", senderIpWithMap?.continent);
+            set("r-ip-country", senderIpWithMap?.country);
+            set("r-ip-region", senderIpWithMap?.regionName);
+            set("r-ip-city", senderIpWithMap?.city);
+            set("r-ip-org", senderIpWithMap?.org);
+            set("r-ip-reverse", senderIpWithMap?.reverse);
+        } else {
+            if (senderOriginSection) senderOriginSection.hidden = true;
+        }
 
         const list = document.getElementById("r-attachments")!;
         list.innerHTML = "";
