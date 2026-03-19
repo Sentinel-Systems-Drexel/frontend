@@ -342,108 +342,124 @@ const base = import.meta.env.BASE_URL;
                     </dl>
                     <ul id="r-attachments" class="flex flex-col gap-1.5"></ul>
                     <div>
-                        <h2 class="font-bold text-xl mb-2">Sender Origin</h2>
-                        <div class="flex">
-                            <div class="flex-1 relative overflow-hidden">
-                                <img
-                                    id="map"
-                                    src=""
-                                    class="rounded-xl absolute inset-0 w-full h-full object-cover"
-                                    alt="MAP: Sender IP address place of origin"
-                                />
+                        <div id="sender-origin-section">
+                            <h2 class="font-bold text-xl mb-2">
+                                Sender Origin
+                            </h2>
+                            <div class="flex">
+                                <div class="flex-1 relative overflow-hidden">
+                                    <img
+                                        id="map"
+                                        src=""
+                                        class="rounded-xl absolute inset-0 w-full h-full object-cover"
+                                        alt="MAP: Sender IP address place of origin"
+                                    />
+                                </div>
+                                <div class="flex-1 pl-4">
+                                    <table
+                                        class="w-full overflow-hidden rounded-md border border-neutral-200 text-left"
+                                    >
+                                        <tbody>
+                                            <tr
+                                                class="border-b border-neutral-200"
+                                            >
+                                                <th
+                                                    class="w-28 bg-neutral-50 px-3 py-2 text-[12px] text-neutral-400 font-medium"
+                                                    >Query</th
+                                                >
+                                                <td
+                                                    id="r-ip-query"
+                                                    class="copyable-cell px-3 py-2 text-[13px] text-neutral-900 break-all"
+                                                    title="Click to copy"></td>
+                                            </tr>
+                                            <tr
+                                                class="border-b border-neutral-200"
+                                            >
+                                                <th
+                                                    class="w-28 bg-neutral-50 px-3 py-2 text-[12px] text-neutral-400 font-medium"
+                                                    >Continent</th
+                                                >
+                                                <td
+                                                    id="r-ip-continent"
+                                                    class="copyable-cell px-3 py-2 text-[13px] text-neutral-900 break-all"
+                                                    title="Click to copy"></td>
+                                            </tr>
+                                            <tr
+                                                class="border-b border-neutral-200"
+                                            >
+                                                <th
+                                                    class="w-28 bg-neutral-50 px-3 py-2 text-[12px] text-neutral-400 font-medium"
+                                                    >Country</th
+                                                >
+                                                <td
+                                                    id="r-ip-country"
+                                                    class="copyable-cell px-3 py-2 text-[13px] text-neutral-900 break-all"
+                                                    title="Click to copy"></td>
+                                            </tr>
+                                            <tr
+                                                class="border-b border-neutral-200"
+                                            >
+                                                <th
+                                                    class="w-28 bg-neutral-50 px-3 py-2 text-[12px] text-neutral-400 font-medium"
+                                                    >Region</th
+                                                >
+                                                <td
+                                                    id="r-ip-region"
+                                                    class="copyable-cell px-3 py-2 text-[13px] text-neutral-900 break-all"
+                                                    title="Click to copy"></td>
+                                            </tr>
+                                            <tr
+                                                class="border-b border-neutral-200"
+                                            >
+                                                <th
+                                                    class="w-28 bg-neutral-50 px-3 py-2 text-[12px] text-neutral-400 font-medium"
+                                                    >City</th
+                                                >
+                                                <td
+                                                    id="r-ip-city"
+                                                    class="copyable-cell px-3 py-2 text-[13px] text-neutral-900 break-all"
+                                                    title="Click to copy"></td>
+                                            </tr>
+                                            <tr
+                                                class="border-b border-neutral-200"
+                                            >
+                                                <th
+                                                    class="w-28 bg-neutral-50 px-3 py-2 text-[12px] text-neutral-400 font-medium flex items-center align-middle"
+                                                    title="Name of the company that owns this IP address."
+                                                    >Org<img
+                                                        class="ml-1 h-3.5 w-3.5"
+                                                        src={base + "/info.svg"}
+                                                    /></th
+                                                >
+                                                <td
+                                                    id="r-ip-org"
+                                                    class="copyable-cell px-3 py-2 text-[13px] text-neutral-900 break-all"
+                                                    title="Click to copy"></td>
+                                            </tr>
+                                            <tr>
+                                                <th
+                                                    class="w-28 bg-neutral-50 px-3 py-2 text-[12px] text-neutral-400 font-medium flex items-center align-middle"
+                                                    title="Name of the server that sent the email."
+                                                    >Hostname<img
+                                                        class="ml-1 h-3.5 w-3.5"
+                                                        src={base + "/info.svg"}
+                                                    /></th
+                                                >
+                                                <td
+                                                    id="r-ip-reverse"
+                                                    class="copyable-cell px-3 py-2 text-[13px] text-neutral-900 break-all"
+                                                    title="Click to copy"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                            <div class="flex-1 pl-4">
-                                <table
-                                    class="w-full overflow-hidden rounded-md border border-neutral-200 text-left"
-                                >
-                                    <tbody>
-                                        <tr class="border-b border-neutral-200">
-                                            <th
-                                                class="w-28 bg-neutral-50 px-3 py-2 text-[12px] text-neutral-400 font-medium"
-                                                >Query</th
-                                            >
-                                            <td
-                                                id="r-ip-query"
-                                                class="px-3 py-2 text-[13px] text-neutral-900 break-all"
-                                            ></td>
-                                        </tr>
-                                        <tr class="border-b border-neutral-200">
-                                            <th
-                                                class="w-28 bg-neutral-50 px-3 py-2 text-[12px] text-neutral-400 font-medium"
-                                                >Continent</th
-                                            >
-                                            <td
-                                                id="r-ip-continent"
-                                                class="px-3 py-2 text-[13px] text-neutral-900 break-all"
-                                            ></td>
-                                        </tr>
-                                        <tr class="border-b border-neutral-200">
-                                            <th
-                                                class="w-28 bg-neutral-50 px-3 py-2 text-[12px] text-neutral-400 font-medium"
-                                                >Country</th
-                                            >
-                                            <td
-                                                id="r-ip-country"
-                                                class="px-3 py-2 text-[13px] text-neutral-900 break-all"
-                                            ></td>
-                                        </tr>
-                                        <tr class="border-b border-neutral-200">
-                                            <th
-                                                class="w-28 bg-neutral-50 px-3 py-2 text-[12px] text-neutral-400 font-medium"
-                                                >Region</th
-                                            >
-                                            <td
-                                                id="r-ip-region"
-                                                class="px-3 py-2 text-[13px] text-neutral-900 break-all"
-                                            ></td>
-                                        </tr>
-                                        <tr class="border-b border-neutral-200">
-                                            <th
-                                                class="w-28 bg-neutral-50 px-3 py-2 text-[12px] text-neutral-400 font-medium"
-                                                >City</th
-                                            >
-                                            <td
-                                                id="r-ip-city"
-                                                class="px-3 py-2 text-[13px] text-neutral-900 break-all"
-                                            ></td>
-                                        </tr>
-                                        <tr class="border-b border-neutral-200">
-                                            <th
-                                                class="w-28 bg-neutral-50 px-3 py-2 text-[12px] text-neutral-400 font-medium flex items-center align-middle"
-                                                title="Name of the company that owns this IP address."
-                                                >Org<img
-                                                    class="ml-1 h-3.5 w-3.5"
-                                                    src={base + "/info.svg"}
-                                                /></th
-                                            >
-                                            <td
-                                                id="r-ip-org"
-                                                class="px-3 py-2 text-[13px] text-neutral-900 break-all"
-                                            ></td>
-                                        </tr>
-                                        <tr>
-                                            <th
-                                                class="w-28 bg-neutral-50 px-3 py-2 text-[12px] text-neutral-400 font-medium flex items-center align-middle"
-                                                title="Name of the server that sent the email."
-                                                >Hostname<img
-                                                    class="ml-1 h-3.5 w-3.5"
-                                                    src={base + "/info.svg"}
-                                                /></th
-                                            >
-                                            <td
-                                                id="r-ip-reverse"
-                                                class="px-3 py-2 text-[13px] text-neutral-900 break-all"
-                                            ></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                            <span
+                                class="text-xs m-0 p-0 text-neutral-400 hover:text-neutral-600 transition-colors"
+                            >
+                                &copy;Mapbox&nbsp;&copy;OpenStreetMap
+                            </span>
                         </div>
-                        <span
-                            class="text-xs m-0 p-0 text-gray-400 hover:text-gray-600 transition-colors"
-                        >
-                            &copy;Mapbox&nbsp;&copy;OpenStreetMap
-                        </span>
                     </div>
                 </section>
             </div>
@@ -501,6 +517,32 @@ const base = import.meta.env.BASE_URL;
     #api-status[data-state="offline"] #status-dot {
         background-color: #c0392b;
     }
+
+    .copyable-cell {
+        position: relative;
+        cursor: pointer;
+        padding-right: 2rem;
+        transition: color 0.15s ease;
+    }
+    .copyable-cell::after {
+        content: "⧉";
+        position: absolute;
+        right: 0.65rem;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0;
+        font-size: 16px;
+        color: #171717;
+        pointer-events: none;
+        transition: opacity 0.15s ease;
+    }
+    .copyable-cell:hover::after {
+        opacity: 1;
+    }
+    .copyable-cell.copied {
+        text-decoration: underline dotted;
+        text-underline-offset: 2px;
+    }
 </style>
 
 <script>
@@ -548,6 +590,15 @@ const base = import.meta.env.BASE_URL;
     const apiStatus = document.getElementById("api-status")!;
     const statusText = document.getElementById("status-text")!;
     const map = document.getElementById("map") as HTMLImageElement;
+    const copyableSenderOriginIds = [
+        "r-ip-query",
+        "r-ip-continent",
+        "r-ip-country",
+        "r-ip-region",
+        "r-ip-city",
+        "r-ip-org",
+        "r-ip-reverse",
+    ];
 
     let selectedFile: File | null = null;
 
@@ -661,6 +712,55 @@ const base = import.meta.env.BASE_URL;
         if (el) el.textContent = val ?? "—";
     }
 
+    async function copyTextToClipboard(text: string) {
+        if (navigator.clipboard?.writeText) {
+            await navigator.clipboard.writeText(text);
+            return;
+        }
+
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-9999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+    }
+
+    function markCellCopied(cell: HTMLElement) {
+        cell.classList.add("copied");
+        const originalTitle = cell.title;
+        cell.title = "Copied";
+        setTimeout(() => {
+            cell.classList.remove("copied");
+            cell.title = originalTitle || "Click to copy";
+        }, 900);
+    }
+
+    function initSenderOriginCopy() {
+        copyableSenderOriginIds.forEach((id) => {
+            const cell = document.getElementById(id) as HTMLElement | null;
+            if (!cell || cell.dataset.copyBound === "true") return;
+
+            cell.dataset.copyBound = "true";
+            cell.addEventListener("click", async () => {
+                const value = cell.textContent?.trim();
+                if (!value || value === "—") return;
+
+                try {
+                    await copyTextToClipboard(value);
+                    markCellCopied(cell);
+                } catch {
+                    showError("Could not copy value to clipboard.");
+                }
+            });
+        });
+    }
+
+    initSenderOriginCopy();
+
     function displayResults(data: any) {
         set("r-email-id", data.email_id);
         set("r-output-dir", data.output_directory);
@@ -706,15 +806,24 @@ const base = import.meta.env.BASE_URL;
         const senderIpWithMap = Array.isArray(senderIps)
             ? senderIps.find((ip: any) => ip?.map_url)
             : null;
+        const mapUrl = senderIpWithMap?.map_url;
         map.src = mapUrl ? `${API_URL}${mapUrl}` : "";
 
-        set("r-ip-query", firstSenderIp?.query);
-        set("r-ip-continent", firstSenderIp?.continent);
-        set("r-ip-country", firstSenderIp?.country);
-        set("r-ip-region", firstSenderIp?.regionName);
-        set("r-ip-city", firstSenderIp?.city);
-        set("r-ip-org", firstSenderIp?.org);
-        set("r-ip-reverse", firstSenderIp?.reverse);
+        const senderOriginSection = document.getElementById(
+            "sender-origin-section",
+        );
+        if (mapUrl && senderIpWithMap) {
+            if (senderOriginSection) senderOriginSection.hidden = false;
+            set("r-ip-query", senderIpWithMap?.query);
+            set("r-ip-continent", senderIpWithMap?.continent);
+            set("r-ip-country", senderIpWithMap?.country);
+            set("r-ip-region", senderIpWithMap?.regionName);
+            set("r-ip-city", senderIpWithMap?.city);
+            set("r-ip-org", senderIpWithMap?.org);
+            set("r-ip-reverse", senderIpWithMap?.reverse);
+        } else {
+            if (senderOriginSection) senderOriginSection.hidden = true;
+        }
 
         const list = document.getElementById("r-attachments")!;
         list.innerHTML = "";
