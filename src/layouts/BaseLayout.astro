@@ -6,9 +6,11 @@ import Footer from "../components/Footer.astro";
 
 interface Props {
     title?: string;
+	description?: string;
 }
 
-const { title = "Sentinel Systems" } = Astro.props;
+const { title = "Sentinel Systems", description } = Astro.props;
+const base = import.meta.env.BASE_URL;
 ---
 
 <html lang="en">
@@ -16,7 +18,17 @@ const { title = "Sentinel Systems" } = Astro.props;
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
+		<link rel="icon" type="img/svg" href={base + "bastion-bw.png"}>
+
 		<title>{title}</title>
+		<meta name="description" content={description}>
+
+		<meta property="og:type" content="website">
+		<meta property="og:title" content={title}>
+		<meta property="og:description" content={description}>
+		<meta property="og:image" content={base + "cover.png"}>
+		<meta property="twitter:card" content={base + "cover.png"}>
+		<meta property="twitter:title" content={title}>
 	</head>
 	<body class="m-0 p-0">
         <Header />
