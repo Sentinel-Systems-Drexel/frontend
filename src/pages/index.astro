@@ -4,19 +4,22 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
 ---
 
-<BaseLayout title="Email Parser — Sentinel Systems">
+<BaseLayout
+    title="Email Analyzer — Sentinel Systems"
+    description="The ultimate email forensics tool. Extract headers, map sender IPs, and scan for viruses. Get real-time insights and geographic data for any .eml file."
+>
     <main class="flex items-start justify-center px-6 md:px-20 lg:px-40 py-12">
         <div class="flex w-full max-w-270 flex-col gap-5">
             <!-- Page header -->
             <div class="mb-1">
                 <h1 class="mb-1.5 text-[22px] font-semibold text-neutral-900">
-                    Email Parser
+                    Email Analyzer
                 </h1>
                 <p class="text-[13px] leading-relaxed text-neutral-500">
                     Upload a <code
                         class="rounded bg-neutral-200 px-1 py-px text-[12px]"
                         >.eml</code
-                    > file to extract headers, body, and attachments.
+                    > file for analysis.
                 </p>
             </div>
 
@@ -84,7 +87,7 @@ const base = import.meta.env.BASE_URL;
                     Drop file here or <span
                         class="cursor-pointer text-neutral-900 underline underline-offset-2"
                         >browse</span
-                    >
+                    >.
                 </p>
                 <p class="text-[11px] text-neutral-400">Supports .eml files</p>
             </div>
@@ -134,7 +137,7 @@ const base = import.meta.env.BASE_URL;
                 disabled
                 class="w-full cursor-pointer rounded-md border-0 bg-neutral-900 px-4 py-2.5 text-[14px] font-medium tracking-wide text-white transition-opacity active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-30 enabled:hover:opacity-85"
             >
-                Parse Email
+                Analyze Email
             </button>
 
             <!-- Error -->
@@ -282,9 +285,14 @@ const base = import.meta.env.BASE_URL;
                                 class="m-0 flex flex-wrap gap-1 px-2 py-2 text-[13px] text-neutral-900"
                             >
                             </dd>
-                        </div>   
+                        </div>
                     </dl>
-                    <span class="text-[10px] text-neutral-400 tracking-tight [word-spacing:-0.15rem] mt-0.5">Emails may gain sender addresses when forwarded through mail networks. The most likely sender addresses are highlighted in yellow.</span>
+                    <span
+                        class="text-[10px] text-neutral-400 tracking-tight [word-spacing:-0.1rem] mt-0.5"
+                        >Emails may gain sender addresses when forwarded through
+                        mail networks. The most likely sender addresses are
+                        highlighted in yellow.</span
+                    >
                 </section>
 
                 <!-- Files -->
