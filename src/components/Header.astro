@@ -8,14 +8,14 @@ import { url } from "../scripts/url";
     <div class="flex h-13 justify-between max-w-270 mx-auto">
         <a
             href={url("/")}
-            class="flex items-center align-middle gap-1 text-[15px] font-semibold text-neutral-900 no-underline"
+            class="flex items-center align-baseline gap-2.5 text-[15px] font-semibold text-neutral-900 no-underline"
         >
             <img
-                class="h-8 w-8 m-auto"
-                src={url("/bastion-logo.svg")}
+                class="h-6 w-6 m-auto"
+                src={url("/bastion-black.svg")}
                 alt="Bastion Logo"
             />
-            <span>Sentinel Systems</span>
+            <span class="my-auto">Sentinel Systems</span>
         </a>
 
         <nav class="flex items-center gap-4">
@@ -23,7 +23,13 @@ import { url } from "../scripts/url";
                 href={url("/")}
                 class="rounded-md px-2.5 py-1.5 text-[13px] text-neutral-500 transition-colors hover:bg-neutral-100 hover:text-neutral-900"
             >
-                Parser
+                Analyzer
+            </a>
+            <a
+                href={url("/diff/")}
+                class="rounded-md px-2.5 py-1.5 text-[13px] text-neutral-500 transition-colors hover:bg-neutral-100 hover:text-neutral-900"
+            >
+                Diff-Checker
             </a>
             <a
                 href={url("/docs/")}
