@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
-const base = import.meta.env.BASE_URL;
+import { url } from "../scripts/url";
 ---
 
 <BaseLayout
@@ -436,7 +435,7 @@ const base = import.meta.env.BASE_URL;
                                                     title="Name of the company that owns this IP address."
                                                     >Org<img
                                                         class="ml-1 h-3.5 w-3.5"
-                                                        src={base + "/info.svg"}
+                                                        src={url("/info.svg")}
                                                     /></th
                                                 >
                                                 <td
@@ -450,7 +449,7 @@ const base = import.meta.env.BASE_URL;
                                                     title="Name of the server that sent the email."
                                                     >Hostname<img
                                                         class="ml-1 h-3.5 w-3.5"
-                                                        src={base + "/info.svg"}
+                                                        src={url("/info.svg")}
                                                     /></th
                                                 >
                                                 <td
