@@ -131,14 +131,23 @@ const base = import.meta.env.BASE_URL;
                 >
             </div>
 
-            <!-- Parse button -->
-            <button
-                id="parse-btn"
-                disabled
-                class="w-full cursor-pointer rounded-md border-0 bg-neutral-900 px-4 py-2.5 text-[14px] font-medium tracking-wide text-white transition-opacity active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-30 enabled:hover:opacity-85"
-            >
-                Analyze Email
-            </button>
+            <!-- Parse button + Comparison button -->
+            <div class="flex gap-3">
+                <button
+                    id="parse-btn"
+                    disabled
+                    class="flex-1 cursor-pointer rounded-md border-0 bg-neutral-900 px-4 py-2.5 text-[14px] font-medium tracking-wide text-white transition-opacity active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-30 enabled:hover:opacity-85"
+                >
+                    Analyze Email
+                </button>
+                <button
+                    id="compare-btn"
+                    hidden
+                    class="flex-1 cursor-pointer rounded-md border border-neutral-300 bg-neutral-200 px-4 py-2.5 text-[14px] font-medium tracking-wide text-neutral-900 transition-opacity active:scale-[0.99] hover:bg-neutral-300 disabled:cursor-not-allowed disabled:opacity-30"
+                >
+                    Compare with Legitimate Email
+                </button>
+            </div>
 
             <!-- Error -->
             <div
@@ -164,6 +173,36 @@ const base = import.meta.env.BASE_URL;
             <!-- Results -->
             <div id="results" hidden class="flex-col gap-6">
                 <div class="h-px bg-neutral-200"></div>
+
+                <!-- Rspamd score -->
+                <section id="rspamd-section" class="flex flex-col gap-2.5" hidden>
+                    <h2
+                        class="text-[11px] font-semibold uppercase tracking-widest text-neutral-400"
+                    >
+                        Scoring
+                    </h2>
+                    <div class="overflow-hidden rounded-md border border-neutral-200 bg-neutral-50">
+                        <div class="flex flex-wrap items-start justify-between gap-3 border-b border-neutral-200 px-4 py-3">
+                            <div class="flex flex-col gap-0.5">
+                                <div class="flex items-baseline gap-2">
+                                    <span
+                                        id="rspamd-score"
+                                        class="text-[26px] font-semibold tabular-nums text-neutral-900"
+                                    ></span>
+                                </div>
+                                <div
+                                    id="rspamd-symbol-count"
+                                    class="text-[11px] text-neutral-400"
+                                ></div>
+                            </div>
+                            <div
+                                id="rspamd-action"
+                                class="rounded-full bg-neutral-200 px-2 py-0.5 text-[11px] font-medium text-neutral-600"
+                            ></div>
+                        </div>
+                        <div id="rspamd-chart"></div>
+                    </div>
+                </section>
 
                 <!-- Overview -->
                 <section class="flex flex-col gap-2.5">
@@ -349,125 +388,19 @@ const base = import.meta.env.BASE_URL;
                         </div>
                     </dl>
                     <ul id="r-attachments" class="flex flex-col gap-1.5"></ul>
-                    <div>
-                        <div id="sender-origin-section">
-                            <h2 class="font-bold text-xl mb-2">
-                                Sender Origin
-                            </h2>
-                            <div class="flex">
-                                <div class="flex-1 relative overflow-hidden">
-                                    <img
-                                        id="map"
-                                        src=""
-                                        class="rounded-xl absolute inset-0 w-full h-full object-cover"
-                                        alt="MAP: Sender IP address place of origin"
-                                    />
-                                </div>
-                                <div class="flex-1 pl-4">
-                                    <table
-                                        class="w-full overflow-hidden rounded-md border border-neutral-200 text-left"
-                                    >
-                                        <tbody>
-                                            <tr
-                                                class="border-b border-neutral-200"
-                                            >
-                                                <th
-                                                    class="w-28 bg-neutral-50 px-3 py-2 text-[12px] text-neutral-400 font-medium"
-                                                    >Query</th
-                                                >
-                                                <td
-                                                    id="r-ip-query"
-                                                    class="copyable-cell px-3 py-2 text-[13px] text-neutral-900 break-all"
-                                                    title="Click to copy"></td>
-                                            </tr>
-                                            <tr
-                                                class="border-b border-neutral-200"
-                                            >
-                                                <th
-                                                    class="w-28 bg-neutral-50 px-3 py-2 text-[12px] text-neutral-400 font-medium"
-                                                    >Continent</th
-                                                >
-                                                <td
-                                                    id="r-ip-continent"
-                                                    class="copyable-cell px-3 py-2 text-[13px] text-neutral-900 break-all"
-                                                    title="Click to copy"></td>
-                                            </tr>
-                                            <tr
-                                                class="border-b border-neutral-200"
-                                            >
-                                                <th
-                                                    class="w-28 bg-neutral-50 px-3 py-2 text-[12px] text-neutral-400 font-medium"
-                                                    >Country</th
-                                                >
-                                                <td
-                                                    id="r-ip-country"
-                                                    class="copyable-cell px-3 py-2 text-[13px] text-neutral-900 break-all"
-                                                    title="Click to copy"></td>
-                                            </tr>
-                                            <tr
-                                                class="border-b border-neutral-200"
-                                            >
-                                                <th
-                                                    class="w-28 bg-neutral-50 px-3 py-2 text-[12px] text-neutral-400 font-medium"
-                                                    >Region</th
-                                                >
-                                                <td
-                                                    id="r-ip-region"
-                                                    class="copyable-cell px-3 py-2 text-[13px] text-neutral-900 break-all"
-                                                    title="Click to copy"></td>
-                                            </tr>
-                                            <tr
-                                                class="border-b border-neutral-200"
-                                            >
-                                                <th
-                                                    class="w-28 bg-neutral-50 px-3 py-2 text-[12px] text-neutral-400 font-medium"
-                                                    >City</th
-                                                >
-                                                <td
-                                                    id="r-ip-city"
-                                                    class="copyable-cell px-3 py-2 text-[13px] text-neutral-900 break-all"
-                                                    title="Click to copy"></td>
-                                            </tr>
-                                            <tr
-                                                class="border-b border-neutral-200"
-                                            >
-                                                <th
-                                                    class="w-28 bg-neutral-50 px-3 py-2 text-[12px] text-neutral-400 font-medium flex items-center align-middle"
-                                                    title="Name of the company that owns this IP address."
-                                                    >Org<img
-                                                        class="ml-1 h-3.5 w-3.5"
-                                                        src={base + "/info.svg"}
-                                                    /></th
-                                                >
-                                                <td
-                                                    id="r-ip-org"
-                                                    class="copyable-cell px-3 py-2 text-[13px] text-neutral-900 break-all"
-                                                    title="Click to copy"></td>
-                                            </tr>
-                                            <tr>
-                                                <th
-                                                    class="w-28 bg-neutral-50 px-3 py-2 text-[12px] text-neutral-400 font-medium flex items-center align-middle"
-                                                    title="Name of the server that sent the email."
-                                                    >Hostname<img
-                                                        class="ml-1 h-3.5 w-3.5"
-                                                        src={base + "/info.svg"}
-                                                    /></th
-                                                >
-                                                <td
-                                                    id="r-ip-reverse"
-                                                    class="copyable-cell px-3 py-2 text-[13px] text-neutral-900 break-all"
-                                                    title="Click to copy"></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <span
-                                class="text-xs m-0 p-0 text-neutral-400 hover:text-neutral-600 transition-colors"
-                            >
-                                &copy;Mapbox&nbsp;&copy;OpenStreetMap
-                            </span>
-                        </div>
+                    <div id="sender-origin-section" hidden>
+                        <h2 class="font-bold text-xl mb-2">
+                            Sender Origin
+                        </h2>
+                        <div
+                            id="sender-origins-list"
+                            class="flex flex-col gap-4"
+                        ></div>
+                        <span
+                            class="text-xs m-0 p-0 text-neutral-400 hover:text-neutral-600 transition-colors"
+                        >
+                            &copy;Mapbox&nbsp;&copy;OpenStreetMap
+                        </span>
                     </div>
                 </section>
             </div>
@@ -591,24 +524,25 @@ const base = import.meta.env.BASE_URL;
     const chipSize = document.getElementById("file-chip-size")!;
     const chipRemove = document.getElementById("chip-remove")!;
     const parseBtn = document.getElementById("parse-btn") as HTMLButtonElement;
+    const compareBtn = document.getElementById("compare-btn") as HTMLButtonElement;
+    const rspamdSection = document.getElementById("rspamd-section")!;
+    const rspamdScore = document.getElementById("rspamd-score")!;
+    const rspamdAction = document.getElementById("rspamd-action")!;
+    const rspamdSymbolCount = document.getElementById("rspamd-symbol-count")!;
+    const rspamdChart = document.getElementById("rspamd-chart")!;
     const inlineError = document.getElementById("inline-error")!;
     const loadingSpinner = document.getElementById("loading-spinner")!;
     const loadingText = document.getElementById("loading-text")!;
     const results = document.getElementById("results")!;
     const apiStatus = document.getElementById("api-status")!;
     const statusText = document.getElementById("status-text")!;
-    const map = document.getElementById("map") as HTMLImageElement;
-    const copyableSenderOriginIds = [
-        "r-ip-query",
-        "r-ip-continent",
-        "r-ip-country",
-        "r-ip-region",
-        "r-ip-city",
-        "r-ip-org",
-        "r-ip-reverse",
-    ];
+    const senderOriginSection = document.getElementById("sender-origin-section")!;
+    const senderOriginsList = document.getElementById("sender-origins-list")!;
 
     let selectedFile: File | null = null;
+    let lastEmailId: string | null = null;
+    let lastEmailFrom: string | null = null;
+    let lastEmailSubject: string | null = null;
 
     async function checkApi() {
         try {
@@ -720,6 +654,106 @@ const base = import.meta.env.BASE_URL;
         if (el) el.textContent = val ?? "—";
     }
 
+    function hasReverseDns(ip: any) {
+        return (
+            ip?.reverse != null &&
+            ip.reverse !== "" &&
+            ip.reverse !== "-" &&
+            ip.reverse !== "—"
+        );
+    }
+
+    function escapeHtml(text: string) {
+        const element = document.createElement("div");
+        element.textContent = text;
+        return element.innerHTML;
+    }
+
+    function formatSignedScore(value: number) {
+        if (!Number.isFinite(value)) return "—";
+        return value > 0 ? `+${value.toFixed(2)}` : value.toFixed(2);
+    }
+
+    function buildRspamdChart(symbols: Record<string, any>) {
+        const contributors = Object.entries(symbols || {})
+            .map(([name, value]) => {
+                const metricScore = Number(value?.metric_score ?? value?.score ?? 0);
+                const rawScore = Number(value?.score ?? metricScore ?? 0);
+
+                return {
+                    name,
+                    description: String(value?.description ?? ""),
+                    metricScore,
+                    rawScore,
+                };
+            })
+            .filter((entry) => entry.metricScore !== 0 || entry.rawScore !== 0)
+            .sort((left, right) => Math.abs(right.metricScore) - Math.abs(left.metricScore));
+
+        if (!contributors.length) {
+            return '<div class="px-4 py-3 text-[12px] text-neutral-400">No rspamd symbol contributions were returned.</div>';
+        }
+
+        const maxAbs = Math.max(
+            ...contributors.map((entry) => Math.abs(entry.metricScore)),
+            1,
+        );
+
+        return contributors
+            .map((entry, index) => {
+                const widthPct = Math.max((Math.abs(entry.metricScore) / maxAbs) * 50, 3);
+                const barColor = entry.metricScore >= 0 ? "bg-red-500" : "bg-emerald-500";
+                const labelColor = entry.metricScore >= 0
+                    ? "bg-red-50 text-red-700"
+                    : "bg-emerald-50 text-emerald-700";
+                const barStyle = entry.metricScore >= 0
+                    ? `left:50%;width:${widthPct}%;`
+                    : `left:${50 - widthPct}%;width:${widthPct}%;`;
+
+                return `
+                    <div class="grid grid-cols-[minmax(0,1.35fr)_minmax(180px,2fr)_96px] items-center gap-3 px-4 py-2.5 ${
+                        index === 0 ? "" : "border-t border-neutral-200"
+                    }">
+                        <div class="min-w-0">
+                            <div class="truncate text-[12px] font-medium text-neutral-900">${escapeHtml(entry.name)}</div>
+                            ${entry.description ? `<div class="truncate text-[10px] text-neutral-400">${escapeHtml(entry.description)}</div>` : ""}
+                        </div>
+                        <div class="relative h-4 overflow-hidden rounded-full bg-neutral-100">
+                            <div class="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-neutral-300"></div>
+                            <div class="absolute top-0 h-full rounded-full ${barColor}" style="${barStyle}"></div>
+                        </div>
+                        <div class="justify-self-end">
+                            <span class="inline-flex rounded-full px-2 py-0.5 text-[11px] font-medium tabular-nums ${labelColor}">${formatSignedScore(entry.metricScore)}</span>
+                        </div>
+                    </div>`;
+            })
+            .join("");
+    }
+
+    function renderRspamdScore(rspamd: any) {
+        const score = Number(rspamd?.score ?? 0);
+        const requiredScore = Number(rspamd?.required_score ?? 0);
+        const action = String(rspamd?.action ?? "");
+        const symbols = rspamd?.symbols || {};
+        const contributors = Object.values(symbols).filter((value: any) => {
+            const metricScore = Number(value?.metric_score ?? value?.score ?? 0);
+            return metricScore !== 0;
+        });
+
+        rspamdSection.hidden = !(rspamd && (Object.keys(symbols).length > 0 || Number.isFinite(score)));
+        if (rspamdSection.hidden) return;
+
+        rspamdScore.textContent = Number.isFinite(score) ? score.toFixed(2) : "—";
+        rspamdScore.className =
+            "text-[26px] font-semibold tabular-nums " +
+            (Number.isFinite(score) && Number.isFinite(requiredScore) && score >= requiredScore
+                ? "text-red-600"
+                : "text-neutral-900");
+        rspamdAction.textContent = action ? `Action: ${action}` : "";
+        rspamdSymbolCount.textContent = `${contributors.length} contributing symbol${contributors.length === 1 ? "" : "s"}`;
+        rspamdChart.innerHTML = buildRspamdChart(symbols);
+    }
+
     async function copyTextToClipboard(text: string) {
         if (navigator.clipboard?.writeText) {
             await navigator.clipboard.writeText(text);
@@ -747,29 +781,92 @@ const base = import.meta.env.BASE_URL;
         }, 900);
     }
 
-    function initSenderOriginCopy() {
-        copyableSenderOriginIds.forEach((id) => {
-            const cell = document.getElementById(id) as HTMLElement | null;
-            if (!cell || cell.dataset.copyBound === "true") return;
+    senderOriginsList.addEventListener("click", async (event) => {
+        const target = event.target as HTMLElement | null;
+        const cell = target?.closest("[data-copy-value]") as HTMLElement | null;
+        if (!cell) return;
 
-            cell.dataset.copyBound = "true";
-            cell.addEventListener("click", async () => {
-                const value = cell.textContent?.trim();
-                if (!value || value === "—") return;
+        const value = cell.dataset.copyValue?.trim();
+        if (!value || value === "—") return;
 
-                try {
-                    await copyTextToClipboard(value);
-                    markCellCopied(cell);
-                } catch {
-                    showError("Could not copy value to clipboard.");
-                }
-            });
-        });
+        try {
+            await copyTextToClipboard(value);
+            markCellCopied(cell);
+        } catch {
+            showError("Could not copy value to clipboard.");
+        }
+    });
+
+    function renderOriginRow(label: string, value: any, title?: string) {
+        const text = value ?? "—";
+        const titleAttr = title ? ` title="${escapeHtml(title)}"` : "";
+        const copyValue = escapeHtml(String(text));
+
+        return `
+            <tr class="border-b border-neutral-200 last:border-b-0">
+                <th class="w-28 bg-neutral-50 px-3 py-2 text-[12px] text-neutral-400 font-medium"${titleAttr}>${escapeHtml(label)}</th>
+                <td
+                    class="copyable-cell px-3 py-2 text-[13px] text-neutral-900 break-all"
+                    title="Click to copy"
+                    data-copy-value="${copyValue}"
+                >${copyValue}</td>
+            </tr>`;
     }
 
-    initSenderOriginCopy();
+    function renderSenderOrigins(senderIps: any[]) {
+        const senderOrigins = Array.isArray(senderIps)
+            ? senderIps.filter((ip) => hasReverseDns(ip))
+            : [];
+
+        if (!senderOrigins.length && Array.isArray(senderIps)) {
+            const fallback = senderIps.find((ip: any) => ip?.map_url);
+            if (fallback) senderOrigins.push(fallback);
+        }
+
+        if (!senderOrigins.length) {
+            senderOriginsList.innerHTML = "";
+            senderOriginSection.hidden = true;
+            return;
+        }
+
+        senderOriginSection.hidden = false;
+        senderOriginsList.innerHTML = senderOrigins
+            .map((ip: any) => {
+                const mapUrl = ip?.map_url ? `${API_URL}${ip.map_url}` : "";
+                const originLabel = hasReverseDns(ip) ? "Reverse DNS" : "Map fallback";
+
+                return `
+                    <article class="overflow-hidden rounded-md border border-neutral-200 bg-white">
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-neutral-200 bg-neutral-50 px-3 py-2">
+                            <div class="min-w-0">
+                                <div class="truncate text-[13px] font-medium text-neutral-900">${escapeHtml(ip?.query || "—")}</div>
+                                <div class="truncate text-[11px] text-neutral-400">${escapeHtml(ip?.reverse || "No reverse DNS")}</div>
+                            </div>
+                            <span class="rounded-full bg-amber-100 px-2 py-0.5 text-[11px] font-medium text-amber-700">${originLabel}</span>
+                        </div>
+                        <div class="grid gap-4 p-3 lg:grid-cols-[minmax(240px,1fr)_minmax(0,1.1fr)]">
+                            <div class="min-h-48 overflow-hidden rounded-xl border border-neutral-200 bg-neutral-100">
+                                ${mapUrl ? `<img src="${mapUrl}" class="h-full w-full object-cover" alt="Map showing origin for ${escapeHtml(ip?.query || ip?.reverse || "sender address")}" />` : `<div class="flex h-full items-center justify-center px-4 py-6 text-[12px] text-neutral-400">Map unavailable</div>`}
+                            </div>
+                            <table class="w-full overflow-hidden rounded-md border border-neutral-200 text-left">
+                                <tbody>
+                                    ${renderOriginRow("Query", ip?.query)}
+                                    ${renderOriginRow("Continent", ip?.continent)}
+                                    ${renderOriginRow("Country", ip?.country)}
+                                    ${renderOriginRow("Region", ip?.regionName)}
+                                    ${renderOriginRow("City", ip?.city)}
+                                    ${renderOriginRow("Org", ip?.org, "Name of the company that owns this IP address.")}
+                                    ${renderOriginRow("Hostname", ip?.reverse, "Name of the server that sent the email.")}
+                                </tbody>
+                            </table>
+                        </div>
+                    </article>`;
+            })
+            .join("");
+    }
 
     function displayResults(data: any) {
+        renderRspamdScore(data.rspamd || data.rspamd_assessment);
         set("r-email-id", data.email_id);
         set("r-output-dir", data.output_directory);
         set("r-subject", data.summary.subject);
@@ -811,38 +908,62 @@ const base = import.meta.env.BASE_URL;
             }
         }
 
-        const senderIpWithMap = Array.isArray(senderIps)
-            ? senderIps.find((ip: any) => ip?.map_url)
-            : null;
-        const mapUrl = senderIpWithMap?.map_url;
-        map.src = mapUrl ? `${API_URL}${mapUrl}` : "";
-
-        const senderOriginSection = document.getElementById(
-            "sender-origin-section",
-        );
-        if (mapUrl && senderIpWithMap) {
-            if (senderOriginSection) senderOriginSection.hidden = false;
-            set("r-ip-query", senderIpWithMap?.query);
-            set("r-ip-continent", senderIpWithMap?.continent);
-            set("r-ip-country", senderIpWithMap?.country);
-            set("r-ip-region", senderIpWithMap?.regionName);
-            set("r-ip-city", senderIpWithMap?.city);
-            set("r-ip-org", senderIpWithMap?.org);
-            set("r-ip-reverse", senderIpWithMap?.reverse);
-        } else {
-            if (senderOriginSection) senderOriginSection.hidden = true;
-        }
+        renderSenderOrigins(senderIps);
 
         const list = document.getElementById("r-attachments")!;
         list.innerHTML = "";
-        (data.files_created.attachments as string[]).forEach((name) => {
+        (data.files_created.attachments as any[]).forEach((attachment) => {
             const li = document.createElement("li");
-            li.className =
-                "flex items-center gap-2 rounded-md border border-neutral-200 bg-neutral-50 px-3 py-1.5 text-[12px] text-neutral-500";
-            li.textContent = name;
+            const filename = attachment.filename || attachment;
+            const clamavStatus = attachment.clamav?.status || "unknown";
+            const threat = attachment.clamav?.threat;
+            const errorDetail = attachment.clamav?.detail;
+
+            // Determine styling based on status
+            let statusBg = "bg-neutral-100";
+            let statusText = "text-neutral-600";
+            let statusLabel = "Unknown";
+
+            if (clamavStatus === "clean") {
+                statusBg = "bg-green-100";
+                statusText = "text-green-700";
+                statusLabel = "Clean";
+            } else if (clamavStatus === "infected") {
+                statusBg = "bg-red-100";
+                statusText = "text-red-700";
+                statusLabel = threat ? `Infected: ${threat}` : "Infected";
+            } else if (clamavStatus === "error") {
+                statusBg = "bg-yellow-100";
+                statusText = "text-yellow-700";
+                statusLabel = errorDetail ? `Error: ${errorDetail}` : "Error";
+            }
+
+            li.className = `flex items-center justify-between gap-2 rounded-md border ${statusBg} px-3 py-2 text-[12px]`;
+            li.innerHTML = `
+                <span class="break-all text-neutral-900">${filename}</span>
+                <span class="shrink-0 px-2 py-0.5 rounded-full bg-white ${statusText} font-medium text-[11px]">${statusLabel}</span>
+            `;
             list.appendChild(li);
         });
 
         results.hidden = false;
+
+        // Store email data for comparison workflow
+        lastEmailId = data.email_id || null;
+        lastEmailFrom = data.summary?.from || null;
+        lastEmailSubject = data.summary?.subject || null;
+        compareBtn.hidden = false;
     }
+
+    // Navigate to diff page with email parameters
+    compareBtn.addEventListener("click", () => {
+        if (!lastEmailId) return;
+
+        const params = new URLSearchParams();
+        params.set("suspicious_email_id", lastEmailId);
+        if (lastEmailFrom) params.set("from", lastEmailFrom);
+        if (lastEmailSubject) params.set("subject", lastEmailSubject);
+
+        window.location.href = `./diff?${params.toString()}`;
+    });
 </script>
