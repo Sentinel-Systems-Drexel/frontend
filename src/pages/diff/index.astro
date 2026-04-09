@@ -1303,7 +1303,7 @@ const base = import.meta.env.BASE_URL;
                     <div class="${CELL_CLS} text-neutral-400 font-medium bg-neutral-50 border-r border-neutral-200">${escHtml(key)}</div>
                     <div class="${CELL_CLS} text-neutral-900">${escHtml(val.suspicious || "—")}</div>
                     <div class="${CELL_CLS} text-neutral-900">${escHtml(val.legitimate || "—")}</div>
-                    <div class="${CELL_CLS} text-[11px] text-center ${matchBg}">${match ? "✓" : "✗"}</div>
+                    <div class="${CELL_CLS} text-[13px] text-center tracking-widest font-semibold ${matchBg}">${match ? "YES" : "NO"}</div>
                 </div>`;
         }
         return rows;
@@ -1338,7 +1338,7 @@ const base = import.meta.env.BASE_URL;
             return '<div class="px-3 py-2 text-[12px] text-neutral-400">All IPs shared between both emails.</div>';
 
         let rows = `
-            <div class="grid min-h-9 grid-cols-[1fr_80px_80px_80px_80px] items-center border-b border-neutral-200">
+            <div class="grid min-h-9 grid-cols-[2fr_1fr_1fr_2fr_1fr] items-center border-b border-neutral-200">
                 <div class="${HEAD_CLS}">IP</div>
                 <div class="${HEAD_CLS}">Source</div>
                 <div class="${HEAD_CLS}">Country</div>
@@ -1356,12 +1356,12 @@ const base = import.meta.env.BASE_URL;
             const srcLabel =
                 d.source === "suspicious_only" ? "Suspicious" : "Legitimate";
             rows += `
-                <div class="grid min-h-9 grid-cols-[1fr_80px_80px_80px_80px] items-center border-t border-neutral-200">
+                <div class="grid min-h-9 grid-cols-[2fr_1fr_1fr_2fr_1fr] items-center border-t border-neutral-200">
                     <div class="${CELL_CLS} text-neutral-900">${escHtml(d.ip || "—")}</div>
                     <div class="${CELL_CLS}"><span class="text-[10px] px-1 py-px rounded ${srcCls}">${srcLabel}</span></div>
-                    <div class="${CELL_CLS} text-neutral-700">${escHtml(d.country || "—")}</div>
+                    <div class="px-3 py-2 text-[12px] text-neutral-700 break-words">${escHtml(d.country || "—")}</div>
                     <div class="${CELL_CLS} text-neutral-700">${escHtml(d.isp || "—")}</div>
-                    <div class="${CELL_CLS} text-neutral-500 text-[11px]">${flags.length ? flags.join(", ") : "—"}</div>
+                    <div class="px-3 py-2 text-neutral-500 text-[11px] break-words">${flags.length ? flags.join(", ") : "—"}</div>
                 </div>`;
         }
         return rows;
