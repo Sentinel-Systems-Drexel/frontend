@@ -677,36 +677,34 @@ const base = import.meta.env.BASE_URL;
     function buildRspamdChart(symbols: Record<string, any>) {
         const contributors = Object.entries(symbols || {})
             .map(([name, value]) => {
-                const metricScore = Number(value?.metric_score ?? value?.score ?? 0);
-                const rawScore = Number(value?.score ?? metricScore ?? 0);
+                const score = Number(value?.score ?? 0);
 
                 return {
                     name,
                     description: String(value?.description ?? ""),
-                    metricScore,
-                    rawScore,
+                    score,
                 };
             })
-            .filter((entry) => entry.metricScore !== 0 || entry.rawScore !== 0)
-            .sort((left, right) => Math.abs(right.metricScore) - Math.abs(left.metricScore));
+            .filter((entry) => entry.score !== 0)
+            .sort((left, right) => Math.abs(right.score) - Math.abs(left.score));
 
         if (!contributors.length) {
             return '<div class="px-4 py-3 text-[12px] text-neutral-400">No rspamd symbol contributions were returned.</div>';
         }
 
         const maxAbs = Math.max(
-            ...contributors.map((entry) => Math.abs(entry.metricScore)),
+            ...contributors.map((entry) => Math.abs(entry.score)),
             1,
         );
 
         return contributors
             .map((entry, index) => {
-                const widthPct = Math.max((Math.abs(entry.metricScore) / maxAbs) * 50, 3);
-                const barColor = entry.metricScore >= 0 ? "bg-red-500" : "bg-emerald-500";
-                const labelColor = entry.metricScore >= 0
+                const widthPct = Math.max((Math.abs(entry.score) / maxAbs) * 50, 3);
+                const barColor = entry.score >= 0 ? "bg-red-500" : "bg-emerald-500";
+                const labelColor = entry.score >= 0
                     ? "bg-red-50 text-red-700"
                     : "bg-emerald-50 text-emerald-700";
-                const barStyle = entry.metricScore >= 0
+                const barStyle = entry.score >= 0
                     ? `left:50%;width:${widthPct}%;`
                     : `left:${50 - widthPct}%;width:${widthPct}%;`;
 
@@ -723,7 +721,7 @@ const base = import.meta.env.BASE_URL;
                             <div class="absolute top-0 h-full rounded-full ${barColor}" style="${barStyle}"></div>
                         </div>
                         <div class="justify-self-end">
-                            <span class="inline-flex rounded-full px-2 py-0.5 text-[11px] font-medium tabular-nums ${labelColor}">${formatSignedScore(entry.metricScore)}</span>
+                            <span class="inline-flex rounded-full px-2 py-0.5 text-[11px] font-medium tabular-nums ${labelColor}">${formatSignedScore(entry.score)}</span>
                         </div>
                     </div>`;
             })
@@ -736,8 +734,8 @@ const base = import.meta.env.BASE_URL;
         const action = String(rspamd?.action ?? "");
         const symbols = rspamd?.symbols || {};
         const contributors = Object.values(symbols).filter((value: any) => {
-            const metricScore = Number(value?.metric_score ?? value?.score ?? 0);
-            return metricScore !== 0;
+            const symbolScore = Number(value?.score ?? 0);
+            return symbolScore !== 0;
         });
 
         rspamdSection.hidden = !(rspamd && (Object.keys(symbols).length > 0 || Number.isFinite(score)));
@@ -842,7 +840,7 @@ const base = import.meta.env.BASE_URL;
                                 <div class="truncate text-[13px] font-medium text-neutral-900">${escapeHtml(ip?.query || "—")}</div>
                                 <div class="truncate text-[11px] text-neutral-400">${escapeHtml(ip?.reverse || "No reverse DNS")}</div>
                             </div>
-                            <span class="rounded-full bg-amber-100 px-2 py-0.5 text-[11px] font-medium text-amber-700">${originLabel}</span>
+                            <span class="rounded-full bg-neutral-200 px-2 py-0.5 text-[11px] font-medium text-neutral-700">${originLabel}</span>
                         </div>
                         <div class="grid gap-4 p-3 lg:grid-cols-[minmax(240px,1fr)_minmax(0,1.1fr)]">
                             <div class="min-h-48 overflow-hidden rounded-xl border border-neutral-200 bg-neutral-100">
@@ -855,6 +853,8 @@ const base = import.meta.env.BASE_URL;
                                     ${renderOriginRow("Country", ip?.country)}
                                     ${renderOriginRow("Region", ip?.regionName)}
                                     ${renderOriginRow("City", ip?.city)}
+                                    ${renderOriginRow("AS Name", ip?.asname || ip?.as)}
+                                    ${renderOriginRow("ISP", ip?.isp)}
                                     ${renderOriginRow("Org", ip?.org, "Name of the company that owns this IP address.")}
                                     ${renderOriginRow("Hostname", ip?.reverse, "Name of the server that sent the email.")}
                                 </tbody>
