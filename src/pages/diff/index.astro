@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
-const base = import.meta.env.BASE_URL;
+import { url } from "../../scripts/url";
 ---
 
 <BaseLayout
@@ -14,7 +14,7 @@ const base = import.meta.env.BASE_URL;
             <div class="mb-1">
                 <div class="flex items-center gap-2 mb-1.5">
                     <a
-                        href={base + "/"}
+                        href={url("/")}
                         class="text-[12px] text-neutral-400 hover:text-neutral-600 transition-colors no-underline"
                         >&larr; Back to Analyzer</a
                     >
