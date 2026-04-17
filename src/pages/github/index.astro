@@ -1,0 +1,79 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { url } from "../../scripts/url";
+
+const repositories = [
+	{
+		name: "Backend",
+		description:
+			"API services, parsing logic, and backend infrastructure for Sentinel Systems.",
+		href: "https://github.com/Sentinel-Systems-Drexel/backend",
+		tag: "Service Layer",
+	},
+	{
+		name: "Frontend",
+		description:
+			"Web interface and user experience layer for Sentinel Systems tools.",
+		href: "https://github.com/Sentinel-Systems-Drexel/frontend",
+		tag: "Client App",
+	},
+];
+---
+
+<BaseLayout
+	title="GitHub Repositories — Sentinel Systems"
+	description="Access the official Sentinel Systems backend and frontend GitHub repositories."
+>
+	<main class="flex items-start justify-center px-6 py-12 md:px-20 lg:px-40">
+		<section class="flex w-full max-w-270 flex-col gap-5">
+			<div class="mb-1 flex flex-col gap-1.5">
+				<a
+					href={url("/")}
+					class="w-fit text-[12px] text-neutral-400 no-underline transition-colors hover:text-neutral-600"
+				>
+					&larr; Back to Analyzer
+				</a>
+				<h1 class="text-[22px] font-semibold text-neutral-900">
+					GitHub Repositories
+				</h1>
+				<p class="max-w-[60ch] text-[13px] leading-relaxed text-neutral-500">
+					Browse the official Sentinel Systems repositories for backend
+					services and frontend development.
+				</p>
+			</div>
+
+			<div class="grid gap-4 md:grid-cols-2">
+				{
+					repositories.map((repo) => (
+						<article class="group flex h-full flex-col rounded-md border border-neutral-200 bg-neutral-50 p-4">
+							<div class="mb-3 flex items-center justify-between gap-3">
+								<h2 class="text-[17px] font-semibold text-neutral-900">
+									{repo.name}
+								</h2>
+								<span class="rounded-full bg-neutral-200 px-2 py-0.5 text-[11px] font-medium uppercase tracking-wide text-neutral-600">
+									{repo.tag}
+								</span>
+							</div>
+
+							<p class="mb-4 text-[13px] leading-relaxed text-neutral-500">
+								{repo.description}
+							</p>
+
+							<a
+								href={repo.href}
+								target="_blank"
+								rel="noreferrer"
+								class="mt-auto inline-flex w-fit items-center gap-1.5 rounded-md border border-neutral-300 bg-white px-3 py-2 text-[12px] font-medium text-neutral-700 no-underline transition-colors hover:border-neutral-900 hover:text-neutral-900"
+							>
+								View Repository
+								<span aria-hidden="true" class="text-[14px]">
+									↗
+								</span>
+							</a>
+						</article>
+					))
+				}
+			</div>
+		</section>
+	</main>
+</BaseLayout>
