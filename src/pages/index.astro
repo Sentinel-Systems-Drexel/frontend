@@ -181,25 +181,41 @@ import { url } from "../scripts/url";
                         Scoring
                     </h2>
                     <div class="overflow-hidden rounded-md border border-neutral-200 bg-neutral-50">
-                        <div class="flex flex-wrap items-start justify-between gap-3 border-b border-neutral-200 px-4 py-3">
-                            <div class="flex flex-col gap-0.5">
-                                <div class="flex items-baseline gap-2">
-                                    <span
-                                        id="rspamd-score"
-                                        class="text-[26px] font-semibold tabular-nums text-neutral-900"
-                                    ></span>
-                                </div>
-                                <div
-                                    id="rspamd-symbol-count"
-                                    class="text-[11px] text-neutral-400"
-                                ></div>
-                            </div>
+                        <div class="flex flex-col items-center gap-1 border-b border-neutral-200 px-4 py-4">
+                            <!-- Circular threat gauge (240° speedometer arc) -->
+                            <svg id="rspamd-gauge" viewBox="0 0 200 155" class="w-52 mx-auto" aria-hidden="true">
+                                <!-- Background track: 240° arc clockwise from 150° to 30° -->
+                                <path d="M 30.72 140 A 80 80 0 1 1 169.28 140" fill="none" stroke="#e5e7eb" stroke-width="14" stroke-linecap="butt"/>
+                                <!-- Green zone: 150° → 210° (60°) = score 0–7.5 (SAFE) -->
+                                <path d="M 30.72 140 A 80 80 0 0 1 30.72 60" fill="none" stroke="#22c55e" stroke-width="14" stroke-linecap="butt"/>
+                                <!-- Yellow zone: 210° → 270° (60°) = score 7.5–15 (SUSPICIOUS) -->
+                                <path d="M 30.72 60 A 80 80 0 0 1 100 20" fill="none" stroke="#facc15" stroke-width="14" stroke-linecap="butt"/>
+                                <!-- Red zone: 270° → 390° (120°) = score 15–30+ (HIGH RISK) -->
+                                <path d="M 100 20 A 80 80 0 0 1 169.28 140" fill="none" stroke="#ef4444" stroke-width="14" stroke-linecap="butt"/>
+                                <!-- Needle -->
+                                <line id="gauge-needle" x1="100" y1="100" x2="30.72" y2="140" stroke="#1f2937" stroke-width="2.5" stroke-linecap="round"/>
+                                <!-- Center pivot -->
+                                <circle cx="100" cy="100" r="5" fill="#1f2937"/>
+                                <!-- Score number -->
+                                <text id="gauge-score-text" x="100" y="96" text-anchor="middle" font-size="24" font-weight="bold" fill="#111827" font-family="ui-monospace,monospace">—</text>
+                                <!-- Verdict label -->
+                                <text id="gauge-label-text" x="100" y="117" text-anchor="middle" font-size="9" fill="#9ca3af" letter-spacing="0.1em">—</text>
+                            </svg>
                             <div
                                 id="rspamd-action"
                                 class="rounded-full bg-neutral-200 px-2 py-0.5 text-[11px] font-medium text-neutral-600"
                             ></div>
                         </div>
-                        <div id="rspamd-chart"></div>
+                        <!-- Collapsible symbol breakdown -->
+                        <details class="group">
+                            <summary class="flex cursor-pointer list-none items-center justify-between px-4 py-2.5 transition-colors hover:brightness-95" style="background: linear-gradient(90deg, #1e3a5f 0%, #b8860b 100%);">
+                                <span class="text-[12px] font-semibold tracking-wide text-white">What affects the score</span>
+                                <svg class="size-3.5 text-white transition-transform group-open:rotate-180" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </summary>
+                            <div id="rspamd-chart" class="border-t border-neutral-200"></div>
+                        </details>
                     </div>
                 </section>
 
@@ -708,18 +724,18 @@ import { url } from "../scripts/url";
                     : `left:${50 - widthPct}%;width:${widthPct}%;`;
 
                 return `
-                    <div class="grid grid-cols-[minmax(0,1.35fr)_minmax(180px,2fr)_96px] items-center gap-3 px-4 py-2.5 ${
+                    <div class="grid grid-cols-[minmax(0,1.35fr)_minmax(180px,2fr)_96px] items-start gap-3 px-4 py-2.5 ${
                         index === 0 ? "" : "border-t border-neutral-200"
                     }">
                         <div class="min-w-0">
                             <div class="truncate text-[12px] font-medium text-neutral-900">${escapeHtml(entry.name)}</div>
-                            ${entry.description ? `<div class="truncate text-[10px] text-neutral-400">${escapeHtml(entry.description)}</div>` : ""}
+                            ${entry.description ? `<div class="text-[10px] text-neutral-400 break-words whitespace-normal leading-relaxed mt-0.5">${escapeHtml(entry.description)}</div>` : ""}
                         </div>
-                        <div class="relative h-4 overflow-hidden rounded-full bg-neutral-100">
+                        <div class="relative h-4 overflow-hidden rounded-full bg-neutral-100 mt-1">
                             <div class="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-neutral-300"></div>
                             <div class="absolute top-0 h-full rounded-full ${barColor}" style="${barStyle}"></div>
                         </div>
-                        <div class="justify-self-end">
+                        <div class="justify-self-end mt-0.5">
                             <span class="inline-flex rounded-full px-2 py-0.5 text-[11px] font-medium tabular-nums ${labelColor}">${formatSignedScore(entry.score)}</span>
                         </div>
                     </div>`;
