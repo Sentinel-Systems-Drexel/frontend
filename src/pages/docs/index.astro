@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Prose from '../../components/Prose.astro';
+
+import { getCollection, render } from 'astro:content';
+
+const docsEntries = await getCollection("docs");
+const docs = docsEntries[0];
+if (!docs) {
+    throw new Error("No documentation entry found in the 'docs' collection");
+}
+const { Content } = await render(docs);
+---
+
+<BaseLayout
+    title="Docs — Sentinel Systems"
+    description="View documentation about our tool. Learn how to use the Email Analyzer, Diff-Checker, and more."
+>
+    <main class="flex items-start justify-center py-12">
+        <Prose>
+            <Content />
+        </Prose>
+    </main>
+</BaseLayout>
