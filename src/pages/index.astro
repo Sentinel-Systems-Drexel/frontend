@@ -323,13 +323,12 @@ import { url } from "../scripts/url";
                                 Attachments
                             </dt>
                             <dd
-                                id="r-attachment-count"
-                                class="m-0 break-all px-3 py-2 text-[13px] text-neutral-900"
+                                id="r-attachments-field"
+                                class="m-0 flex flex-wrap items-center gap-1.5 px-3 py-2 text-[13px] text-neutral-900"
                             >
                             </dd>
                         </div>
                     </dl>
-                    <ul id="r-attachments" class="flex flex-col gap-1.5"></ul>
                     <div id="sender-origin-section" hidden>
                         <h2 class="font-bold text-xl mb-2">
                             Sender Origin
@@ -849,7 +848,6 @@ import { url } from "../scripts/url";
         set("r-from", data.summary.from);
         set("r-to", data.summary.to);
         set("r-date", data.summary.date);
-        set("r-attachment-count", String(data.summary.attachment_count));
 
         const senderIps = data.summary?.sender_ips;
         const senderIpsEl = document.getElementById("r-sender-ips");
@@ -884,41 +882,60 @@ import { url } from "../scripts/url";
 
         renderSenderOrigins(senderIps);
 
-        const list = document.getElementById("r-attachments")!;
-        list.innerHTML = "";
-        (data.files_created.attachments as any[]).forEach((attachment) => {
-            const li = document.createElement("li");
-            const filename = attachment.filename || attachment;
-            const clamavStatus = attachment.clamav?.status || "unknown";
-            const threat = attachment.clamav?.threat;
-            const errorDetail = attachment.clamav?.detail;
+        const attachmentsField = document.getElementById("r-attachments-field")!;
+        attachmentsField.innerHTML = "";
 
-            // Determine styling based on status
-            let statusBg = "bg-neutral-100";
-            let statusText = "text-neutral-600";
-            let statusLabel = "Unknown";
+        const attachments = Array.isArray(data.files_created?.attachments)
+            ? data.files_created.attachments
+            : [];
 
-            if (clamavStatus === "clean") {
-                statusBg = "bg-green-100";
-                statusText = "text-green-700";
-                statusLabel = "Clean";
-            } else if (clamavStatus === "infected") {
-                statusBg = "bg-red-100";
-                statusText = "text-red-700";
-                statusLabel = threat ? `Infected: ${threat}` : "Infected";
-            } else if (clamavStatus === "error") {
-                statusBg = "bg-yellow-100";
-                statusText = "text-yellow-700";
-                statusLabel = errorDetail ? `Error: ${errorDetail}` : "Error";
-            }
+        if (attachments.length === 0) {
+            attachmentsField.textContent = "No attachments found";
+        } else {
+            attachments.forEach((attachment: any) => {
+                const filename = attachment.filename || attachment;
+                const clamavStatus = attachment.clamav?.status || "unknown";
+                const threat = attachment.clamav?.threat;
+                const errorDetail = attachment.clamav?.detail;
 
-            li.className = `flex items-center justify-between gap-2 rounded-md border ${statusBg} px-3 py-2 text-[12px]`;
-            li.innerHTML = `
-                <span class="break-all text-neutral-900">${filename}</span>
-                <span class="shrink-0 px-2 py-0.5 rounded-full bg-white ${statusText} font-medium text-[11px]">${statusLabel}</span>
-            `;
-            list.appendChild(li);
-        });
+                let chipBg = "bg-neutral-100";
+                let chipBorder = "border-neutral-300"
+                let statusText = "text-neutral-600";
+                let statusLabel = "Unknown";
+
+                if (clamavStatus === "clean") {
+                    chipBg = "bg-green-100";
+                    chipBorder = "border-green-300"
+                    statusText = "text-green-700";
+                    statusLabel = "Clean";
+                } else if (clamavStatus === "infected") {
+                    chipBg = "bg-red-100";
+                    chipBorder = "border-red-300"
+                    statusText = "text-red-700";
+                    statusLabel = threat ? `Infected: ${threat}` : "Infected";
+                } else if (clamavStatus === "error") {
+                    chipBg = "bg-yellow-100";
+                    chipBorder = "border-yellow-300"
+                    statusText = "text-yellow-700";
+                    statusLabel = errorDetail ? `Error: ${errorDetail}` : "Error";
+                }
+
+                const chip = document.createElement("span");
+                chip.className = `inline-flex max-w-full items-center gap-1.5 rounded-full border ${chipBorder} ${chipBg} px-2 py-0.5 text-[11px]`;
+
+                const nameEl = document.createElement("span");
+                nameEl.className = "break-all text-neutral-900";
+                nameEl.textContent = String(filename);
+
+                const statusEl = document.createElement("span");
+                statusEl.className = `shrink-0 rounded-full bg-white px-1.5 py-0.5 font-medium ${statusText}`;
+                statusEl.textContent = statusLabel;
+
+                chip.appendChild(nameEl);
+                chip.appendChild(statusEl);
+                attachmentsField.appendChild(chip);
+            });
+        }
 
         results.hidden = false;
 
