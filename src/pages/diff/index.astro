@@ -15,7 +15,7 @@ import { url } from "../../scripts/url";
                 <div class="flex items-center gap-2 mb-1.5">
                     <a
                         href={url("/")}
-                        class="text-[12px] text-neutral-400 hover:text-neutral-600 transition-colors no-underline"
+                        class="text-[12px] text-neutral-500 hover:text-neutral-600 transition-colors no-underline"
                         >&larr; Back to Analyzer</a
                     >
                 </div>
@@ -37,7 +37,7 @@ import { url } from "../../scripts/url";
                     type="text"
                     placeholder="https://api.sentinel-systems.cc/"
                 />
-                <span class="text-neutral-400 text-xs"
+                <span class="text-neutral-500 text-xs"
                     >For development purposes only.</span
                 >
             </div>
@@ -58,7 +58,7 @@ import { url } from "../../scripts/url";
             <!-- ─── Step 1: Suspicious email ─── -->
             <section class="flex flex-col gap-2.5">
                 <h2
-                    class="text-[11px] font-semibold uppercase tracking-widest text-neutral-400"
+                    class="text-[11px] font-semibold uppercase tracking-widest text-neutral-500"
                 >
                     Step 1 — Suspicious Email
                 </h2>
@@ -82,26 +82,26 @@ import { url } from "../../scripts/url";
                         </div>
                         <button
                             id="clear-suspicious"
-                            class="text-[11px] text-neutral-400 hover:text-red-600 cursor-pointer bg-transparent border-0 transition-colors"
+                            class="text-[11px] text-neutral-500 hover:text-red-600 cursor-pointer bg-transparent border-0 transition-colors"
                             >Clear</button
                         >
                     </div>
                     <dl
                         class="m-0 grid grid-cols-[60px_1fr] gap-x-2 gap-y-0.5 text-[12px]"
                     >
-                        <dt class="text-neutral-400">ID</dt>
+                        <dt class="text-neutral-500">ID</dt>
                         <dd
                             id="susp-prefill-id"
                             class="m-0 text-neutral-600 break-all"
                         >
                         </dd>
-                        <dt class="text-neutral-400">From</dt>
+                        <dt class="text-neutral-500">From</dt>
                         <dd
                             id="susp-prefill-from"
                             class="m-0 text-neutral-600 break-all"
                         >
                         </dd>
-                        <dt class="text-neutral-400">Subject</dt>
+                        <dt class="text-neutral-500">Subject</dt>
                         <dd
                             id="susp-prefill-subject"
                             class="m-0 text-neutral-600 break-all"
@@ -125,7 +125,7 @@ import { url } from "../../scripts/url";
                             accept=".eml"
                             class="hidden"
                         />
-                        <div class="mb-2 inline-flex text-neutral-400">
+                        <div class="mb-2 inline-flex text-neutral-500">
                             <svg
                                 width="20"
                                 height="20"
@@ -152,7 +152,7 @@ import { url } from "../../scripts/url";
                                 >browse</span
                             >.
                         </p>
-                        <p class="text-[11px] text-neutral-400">
+                        <p class="text-[11px] text-neutral-500">
                             Supports .eml files up to 50MB
                         </p>
                     </div>
@@ -164,7 +164,7 @@ import { url } from "../../scripts/url";
                         class="items-center gap-2 rounded-md border border-neutral-200 bg-neutral-100 px-3 py-2 text-[13px] text-neutral-900"
                     >
                         <svg
-                            class="shrink-0 text-neutral-400"
+                            class="shrink-0 text-neutral-500"
                             width="14"
                             height="14"
                             viewBox="0 0 14 14"
@@ -187,11 +187,11 @@ import { url } from "../../scripts/url";
                         <span id="chip-name-suspicious"></span>
                         <span
                             id="chip-size-suspicious"
-                            class="ml-0.5 text-[11px] text-neutral-400"></span>
+                            class="ml-0.5 text-[11px] text-neutral-500"></span>
                         <button
                             id="chip-remove-suspicious"
                             aria-label="Remove file"
-                            class="ml-auto cursor-pointer rounded border-0 bg-transparent px-1 py-0.5 text-[16px] leading-none text-neutral-400 transition-colors hover:bg-red-50 hover:text-red-600"
+                            class="ml-auto cursor-pointer rounded border-0 bg-transparent px-1 py-0.5 text-[16px] leading-none text-neutral-500 transition-colors hover:bg-red-50 hover:text-red-600"
                             >✕</button
                         >
                     </div>
@@ -201,7 +201,7 @@ import { url } from "../../scripts/url";
             <!-- ─── Step 2: Legitimate email ─── -->
             <section class="flex flex-col gap-2.5">
                 <h2
-                    class="text-[11px] font-semibold uppercase tracking-widest text-neutral-400"
+                    class="text-[11px] font-semibold uppercase tracking-widest text-neutral-500"
                 >
                     Step 2 — Legitimate Email
                 </h2>
@@ -219,7 +219,7 @@ import { url } from "../../scripts/url";
                         accept=".eml"
                         class="hidden"
                     />
-                    <div class="mb-2 inline-flex text-neutral-400">
+                    <div class="mb-2 inline-flex text-neutral-500">
                         <svg
                             width="20"
                             height="20"
@@ -246,7 +246,7 @@ import { url } from "../../scripts/url";
                             >browse</span
                         >.
                     </p>
-                    <p class="text-[11px] text-neutral-400">
+                    <p class="text-[11px] text-neutral-500">
                         Supports .eml files up to 50MB
                     </p>
                 </div>
@@ -258,7 +258,7 @@ import { url } from "../../scripts/url";
                     class="items-center gap-2 rounded-md border border-neutral-200 bg-neutral-100 px-3 py-2 text-[13px] text-neutral-900"
                 >
                     <svg
-                        class="shrink-0 text-neutral-400"
+                        class="shrink-0 text-neutral-500"
                         width="14"
                         height="14"
                         viewBox="0 0 14 14"
@@ -281,11 +281,11 @@ import { url } from "../../scripts/url";
                     <span id="chip-name-legitimate"></span>
                     <span
                         id="chip-size-legitimate"
-                        class="ml-0.5 text-[11px] text-neutral-400"></span>
+                        class="ml-0.5 text-[11px] text-neutral-500"></span>
                     <button
                         id="chip-remove-legitimate"
                         aria-label="Remove file"
-                        class="ml-auto cursor-pointer rounded border-0 bg-transparent px-1 py-0.5 text-[16px] leading-none text-neutral-400 transition-colors hover:bg-red-50 hover:text-red-600"
+                        class="ml-auto cursor-pointer rounded border-0 bg-transparent px-1 py-0.5 text-[16px] leading-none text-neutral-500 transition-colors hover:bg-red-50 hover:text-red-600"
                         >✕</button
                     >
                 </div>
@@ -318,7 +318,7 @@ import { url } from "../../scripts/url";
                 >
                     <div class="flex flex-col items-center gap-0 pt-px">
                         <div
-                            class="wf-icon size-5 shrink-0 rounded-full border border-neutral-300 bg-white flex items-center justify-center text-[10px] text-neutral-400 transition-all"
+                            class="wf-icon size-5 shrink-0 rounded-full border border-neutral-300 bg-white flex items-center justify-center text-[10px] text-neutral-500 transition-all"
                         >
                         </div>
                         <div
@@ -329,7 +329,7 @@ import { url } from "../../scripts/url";
                     <div class="flex flex-col gap-0.5 min-w-0">
                         <div class="flex items-center gap-2">
                             <span
-                                class="wf-label text-[13px] font-medium text-neutral-400"
+                                class="wf-label text-[13px] font-medium text-neutral-500"
                                 >Analyzing emails</span
                             >
                             <span
@@ -337,7 +337,7 @@ import { url } from "../../scripts/url";
                             ></span>
                         </div>
                         <span
-                            class="wf-detail text-[11px] text-neutral-400"
+                            class="wf-detail text-[11px] text-neutral-500"
                         ></span>
                     </div>
                 </div>
@@ -350,14 +350,14 @@ import { url } from "../../scripts/url";
                 >
                     <div class="flex flex-col items-center gap-0 pt-px">
                         <div
-                            class="wf-icon size-5 shrink-0 rounded-full border border-neutral-300 bg-white flex items-center justify-center text-[10px] text-neutral-400 transition-all"
+                            class="wf-icon size-5 shrink-0 rounded-full border border-neutral-300 bg-white flex items-center justify-center text-[10px] text-neutral-500 transition-all"
                         >
                         </div>
                     </div>
                     <div class="flex flex-col gap-0.5 min-w-0">
                         <div class="flex items-center gap-2">
                             <span
-                                class="wf-label text-[13px] font-medium text-neutral-400"
+                                class="wf-label text-[13px] font-medium text-neutral-500"
                                 >Compare emails</span
                             >
                             <span
@@ -365,7 +365,7 @@ import { url } from "../../scripts/url";
                             ></span>
                         </div>
                         <span
-                            class="wf-detail text-[11px] text-neutral-400"
+                            class="wf-detail text-[11px] text-neutral-500"
                         ></span>
                     </div>
                 </div>
@@ -378,7 +378,7 @@ import { url } from "../../scripts/url";
                 <!-- Risk verdict -->
                 <section id="risk-section" class="flex flex-col gap-2.5">
                     <h2
-                        class="text-[11px] font-semibold uppercase tracking-widest text-neutral-400"
+                        class="text-[11px] font-semibold uppercase tracking-widest text-neutral-500"
                     >
                         Risk Assessment
                     </h2>
@@ -412,35 +412,34 @@ import { url } from "../../scripts/url";
                 <!-- Anomalies -->
                 <section id="anomalies-section" hidden class="flex flex-col gap-2.5">
                     <h2
-                        class="text-[11px] font-semibold uppercase tracking-widest text-neutral-400"
+                        class="text-[11px] font-semibold uppercase tracking-widest text-neutral-500"
                     >
                         Anomalies
                     </h2>
-                    <ul
-                        id="anomalies-list"
-                        class="m-0 flex flex-col gap-1 list-none p-0"
-                    >
-                    </ul>
-                </section>
-
-                <!-- Header comparison -->
-                <section class="flex flex-col gap-2.5">
-                    <h2
-                        class="text-[11px] font-semibold uppercase tracking-widest text-neutral-400"
-                    >
-                        Header Comparison
-                    </h2>
-                    <div
-                        id="header-table-wrap"
-                        class="overflow-hidden rounded-md border border-neutral-200"
-                    >
-                    </div>
+                    <details id="anomalies-details" class="group overflow-hidden rounded-md border border-neutral-200">
+                        <summary
+                            id="anomalies-summary"
+                            class="flex cursor-pointer list-none items-center justify-between px-3 py-2.5 text-[12px] font-medium text-neutral-600 bg-neutral-100 transition-colors hover:bg-neutral-200"
+                        >
+                            <span id="anomalies-summary-text"
+                                >View all anomalies (0)</span
+                            >
+                            <svg class="size-3.5 transition-transform group-open:rotate-180" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </summary>
+                        <ul
+                            id="anomalies-list"
+                            class="m-0 flex list-none flex-col gap-1 border-t border-neutral-200 p-2"
+                        >
+                        </ul>
+                    </details>
                 </section>
 
                 <!-- Auth comparison -->
                 <section class="flex flex-col gap-2.5">
                     <h2
-                        class="text-[11px] font-semibold uppercase tracking-widest text-neutral-400"
+                        class="text-[11px] font-semibold uppercase tracking-widest text-neutral-500"
                     >
                         Authentication
                     </h2>
@@ -449,7 +448,7 @@ import { url } from "../../scripts/url";
                             class="flex-1 min-w-35 rounded-md border border-neutral-200 px-3 py-2.5"
                         >
                             <div
-                                class="text-[10px] uppercase tracking-wide text-neutral-400 mb-0.5"
+                                class="text-[10px] uppercase tracking-wide text-neutral-500 mb-0.5"
                             >
                                 Suspicious score
                             </div>
@@ -460,7 +459,7 @@ import { url } from "../../scripts/url";
                             </div>
                             <div
                                 id="auth-susp-action"
-                                class="text-[11px] text-neutral-400"
+                                class="text-[11px] text-neutral-500"
                             >
                             </div>
                         </div>
@@ -468,7 +467,7 @@ import { url } from "../../scripts/url";
                             class="flex-1 min-w-35 rounded-md border border-neutral-200 px-3 py-2.5"
                         >
                             <div
-                                class="text-[10px] uppercase tracking-wide text-neutral-400 mb-0.5"
+                                class="text-[10px] uppercase tracking-wide text-neutral-500 mb-0.5"
                             >
                                 Legitimate score
                             </div>
@@ -479,15 +478,16 @@ import { url } from "../../scripts/url";
                             </div>
                             <div
                                 id="auth-legit-action"
-                                class="text-[11px] text-neutral-400"
+                                class="text-[11px] text-neutral-500"
                             >
                             </div>
                         </div>
                         <div
+                            id="deltaBox"
                             class="flex-1 min-w-35 rounded-md border border-neutral-200 px-3 py-2.5"
                         >
                             <div
-                                class="text-[10px] uppercase tracking-wide text-neutral-400 mb-0.5"
+                                class="text-[10px] uppercase tracking-wide text-neutral-500 mb-0.5"
                             >
                                 Score delta
                             </div>
@@ -496,13 +496,40 @@ import { url } from "../../scripts/url";
                                 class="text-[18px] font-semibold tabular-nums"
                             >
                             </div>
-                            <div class="text-[11px] text-neutral-400">
+                            <div class="text-[11px] text-neutral-500">
                                 suspicious - legitimate
                             </div>
                         </div>
                     </div>
+                    <details id="auth-symbols-details" class="group overflow-hidden rounded-md border border-neutral-200">
+                        <summary
+                            id="auth-symbols-summary"
+                            class="flex cursor-pointer list-none items-center justify-between px-3 py-2.5 text-[12px] font-medium text-neutral-600 bg-neutral-100 transition-colors hover:bg-neutral-200"
+                        >
+                            <span id="auth-symbols-summary-text"
+                                >View all symbols (0)</span
+                            >
+                            <svg class="size-3.5 transition-transform group-open:rotate-180" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </summary>
+                        <div
+                            id="auth-symbols-wrap"
+                            class="border-t border-neutral-200"
+                        >
+                        </div>
+                    </details>
+                </section>
+
+                <!-- Header comparison -->
+                <section class="flex flex-col gap-2.5">
+                    <h2
+                        class="text-[11px] font-semibold uppercase tracking-widest text-neutral-500"
+                    >
+                        Header Comparison
+                    </h2>
                     <div
-                        id="auth-symbols-wrap"
+                        id="header-table-wrap"
                         class="overflow-hidden rounded-md border border-neutral-200"
                     >
                     </div>
@@ -511,7 +538,7 @@ import { url } from "../../scripts/url";
                 <!-- IP / Geo comparison -->
                 <section class="flex flex-col gap-2.5">
                     <h2
-                        class="text-[11px] font-semibold uppercase tracking-widest text-neutral-400"
+                        class="text-[11px] font-semibold uppercase tracking-widest text-neutral-500"
                     >
                         IP / Geolocation
                     </h2>
@@ -520,7 +547,7 @@ import { url } from "../../scripts/url";
                             class="flex-1 min-w-35 rounded-md border border-neutral-200 px-3 py-2.5"
                         >
                             <div
-                                class="text-[10px] uppercase tracking-wide text-neutral-400 mb-0.5"
+                                class="text-[10px] uppercase tracking-wide text-neutral-500 mb-0.5"
                             >
                                 Shared IPs
                             </div>
@@ -534,7 +561,7 @@ import { url } from "../../scripts/url";
                             class="flex-1 min-w-35 rounded-md border border-neutral-200 px-3 py-2.5"
                         >
                             <div
-                                class="text-[10px] uppercase tracking-wide text-neutral-400 mb-0.5"
+                                class="text-[10px] uppercase tracking-wide text-neutral-500 mb-0.5"
                             >
                                 Suspicious only
                             </div>
@@ -548,7 +575,7 @@ import { url } from "../../scripts/url";
                             class="flex-1 min-w-35 rounded-md border border-neutral-200 px-3 py-2.5"
                         >
                             <div
-                                class="text-[10px] uppercase tracking-wide text-neutral-400 mb-0.5"
+                                class="text-[10px] uppercase tracking-wide text-neutral-500 mb-0.5"
                             >
                                 Legitimate only
                             </div>
@@ -560,12 +587,13 @@ import { url } from "../../scripts/url";
                         </div>
                     </div>
 
-                    <div class="flex gap-2 flex-wrap">
+                    <div class="flex gap-2 flex-wrap items-center">
                         <div
                             id="ip-susp-countries"
                             class="text-[12px] text-neutral-500"
                         >
                         </div>
+                        <span class="text-neutral-500">-</span>
                         <div
                             id="ip-legit-countries"
                             class="text-[12px] text-neutral-500"
@@ -583,7 +611,7 @@ import { url } from "../../scripts/url";
                 <!-- Body similarity -->
                 <section class="flex flex-col gap-2.5">
                     <h2
-                        class="text-[11px] font-semibold uppercase tracking-widest text-neutral-400"
+                        class="text-[11px] font-semibold uppercase tracking-widest text-neutral-500"
                     >
                         Body Similarity
                     </h2>
@@ -603,7 +631,7 @@ import { url } from "../../scripts/url";
                             </div>
                             <p
                                 id="body-note"
-                                class="text-[12px] text-neutral-400 m-0"
+                                class="text-[12px] text-neutral-500 m-0"
                             >
                             </p>
                         </div>
@@ -1184,10 +1212,19 @@ import { url } from "../../scripts/url";
         // Anomalies
         const anomalies: string[] = risk.all_anomalies || [];
         const anomSection = document.getElementById("anomalies-section")!;
+        const anomDetails = document.getElementById(
+            "anomalies-details",
+        ) as HTMLDetailsElement;
+        const anomSummaryText = document.getElementById(
+            "anomalies-summary-text",
+        )!;
         const anomList = document.getElementById("anomalies-list")!;
         anomList.innerHTML = "";
+        anomSection.hidden = false;
+        anomSummaryText.textContent =
+            `View all anomalies (${anomalies.length})`;
+        anomDetails.open = false;
         if (anomalies.length > 0) {
-            anomSection.hidden = false;
             anomalies.forEach((a) => {
                 const li = document.createElement("li");
                 li.className =
@@ -1196,7 +1233,11 @@ import { url } from "../../scripts/url";
                 anomList.appendChild(li);
             });
         } else {
-            anomSection.hidden = true;
+            const li = document.createElement("li");
+            li.className =
+                "rounded-md border border-neutral-200 bg-neutral-50 px-3 py-2 text-[12px] text-neutral-500";
+            li.textContent = "No anomalies found.";
+            anomList.appendChild(li);
         }
 
         // Header comparison table
@@ -1215,7 +1256,19 @@ import { url } from "../../scripts/url";
             auth.legitimate_action || "";
         const delta = auth.score_delta;
         const deltaEl = document.getElementById("auth-delta")!;
+        const deltaBox = document.getElementById("deltaBox")!;
+        deltaBox.classList.remove(
+            "bg-red-50",
+            "border-red-200",
+            "bg-green-50",
+            "border-green-200",
+        );
         if (delta !== null && delta !== undefined) {
+            if (delta > 3) {
+                deltaBox.classList.add("bg-red-50", "border-red-200");
+            } else if (delta < -1) {
+                deltaBox.classList.add("bg-green-50", "border-green-200");
+            }
             deltaEl.textContent =
                 (delta > 0 ? "+" : "") + delta.toFixed(1);
             deltaEl.className =
@@ -1224,12 +1277,22 @@ import { url } from "../../scripts/url";
         } else {
             deltaEl.textContent = "—";
             deltaEl.className =
-                "text-[18px] font-semibold tabular-nums text-neutral-400";
+                "text-[18px] font-semibold tabular-nums text-neutral-500";
         }
 
         // Auth symbols table
+        const authSymbolsDetails = document.getElementById(
+            "auth-symbols-details",
+        ) as HTMLDetailsElement;
+        const authSymbolsSummaryText = document.getElementById(
+            "auth-symbols-summary-text",
+        )!;
         const authWrap = document.getElementById("auth-symbols-wrap")!;
-        authWrap.innerHTML = buildAuthTable(auth.symbols || {});
+        const authSymbols = auth.symbols || {};
+        authSymbolsSummaryText.textContent =
+            `View all symbols (${Object.keys(authSymbols).length})`;
+        authSymbolsDetails.open = false;
+        authWrap.innerHTML = buildAuthTable(authSymbols);
 
         // IP / Geo
         const ip = data.ip_geo_comparison || {};
@@ -1244,9 +1307,9 @@ import { url } from "../../scripts/url";
         );
 
         document.getElementById("ip-susp-countries")!.innerHTML =
-            `<span class="text-neutral-400">Suspicious:</span> ${(ip.suspicious_countries || []).join(", ") || "—"}`;
+            `<span class="text-neutral-500">Suspicious:</span> ${(ip.suspicious_countries || []).join(", ") || "—"}`;
         document.getElementById("ip-legit-countries")!.innerHTML =
-            `<span class="text-neutral-400">Legitimate:</span> ${(ip.legitimate_countries || []).join(", ") || "—"}`;
+            `<span class="text-neutral-500">Legitimate:</span> ${(ip.legitimate_countries || []).join(", ") || "—"}`;
 
         const ipGeoWrap = document.getElementById("ip-geo-table-wrap")!;
         ipGeoWrap.innerHTML = buildGeoTable(ip.geo_details || []);
@@ -1286,7 +1349,7 @@ import { url } from "../../scripts/url";
     const ROW_CLS =
         "grid min-h-9 grid-cols-[90px_1fr_1fr_60px] items-center";
     const CELL_CLS = "px-3 py-2 text-[12px] break-all";
-    const HEAD_CLS = `${CELL_CLS} bg-neutral-50 text-neutral-400 font-medium`;
+    const HEAD_CLS = `${CELL_CLS} bg-neutral-50 text-neutral-500 font-medium`;
 
     function buildHeaderTable(headers: Record<string, any>): string {
         let rows = `
@@ -1305,7 +1368,7 @@ import { url } from "../../scripts/url";
                 : "bg-red-50 text-red-700";
             rows += `
                 <div class="${ROW_CLS} border-t border-neutral-200">
-                    <div class="${CELL_CLS} text-neutral-400 font-medium bg-neutral-50 border-r border-neutral-200">${escHtml(key)}</div>
+                    <div class="${CELL_CLS} text-neutral-500 font-medium bg-neutral-50 border-r border-neutral-200">${escHtml(key)}</div>
                     <div class="${CELL_CLS} text-neutral-900">${escHtml(val.suspicious || "—")}</div>
                     <div class="${CELL_CLS} text-neutral-900">${escHtml(val.legitimate || "—")}</div>
                     <div class="${CELL_CLS} text-[13px] text-center tracking-widest font-semibold ${matchBg}">${match ? "YES" : "NO"}</div>
@@ -1317,7 +1380,7 @@ import { url } from "../../scripts/url";
     function buildAuthTable(symbols: Record<string, any>): string {
         const keys = Object.keys(symbols);
         if (keys.length === 0)
-            return '<div class="px-3 py-2 text-[12px] text-neutral-400">No auth symbols to compare.</div>';
+            return '<div class="px-3 py-2 text-[12px] text-neutral-500">No auth symbols to compare.</div>';
 
         let rows = `
             <div class="grid min-h-9 grid-cols-[1fr_60px_60px] items-center border-b border-neutral-200">
@@ -1340,7 +1403,7 @@ import { url } from "../../scripts/url";
 
     function buildGeoTable(details: any[]): string {
         if (!details.length)
-            return '<div class="px-3 py-2 text-[12px] text-neutral-400">All IPs shared between both emails.</div>';
+            return '<div class="px-3 py-2 text-[12px] text-neutral-500">All IPs shared between both emails.</div>';
 
         let rows = `
             <div class="grid min-h-9 grid-cols-[2fr_1fr_1fr_2fr_1fr] items-center border-b border-neutral-200">
