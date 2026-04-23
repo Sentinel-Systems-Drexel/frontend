@@ -717,8 +717,9 @@ import { url } from "../scripts/url";
         rspamdSection.hidden = !(rspamd && (Object.keys(symbols).length > 0 || Number.isFinite(score)));
         if (rspamdSection.hidden) return;
 
-        const isSpam    = score >= requiredScore;
-        const isWarning = score >= requiredScore * 0.5;
+        const isClean = score <= 0;
+        const isLikelySafe = score > 0 && score < 5;
+        const isSuspicious = score >= 5 && score < 10;
 
         rspamdAction.textContent = action ? `Action: ${action}` : "";
         rspamdSymbolCount.textContent = `${contributors.length} contributing factor${contributors.length === 1 ? "" : "s"}`;
@@ -734,8 +735,23 @@ import { url } from "../scripts/url";
         gaugeScoreText.textContent = Number.isFinite(score) ? score.toFixed(2) : "—";
 
         const gaugeLabelText = document.getElementById("gauge-label-text")!;
-        gaugeLabelText.textContent = isSpam ? "HIGH RISK" : isWarning ? "SUSPICIOUS" : "SAFE";
-        gaugeLabelText.setAttribute("fill", isSpam ? "#ef4444" : isWarning ? "#d97706" : "#16a34a");
+        gaugeLabelText.textContent = isClean
+            ? "CLEAN"
+            : isLikelySafe
+                ? "LIKELY SAFE"
+                : isSuspicious
+                    ? "SUSPICIOUS"
+                    : "HIGH RISK";
+        gaugeLabelText.setAttribute(
+            "fill",
+            isClean
+                ? "#16a34a"
+                : isLikelySafe
+                    ? "#65a30d"
+                    : isSuspicious
+                        ? "#d97706"
+                        : "#ef4444",
+        );
 
         rspamdChart.innerHTML = buildRspamdChart(symbols);
     }
