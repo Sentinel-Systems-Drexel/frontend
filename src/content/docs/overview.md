@@ -1,160 +1,146 @@
 ---
-title: Overview
-description: General documentation of our product.
-dateUpdated: 2026-04-22
+title: Non-Technical Guide
+description: A step-by-step walkthrough of Sentinel Systems for everyday users, no tech knowledge required.
+dateUpdated: 2026-04-23
 ---
 
-# Sentinel Systems Email Analysis Platform
+# Using Sentinel Systems: A Simple Guide
 
-The Sentinel Systems Email Analysis Platform is a containerized email security solution designed to analyze *.eml* files for spam, phishing, and malicious content. The system extracts key email components, performs multilayer analysis, and generates a risk score along with actionable insights for users.
+Not a tech person? No problem. This guide walks you through everything you need to know to check if an email is safe with pictures at every step.
 
-## Get Started
+Sentinel Systems has two tools:
+
+- **Email Analyzer** : Check a single email for signs of phishing, spam, or malware.
+- **Diff Checker** : Compare a suspicious email side-by-side with a legitimate one to spot fakes.
+
 ---
 
-### Email Analyzer
-1. Open the web interface
-2. Drag and drop a *.eml* file
-3. Click *Analyze Email*
+## Part 1: Email Analyzer
 
-**Understanding Results**
+### Step 1 : Get Your Email as a File
 
-Higher scores indicate higher risk.
+Sentinel Systems analyzes `.eml` files a standard format you can export directly from Gmail (and most other email clients).
 
-Users will see:
-- Risk Score
-- Sender IP Address
-- Sender Origin
-- Attachment Analysis
-- Triggered Indicators
+**In Gmail:**
 
-...CONTINUE
+1. Open the email you want to check.
 
-### Diff-Checker
-1. Upload a suspected email
-2. Upload a known legitimate email
-3. Click Compare
+   ![Open the email in Gmail](/gmail-open-email.png)
 
-### Self Hosting
-1. ADD GETTING STARTED INSTRUCTIONS
+2. Click the **three-dot menu** (⋮) in the top right corner of the email, then select **"Download message"** this saves the email as a `.eml` file to your Downloads folder.
 
-## Technical Overview
+   ![Select Download message from the menu](/gmail-download.png)
+
 ---
 
-### Core Functionality
+### Step 2 : Open the Email Analyzer
 
-- Email parsing (headers, body, attachments)
-- Spam and phishing detection
-- Malware scanning for attachments
-- Sender IP and origin analysis
-- Risk scoring using rule based detection
-- Email comparison using a Diff Checker
+Go to **Sentinel Systems** and click **Analyzer** in the top navigation bar. You'll see this screen:
 
-### System Architecture
+![The Email Analyzer home screen, ready to receive a file](/analyzer-home.png)
 
-![<Architecture Diagram>](https://sentinel-systems.cc/architecture-diagram.png)
+You'll notice a green **"API online"** indicator that means the system is up and ready to go.
 
-- **FastAPI Backend**
-    - Central orchestration layer
-    - Handles uploads, processing, and responses
-- **Rspamd**
-    - Spam filtering and scoring engine
-- **ClamAV**
-    - Malware and virus scanning for attachments
-- **Redis**
-    - Temporary data storage for processing efficiency
-- **Docker**
-    - All services run in isolated containers on a private docker network
-    - Only the API endpoint is externally accessible
+---
 
-### Network Infrastructure
+### Step 3 : Upload Your Email File
 
-![<Infrastructure Diagram>](https://sentinel-systems.cc/infra-diagram.png)
+Drag your `.eml` file from your Downloads folder and drop it into the dashed box. Or click **"browse"** to find it manually.
 
-Website and API are only accessible through our registered domain name. Connection to the server is proxied through a Cloudflare Tunnel. This tunnel encrypts traffic using TLS 1.3 and masks the IP address of the origin server to gaurd against direct attacks. Software on the server monitors incoming SSH connections to prevent brute-force attacks as well.
+![Browsing for the .eml file to upload](/analyzer-browse.png)
 
-All containers run on a secure Docker network. The API is the only entry point, so there is no direct access to analysis services or any of the internal containers. Health checks ensure each service is running properly before the API endpoint is exposed and requests can be processed.
+Once loaded, you'll see the filename appear on screen and the **"Analyze Email"** button will turn black, meaning it's ready.
 
-### Data Flow
+![Email file loaded and ready to analyze](/analyzer-file-loaded.png)
 
-1. User uploads *.eml* file
-2. API processes the request
-3. Email is parsed into:
-    - Headers
-    - Plain text body
-    - HTML body
-    - Attachments
-4. Data is sent to:
-    - Rspamd for spam/phishing analysis
-    - ClamAV for malware scanning
-    - Sender IPs are parsed and traced to their origin
-5. Results are aggregated
-6. Risk score and analysis are returned to the user
+Click **"Analyze Email"**.
 
-### Diff-Checker
+---
 
-The Diff-Checker helps identify spoofing and phishing attempts more effectively by comparing a potenially malicious email to a known legitimate email.
+### Step 4 : Read Your Results
 
-**Comparison Factors**
+After a few seconds, you'll see your results:
 
-- Sender address and domain
-- Authentication results (SPF, DKIM, DMARC, ARC)
-- Risk score differences
-- Symbol differences
-- Shared or mismatched IP addresses
-- Body similarity
+![Analyzer results showing a clean score and email headers](/analyzer-results.png)
 
-**Output**
+Here's what the results mean:
 
-- Risk assessment (ex. likely fraudulent)
-- Highlighted anomalies
-- Score comparison
+- **Score** : A negative number (like `-0.81`) means the email looks clean. A higher positive score means it's more suspicious.
+- **CLEAN / SUSPICIOUS** : A plain-language verdict shown right below the score.
+- **Headers** : Shows who sent the email, when, and from where.
+- **Sender Origin** : A map showing where the email server is physically located.
 
-### Scoring Model
+![Sender origin map showing server location](/analyzer-sender-origin.png)
 
-- The platform currently uses Rspamd as its primary scoring engine
-- Each email is evaluated based on triggered rules (symbols)
-- Each symbol contributes a positive or negative value
+> 💡 **Tip:** Even a "CLEAN" result doesn't guarantee an email is 100% safe. Trust your instincts, if something feels off, don't click any links.
 
-**Scoring Behavior**
+---
 
-- Positive values → increase suspicion
-- Negative values → indicate legitimacy
-- Final score = sum of all symbol values
+## Part 2: Diff Checker
 
-**Interpretation**
+The Diff Checker is useful when you get an email that *looks* like it's from a company you know (like your bank or a streaming service), but something feels off. You compare it against a real email from that same sender to spot differences.
 
-- Low or negative score → likely safe
-- Moderate score → suspicious
-- High score → likely malicious
+### Step 1 : Open the Diff Checker
 
-### Limitations
+Click **Diff-Checker** in the top navigation bar.
 
-- Score interpretation is not yet user-friendly
-- Some header parsing is still in development
-- UI improvements are ongoing
+![The Diff Checker home screen with two upload areas](/diffchecker-home.png)
 
-### Planned Enhancements
+You'll see two upload areas:
+- **Step 1 : Suspicious Email:** the email you're not sure about
+- **Step 2 : Legitimate Email:** a real email you've received from the same sender before
 
-Future changes will make the service more user-friendly for everyone. The platform is also being extended to include custom heuristic scoring. These changes will enhance detection by combining rule-based and behavior-based analysis.
+---
 
-- Clear “Safe / Suspicious / Malicious” labels
-- Expanded header parsing with JSON output
-- IP reputation integration
-- Improved UI/UX
-- Additional API endpoints
+### Step 2 : Upload Both Emails
 
-**Additional changes:**
-- Sender Address Pattern Analysis
-    - Detects random character strings and numeric-heavy addresses
-    - Flags non-human readable sender formats
-- Heuristic Weighting
-    - Adds risk points for known phishing patterns
-    - Detects domain inconsistencies
-- Composite Risk Score
-    - Future score model: Rspamd Score + Custom Heuristic Weights
+Upload your suspicious email into the first box, then a known-good email into the second box. Follow the same export steps from Part 1 to get both as `.eml` files.
 
-### Continuous Deployment
+Once both are loaded, the **"Compare Emails"** button will turn black.
 
-![<CD Pipeline Diagram>](https://sentinel-systems.cc/cicd-diagram.png)
+![Both emails loaded and ready to compare](/diffchecker-loaded.png)
 
-This is our process for testing, staging, and deploying updates and bug fixes as they are completed.
+Click **"Compare Emails"**.
+
+---
+
+### Step 3 : Read the Comparison Results
+
+![Diff Check results showing medium risk and anomalies](/diffchecker-results.png)
+
+The results include:
+
+- **Risk Assessment** : An overall verdict like CLEAN, MEDIUM, or HIGH, with a score and a short explanation.
+- **Anomalies** : Specific things that don't match between the two emails (e.g., different sender domains).
+- **Header Comparison** : A side by side table showing fields like "From" for both emails. A red **"NO"** in the Match column means they don't match, a red flag.
+- **IP / Geolocation** : Shows whether the two emails came from the same servers.
+- **Body Similarity** : How similar the actual content of the two emails is. A very low percentage (like 2.7%) means the emails are very different, another warning sign.
+
+![Diff Check detailed breakdown including header comparison and IP info](/diffchecker-breakdown.png)
+
+---
+
+## Quick Reference
+
+| Tool | Best For |
+|---|---|
+| Email Analyzer | Checking a single suspicious email |
+| Diff Checker | Comparing a suspicious email against a known-real one |
+
+Both tools support `.eml` files up to **50MB**.
+
+---
+
+## Frequently Asked Questions
+
+**Do I need to create an account?**
+No. Sentinel Systems works without any sign up or login.
+
+**Is my email data saved?**
+Emails are only stored for 15 minutes long. 
+
+**What if the API shows as offline?**
+The system may be temporarily unavailable. Try again in a few minutes.
+
+**What's a `.eml` file?**
+It's a standard file format for emails. Most email clients (Gmail, Outlook, Apple Mail) let you export emails in this format.
