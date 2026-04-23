@@ -320,34 +320,6 @@ import { url } from "../scripts/url";
                             <dt
                                 class="flex h-full items-center border-r border-neutral-200 bg-neutral-50 px-3 text-[12px] text-neutral-400"
                             >
-                                Headers
-                            </dt>
-                            <dd
-                                id="r-headers-file"
-                                class="m-0 break-all px-3 py-2 text-[11px] text-neutral-500"
-                            >
-                            </dd>
-                        </div>
-                        <div
-                            class="grid min-h-9 grid-cols-[100px_1fr] items-center border-t border-neutral-200"
-                        >
-                            <dt
-                                class="flex h-full items-center border-r border-neutral-200 bg-neutral-50 px-3 text-[12px] text-neutral-400"
-                            >
-                                Body
-                            </dt>
-                            <dd
-                                id="r-body-file"
-                                class="m-0 break-all px-3 py-2 text-[11px] text-neutral-500"
-                            >
-                            </dd>
-                        </div>
-                        <div
-                            class="grid min-h-9 grid-cols-[100px_1fr] items-center border-t border-neutral-200"
-                        >
-                            <dt
-                                class="flex h-full items-center border-r border-neutral-200 bg-neutral-50 px-3 text-[12px] text-neutral-400"
-                            >
                                 Attachments
                             </dt>
                             <dd
@@ -877,8 +849,6 @@ import { url } from "../scripts/url";
         set("r-from", data.summary.from);
         set("r-to", data.summary.to);
         set("r-date", data.summary.date);
-        set("r-headers-file", data.files_created.headers);
-        set("r-body-file", data.files_created.body);
         set("r-attachment-count", String(data.summary.attachment_count));
 
         const senderIps = data.summary?.sender_ips;
