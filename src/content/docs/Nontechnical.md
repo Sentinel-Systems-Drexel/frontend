@@ -67,7 +67,7 @@ Here's what the results mean:
 - **Score** : A negative number (like `-0.81`) means the email looks clean. A higher positive score means it's more suspicious.
 - **CLEAN / SUSPICIOUS** : A plain-language verdict shown right below the score.
 - **Headers** : Shows who sent the email, when, and from where.
-- **Sender Origin** — A map showing where the email server is physically located.
+- **Sender Origin** : A map showing where the email server is physically located.
 
 ![Sender origin map showing server location](/analyzer-sender-origin.png)
 
@@ -79,19 +79,19 @@ Here's what the results mean:
 
 The Diff Checker is useful when you get an email that *looks* like it's from a company you know (like your bank or a streaming service), but something feels off. You compare it against a real email from that same sender to spot differences.
 
-### Step 1 — Open the Diff Checker
+### Step 1 : Open the Diff Checker
 
 Click **Diff-Checker** in the top navigation bar.
 
 ![The Diff Checker home screen with two upload areas](/diffchecker-home.png)
 
 You'll see two upload areas:
-- **Step 1 — Suspicious Email:** the email you're not sure about
-- **Step 2 — Legitimate Email:** a real email you've received from the same sender before
+- **Step 1 : Suspicious Email:** the email you're not sure about
+- **Step 2 : Legitimate Email:** a real email you've received from the same sender before
 
 ---
 
-### Step 2 — Upload Both Emails
+### Step 2 : Upload Both Emails
 
 Upload your suspicious email into the first box, then a known-good email into the second box. Follow the same export steps from Part 1 to get both as `.eml` files.
 
@@ -103,17 +103,17 @@ Click **"Compare Emails"**.
 
 ---
 
-### Step 3 — Read the Comparison Results
+### Step 3 : Read the Comparison Results
 
 ![Diff Check results showing medium risk and anomalies](/diffchecker-results.png)
 
 The results include:
 
-- **Risk Assessment** — An overall verdict like CLEAN, MEDIUM, or HIGH, with a score and a short explanation.
-- **Anomalies** — Specific things that don't match between the two emails (e.g., different sender domains).
-- **Header Comparison** — A side by side table showing fields like "From" for both emails. A red **"NO"** in the Match column means they don't match, a red flag.
-- **IP / Geolocation** — Shows whether the two emails came from the same servers.
-- **Body Similarity** — How similar the actual content of the two emails is. A very low percentage (like 2.7%) means the emails are very different, another warning sign.
+- **Risk Assessment** : An overall verdict like CLEAN, MEDIUM, or HIGH, with a score and a short explanation.
+- **Anomalies** : Specific things that don't match between the two emails (e.g., different sender domains).
+- **Header Comparison** : A side by side table showing fields like "From" for both emails. A red **"NO"** in the Match column means they don't match, a red flag.
+- **IP / Geolocation** : Shows whether the two emails came from the same servers.
+- **Body Similarity** : How similar the actual content of the two emails is. A very low percentage (like 2.7%) means the emails are very different, another warning sign.
 
 ![Diff Check detailed breakdown including header comparison and IP info](/diffchecker-breakdown.png)
 
@@ -136,7 +136,7 @@ Both tools support `.eml` files up to **50MB**.
 No. Sentinel Systems works without any sign up or login.
 
 **Is my email data saved?**
-No. Emails are analyzed in real time and are not stored.
+Emails are only stored for 15 minutes long. 
 
 **What if the API shows as offline?**
 The system may be temporarily unavailable. Try again in a few minutes.
