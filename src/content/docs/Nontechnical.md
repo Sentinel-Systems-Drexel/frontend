@@ -9,14 +9,14 @@ Not a tech person? No problem. This guide walks you through everything you need 
 
 Sentinel Systems has two tools:
 
-- **Email Analyzer** — Check a single email for signs of phishing, spam, or malware.
-- **Diff Checker** — Compare a suspicious email side-by-side with a legitimate one to spot fakes.
+- **Email Analyzer** : Check a single email for signs of phishing, spam, or malware.
+- **Diff Checker** : Compare a suspicious email side-by-side with a legitimate one to spot fakes.
 
 ---
 
 ## Part 1: Email Analyzer
 
-### Step 1 — Get Your Email as a File
+### Step 1 : Get Your Email as a File
 
 Sentinel Systems analyzes `.eml` files a standard format you can export directly from Gmail (and most other email clients).
 
@@ -32,7 +32,7 @@ Sentinel Systems analyzes `.eml` files a standard format you can export directly
 
 ---
 
-### Step 2 — Open the Email Analyzer
+### Step 2 : Open the Email Analyzer
 
 Go to **Sentinel Systems** and click **Analyzer** in the top navigation bar. You'll see this screen:
 
@@ -42,7 +42,7 @@ You'll notice a green **"API online"** indicator that means the system is up and
 
 ---
 
-### Step 3 — Upload Your Email File
+### Step 3 : Upload Your Email File
 
 Drag your `.eml` file from your Downloads folder and drop it into the dashed box. Or click **"browse"** to find it manually.
 
@@ -56,7 +56,7 @@ Click **"Analyze Email"**.
 
 ---
 
-### Step 4 — Read Your Results
+### Step 4 : Read Your Results
 
 After a few seconds, you'll see your results:
 
@@ -64,9 +64,9 @@ After a few seconds, you'll see your results:
 
 Here's what the results mean:
 
-- **Score** — A negative number (like `-0.81`) means the email looks clean. A higher positive score means it's more suspicious.
-- **CLEAN / SUSPICIOUS** — A plain-language verdict shown right below the score.
-- **Headers** — Shows who sent the email, when, and from where.
+- **Score** : A negative number (like `-0.81`) means the email looks clean. A higher positive score means it's more suspicious.
+- **CLEAN / SUSPICIOUS** : A plain-language verdict shown right below the score.
+- **Headers** : Shows who sent the email, when, and from where.
 - **Sender Origin** — A map showing where the email server is physically located.
 
 ![Sender origin map showing server location](/analyzer-sender-origin.png)
