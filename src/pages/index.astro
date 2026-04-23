@@ -122,12 +122,6 @@ import { url } from "../scripts/url";
                 <span
                     id="file-chip-size"
                     class="ml-0.5 text-[11px] text-neutral-400"></span>
-                <button
-                    id="chip-remove"
-                    aria-label="Remove file"
-                    class="ml-auto cursor-pointer rounded border-0 bg-transparent px-1 py-0.5 text-[16px] leading-none text-neutral-400 transition-colors hover:bg-red-50 hover:text-red-600"
-                    >✕</button
-                >
             </div>
 
             <!-- Parse button + Comparison button -->
@@ -182,36 +176,36 @@ import { url } from "../scripts/url";
                     </h2>
                     <div class="overflow-hidden rounded-md border border-neutral-200 bg-neutral-50">
                         <div class="flex flex-col items-center gap-1 border-b border-neutral-200 px-4 py-4">
-                            <!-- Circular threat gauge (240° speedometer arc) -->
-                            <svg id="rspamd-gauge" viewBox="0 0 200 155" class="w-52 mx-auto" aria-hidden="true">
-                                <!-- Background track: 240° arc clockwise from 150° to 30° -->
-                                <path d="M 30.72 140 A 80 80 0 1 1 169.28 140" fill="none" stroke="#e5e7eb" stroke-width="14" stroke-linecap="butt"/>
-                                <!-- Green zone: 150° → 210° (60°) = score 0–7.5 (SAFE) -->
-                                <path d="M 30.72 140 A 80 80 0 0 1 30.72 60" fill="none" stroke="#22c55e" stroke-width="14" stroke-linecap="butt"/>
-                                <!-- Yellow zone: 210° → 270° (60°) = score 7.5–15 (SUSPICIOUS) -->
-                                <path d="M 30.72 60 A 80 80 0 0 1 100 20" fill="none" stroke="#facc15" stroke-width="14" stroke-linecap="butt"/>
-                                <!-- Red zone: 270° → 390° (120°) = score 15–30+ (HIGH RISK) -->
-                                <path d="M 100 20 A 80 80 0 0 1 169.28 140" fill="none" stroke="#ef4444" stroke-width="14" stroke-linecap="butt"/>
-                                <!-- Needle -->
-                                <line id="gauge-needle" x1="100" y1="100" x2="30.72" y2="140" stroke="#1f2937" stroke-width="2.5" stroke-linecap="round"/>
-                                <!-- Center pivot -->
-                                <circle cx="100" cy="100" r="5" fill="#1f2937"/>
+                            <!-- Horizontal speedometer -->
+                            <svg id="rspamd-gauge" viewBox="0 0 200 78" class="w-64 mx-auto" aria-hidden="true">
                                 <!-- Score number -->
-                                <text id="gauge-score-text" x="100" y="96" text-anchor="middle" font-size="24" font-weight="bold" fill="#111827" font-family="ui-monospace,monospace">—</text>
+                                <text id="gauge-score-text" x="100" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#111827" font-family="ui-monospace,monospace">—</text>
                                 <!-- Verdict label -->
-                                <text id="gauge-label-text" x="100" y="117" text-anchor="middle" font-size="9" fill="#9ca3af" letter-spacing="0.1em">—</text>
+                                <text id="gauge-label-text" x="100" y="44" text-anchor="middle" font-size="10" font-weight="600" fill="#9ca3af" letter-spacing="0.1em">—</text>
+                                <!-- Bar zones clipped to rounded rect -->
+                                <clipPath id="bar-clip">
+                                    <rect x="20" y="62" width="160" height="10" rx="5"/>
+                                </clipPath>
+                                <rect x="20" y="62" width="160" height="10" rx="5" fill="#e5e7eb"/>
+                                <g clip-path="url(#bar-clip)">
+                                    <!-- Green: 0–25% = score 0–7.5 -->
+                                    <rect x="20" y="62" width="40" height="10" fill="#22c55e"/>
+                                    <!-- Yellow: 25–50% = score 7.5–15 -->
+                                    <rect x="60" y="62" width="40" height="10" fill="#facc15"/>
+                                    <!-- Red: 50–100% = score 15–30+ -->
+                                    <rect x="100" y="62" width="80" height="10" fill="#ef4444"/>
+                                </g>
+                                <!-- Triangle marker pointing down at score position -->
+                                <polygon id="gauge-needle" points="100,61 94,53 106,53" fill="#1f2937"/>
                             </svg>
-                            <div
-                                id="rspamd-action"
-                                class="rounded-full bg-neutral-200 px-2 py-0.5 text-[11px] font-medium text-neutral-600"
-                            ></div>
+                            <div id="rspamd-action" hidden></div>
                             <div id="rspamd-symbol-count" class="text-[11px] text-neutral-400"></div>
                         </div>
                         <!-- Collapsible symbol breakdown -->
                         <details class="group">
-                            <summary class="flex cursor-pointer list-none items-center justify-between px-4 py-2.5 transition-colors hover:brightness-95" style="background: linear-gradient(90deg, #1e3a5f 0%, #b8860b 100%);">
-                                <span class="text-[12px] font-semibold tracking-wide text-white">What affects the score</span>
-                                <svg class="size-3.5 text-white transition-transform group-open:rotate-180" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <summary class="flex cursor-pointer list-none items-center justify-between px-4 py-2.5 text-[12px] font-medium text-neutral-600 bg-neutral-100 transition-colors hover:bg-neutral-200">
+                                <span>Breakdown</span>
+                                <svg class="size-3.5 transition-transform group-open:rotate-180" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </summary>
@@ -220,46 +214,6 @@ import { url } from "../scripts/url";
                     </div>
                 </section>
 
-                <!-- Overview -->
-                <section class="flex flex-col gap-2.5">
-                    <h2
-                        class="text-[11px] font-semibold uppercase tracking-widest text-neutral-400"
-                    >
-                        Overview
-                    </h2>
-                    <dl
-                        class="overflow-hidden rounded-md border border-neutral-200"
-                    >
-                        <div
-                            class="grid min-h-9 grid-cols-[100px_1fr] items-center"
-                        >
-                            <dt
-                                class="flex h-full items-center border-r border-neutral-200 bg-neutral-50 px-3 text-[12px] text-neutral-400"
-                            >
-                                Email ID
-                            </dt>
-                            <dd
-                                id="r-email-id"
-                                class="m-0 break-all px-3 py-2 text-[13px] text-neutral-900"
-                            >
-                            </dd>
-                        </div>
-                        <div
-                            class="grid min-h-9 grid-cols-[100px_1fr] items-center border-t border-neutral-200"
-                        >
-                            <dt
-                                class="flex h-full items-center border-r border-neutral-200 bg-neutral-50 px-3 text-[12px] text-neutral-400"
-                            >
-                                Output Dir
-                            </dt>
-                            <dd
-                                id="r-output-dir"
-                                class="m-0 break-all px-3 py-2 text-[13px] text-neutral-500"
-                            >
-                            </dd>
-                        </div>
-                    </dl>
-                </section>
 
                 <!-- Headers -->
                 <section class="flex flex-col">
@@ -538,7 +492,6 @@ import { url } from "../scripts/url";
     const fileChip = document.getElementById("file-chip")!;
     const chipName = document.getElementById("file-chip-name")!;
     const chipSize = document.getElementById("file-chip-size")!;
-    const chipRemove = document.getElementById("chip-remove")!;
     const parseBtn = document.getElementById("parse-btn") as HTMLButtonElement;
     const compareBtn = document.getElementById("compare-btn") as HTMLButtonElement;
     const rspamdSection = document.getElementById("rspamd-section")!;
@@ -634,9 +587,15 @@ import { url } from "../scripts/url";
         if (file) setFile(file);
     });
 
-    chipRemove.addEventListener("click", clearFile);
+    let hasAnalyzed = false;
 
     parseBtn.addEventListener("click", async () => {
+        if (hasAnalyzed) {
+            clearFile();
+            parseBtn.textContent = "Analyze Email";
+            hasAnalyzed = false;
+            return;
+        }
         if (!selectedFile) return;
         hideError();
         results.hidden = true;
@@ -659,8 +618,10 @@ import { url } from "../scripts/url";
             showError(err.message || "Could not connect to API.");
         } finally {
             loadingSpinner.hidden = true;
-            loadingText.textContent = "Ready to receive files.";
+            loadingText.textContent = "";
             parseBtn.disabled = false;
+            parseBtn.textContent = "New Email";
+            hasAnalyzed = true;
         }
     });
 
@@ -760,21 +721,14 @@ import { url } from "../scripts/url";
         const isWarning = score >= requiredScore * 0.5;
 
         rspamdAction.textContent = action ? `Action: ${action}` : "";
-        rspamdSymbolCount.textContent = `${contributors.length} contributing symbol${contributors.length === 1 ? "" : "s"}`;
+        rspamdSymbolCount.textContent = `${contributors.length} contributing factor${contributors.length === 1 ? "" : "s"}`;
 
-        // Drive the circular gauge needle
-        // Arc spans 240° clockwise starting at 150° (8 o'clock = safe) to 30° (4 o'clock = max risk)
         const maxDisplay   = requiredScore * 2;
         const clampedScore = Math.max(0, Math.min(score, maxDisplay));
-        const angleDeg     = 150 + (clampedScore / maxDisplay) * 240;
-        const angleRad     = angleDeg * (Math.PI / 180);
-        const needleLen    = 58;
-        const needleX      = 100 + needleLen * Math.cos(angleRad);
-        const needleY      = 100 + needleLen * Math.sin(angleRad);
+        const markerX      = 20 + (clampedScore / maxDisplay) * 160;
 
-        const needle = document.getElementById("gauge-needle")!;
-        needle.setAttribute("x2", needleX.toFixed(2));
-        needle.setAttribute("y2", needleY.toFixed(2));
+        const gaugeNeedle = document.getElementById("gauge-needle")!;
+        gaugeNeedle.setAttribute("points", `${markerX.toFixed(1)},61 ${(markerX - 6).toFixed(1)},53 ${(markerX + 6).toFixed(1)},53`);
 
         const gaugeScoreText = document.getElementById("gauge-score-text")!;
         gaugeScoreText.textContent = Number.isFinite(score) ? score.toFixed(2) : "—";
