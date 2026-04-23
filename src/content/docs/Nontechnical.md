@@ -18,7 +18,7 @@ Sentinel Systems has two tools:
 
 ### Step 1 — Get Your Email as a File
 
-Sentinel Systems analyzes `.eml` files — a standard format you can export directly from Gmail (and most other email clients).
+Sentinel Systems analyzes `.eml` files a standard format you can export directly from Gmail (and most other email clients).
 
 **In Gmail:**
 
@@ -26,7 +26,7 @@ Sentinel Systems analyzes `.eml` files — a standard format you can export dire
 
    ![Open the email in Gmail](/gmail-open-email.png)
 
-2. Click the **three-dot menu** (⋮) in the top-right corner of the email, then select **"Download message"** this saves the email as a `.eml` file to your Downloads folder.
+2. Click the **three-dot menu** (⋮) in the top right corner of the email, then select **"Download message"** this saves the email as a `.eml` file to your Downloads folder.
 
    ![Select Download message from the menu](/gmail-download.png)
 
