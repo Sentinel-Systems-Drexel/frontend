@@ -188,12 +188,12 @@ import { url } from "../scripts/url";
                                 </clipPath>
                                 <rect x="20" y="62" width="160" height="10" rx="5" fill="#e5e7eb"/>
                                 <g clip-path="url(#bar-clip)">
-                                    <!-- Green: 0–25% = score 0–7.5 -->
-                                    <rect x="20" y="62" width="40" height="10" fill="#22c55e"/>
-                                    <!-- Yellow: 25–50% = score 7.5–15 -->
-                                    <rect x="60" y="62" width="40" height="10" fill="#facc15"/>
-                                    <!-- Red: 50–100% = score 15–30+ -->
-                                    <rect x="100" y="62" width="80" height="10" fill="#ef4444"/>
+                                    <!-- Green: score 0–5 -->
+                                    <rect x="20" y="62" width="53.3333" height="10" fill="#22c55e"/>
+                                    <!-- Yellow: score 5–10 -->
+                                    <rect x="73.3333" y="62" width="53.3333" height="10" fill="#facc15"/>
+                                    <!-- Red: score 10–15+ -->
+                                    <rect x="126.6666" y="62" width="53.3334" height="10" fill="#ef4444"/>
                                 </g>
                                 <!-- Triangle marker pointing down at score position -->
                                 <polygon id="gauge-needle" points="100,61 94,53 106,53" fill="#1f2937"/>
@@ -723,7 +723,7 @@ import { url } from "../scripts/url";
         rspamdAction.textContent = action ? `Action: ${action}` : "";
         rspamdSymbolCount.textContent = `${contributors.length} contributing factor${contributors.length === 1 ? "" : "s"}`;
 
-        const maxDisplay   = requiredScore * 2;
+        const maxDisplay   = 15;
         const clampedScore = Math.max(0, Math.min(score, maxDisplay));
         const markerX      = 20 + (clampedScore / maxDisplay) * 160;
 
