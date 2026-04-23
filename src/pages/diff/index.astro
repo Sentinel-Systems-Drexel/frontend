@@ -895,6 +895,7 @@ import { url } from "../../scripts/url";
     let suspiciousEmailId: string | null = null;
     let suspiciousFile: File | null = null;
     let legitimateFile: File | null = null;
+    let hasCompared = false;
     const MAX_UPLOAD_BYTES = 50 * 1024 * 1024;
 
     // ───────────────────────────────────
@@ -933,9 +934,45 @@ import { url } from "../../scripts/url";
     }
 
     function updateCompareBtn() {
+        compareBtn.textContent = hasCompared
+            ? "Compare New Emails"
+            : "Compare Emails";
+
+        if (hasCompared) {
+            compareBtn.disabled = false;
+            return;
+        }
+
         const hasSusp = suspiciousEmailId !== null || suspiciousFile !== null;
         const hasLegit = legitimateFile !== null;
         compareBtn.disabled = !(hasSusp && hasLegit);
+    }
+
+    function resetComparisonState() {
+        suspiciousEmailId = null;
+        suspiciousFile = null;
+        legitimateFile = null;
+        hasCompared = false;
+
+        fileInputSusp.value = "";
+        fileInputLegit.value = "";
+        chipSusp.hidden = true;
+        chipLegit.hidden = true;
+        suspPrefilled.hidden = true;
+        suspUploadZone.hidden = false;
+        dropzoneSusp.hidden = false;
+        dropzoneLegit.hidden = false;
+
+        const url = new URL(window.location.href);
+        url.searchParams.delete("suspicious_email_id");
+        url.searchParams.delete("from");
+        url.searchParams.delete("subject");
+        history.replaceState(null, "", url.toString());
+
+        hideError();
+        workflow.hidden = true;
+        resultsEl.hidden = true;
+        updateCompareBtn();
     }
 
     // ───────────────────────────────────
@@ -1103,6 +1140,11 @@ import { url } from "../../scripts/url";
     //  Compare flow
     // ───────────────────────────────────
     compareBtn.addEventListener("click", async () => {
+        if (hasCompared) {
+            resetComparisonState();
+            return;
+        }
+
         if (!legitimateFile) return;
         if (!suspiciousEmailId && !suspiciousFile) return;
 
@@ -1335,6 +1377,8 @@ import { url } from "../../scripts/url";
         document.getElementById("body-note")!.textContent = body.note || "";
 
         resultsEl.hidden = false;
+        hasCompared = true;
+        updateCompareBtn();
     }
 
     // ───────────────────────────────────
