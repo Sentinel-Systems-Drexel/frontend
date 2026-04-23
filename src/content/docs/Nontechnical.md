@@ -1,11 +1,11 @@
 ---
 title: Non-Technical Guide
-description: A step-by-step walkthrough of Sentinel Systems for everyday users — no tech knowledge required.
+description: A step-by-step walkthrough of Sentinel Systems for everyday users, no tech knowledge required.
 ---
 
 # Using Sentinel Systems: A Simple Guide
 
-Not a tech person? No problem. This guide walks you through everything you need to know to check if an email is safe — with pictures at every step.
+Not a tech person? No problem. This guide walks you through everything you need to know to check if an email is safe with pictures at every step.
 
 Sentinel Systems has two tools:
 
@@ -26,7 +26,7 @@ Sentinel Systems analyzes `.eml` files — a standard format you can export dire
 
    ![Open the email in Gmail](/gmail-open-email.png)
 
-2. Click the **three-dot menu** (⋮) in the top-right corner of the email, then select **"Download message"** — this saves the email as a `.eml` file to your Downloads folder.
+2. Click the **three-dot menu** (⋮) in the top-right corner of the email, then select **"Download message"** this saves the email as a `.eml` file to your Downloads folder.
 
    ![Select Download message from the menu](/gmail-download.png)
 
@@ -71,7 +71,7 @@ Here's what the results mean:
 
 ![Sender origin map showing server location](/analyzer-sender-origin.png)
 
-> 💡 **Tip:** Even a "CLEAN" result doesn't guarantee an email is 100% safe. Trust your instincts — if something feels off, don't click any links.
+> 💡 **Tip:** Even a "CLEAN" result doesn't guarantee an email is 100% safe. Trust your instincts, if something feels off, don't click any links.
 
 ---
 
