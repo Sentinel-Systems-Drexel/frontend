@@ -38,7 +38,7 @@ Go to **Sentinel Systems** and click **Analyzer** in the top navigation bar. You
 
 ![The Email Analyzer home screen, ready to receive a file](/analyzer-home.png)
 
-You'll notice a green **"API online"** indicator — that means the system is up and ready to go.
+You'll notice a green **"API online"** indicator that means the system is up and ready to go.
 
 ---
 
@@ -111,9 +111,9 @@ The results include:
 
 - **Risk Assessment** — An overall verdict like CLEAN, MEDIUM, or HIGH, with a score and a short explanation.
 - **Anomalies** — Specific things that don't match between the two emails (e.g., different sender domains).
-- **Header Comparison** — A side-by-side table showing fields like "From" for both emails. A red **"NO"** in the Match column means they don't match — a red flag.
+- **Header Comparison** — A side by side table showing fields like "From" for both emails. A red **"NO"** in the Match column means they don't match, a red flag.
 - **IP / Geolocation** — Shows whether the two emails came from the same servers.
-- **Body Similarity** — How similar the actual content of the two emails is. A very low percentage (like 2.7%) means the emails are very different — another warning sign.
+- **Body Similarity** — How similar the actual content of the two emails is. A very low percentage (like 2.7%) means the emails are very different, another warning sign.
 
 ![Diff Check detailed breakdown including header comparison and IP info](/diffchecker-breakdown.png)
 
@@ -133,7 +133,7 @@ Both tools support `.eml` files up to **50MB**.
 ## Frequently Asked Questions
 
 **Do I need to create an account?**
-No. Sentinel Systems works without any sign-up or login.
+No. Sentinel Systems works without any sign up or login.
 
 **Is my email data saved?**
 No. Emails are analyzed in real time and are not stored.
