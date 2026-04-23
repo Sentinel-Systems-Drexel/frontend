@@ -28,7 +28,7 @@ import { url } from "../scripts/url";
                     id="endpointUrl"
                     class="w-full bg-neutral-100 px-3 py-2 rounded-md border border-neutral-200"
                     type="text"
-                    placeholder="https://sapi.georgejosef.com"
+                    placeholder="https://api.sentinel-systems.cc"
                 />
                 <span class="text-neutral-400 text-xs"
                     >For development purposes only.</span
@@ -88,7 +88,9 @@ import { url } from "../scripts/url";
                         >browse</span
                     >.
                 </p>
-                <p class="text-[11px] text-neutral-400">Supports .eml files</p>
+                <p class="text-[11px] text-neutral-400">
+                    Supports .eml files up to 50MB
+                </p>
             </div>
 
             <!-- Selected file chip -->
@@ -122,12 +124,6 @@ import { url } from "../scripts/url";
                 <span
                     id="file-chip-size"
                     class="ml-0.5 text-[11px] text-neutral-400"></span>
-                <button
-                    id="chip-remove"
-                    aria-label="Remove file"
-                    class="ml-auto cursor-pointer rounded border-0 bg-transparent px-1 py-0.5 text-[16px] leading-none text-neutral-400 transition-colors hover:bg-red-50 hover:text-red-600"
-                    >✕</button
-                >
             </div>
 
             <!-- Parse button + Comparison button -->
@@ -181,68 +177,45 @@ import { url } from "../scripts/url";
                         Scoring
                     </h2>
                     <div class="overflow-hidden rounded-md border border-neutral-200 bg-neutral-50">
-                        <div class="flex flex-wrap items-start justify-between gap-3 border-b border-neutral-200 px-4 py-3">
-                            <div class="flex flex-col gap-0.5">
-                                <div class="flex items-baseline gap-2">
-                                    <span
-                                        id="rspamd-score"
-                                        class="text-[26px] font-semibold tabular-nums text-neutral-900"
-                                    ></span>
-                                </div>
-                                <div
-                                    id="rspamd-symbol-count"
-                                    class="text-[11px] text-neutral-400"
-                                ></div>
-                            </div>
-                            <div
-                                id="rspamd-action"
-                                class="rounded-full bg-neutral-200 px-2 py-0.5 text-[11px] font-medium text-neutral-600"
-                            ></div>
+                        <div class="flex flex-col items-center gap-1 border-b border-neutral-200 px-4 py-4">
+                            <!-- Horizontal speedometer -->
+                            <svg id="rspamd-gauge" viewBox="0 0 200 78" class="w-64 mx-auto" aria-hidden="true">
+                                <!-- Score number -->
+                                <text id="gauge-score-text" x="100" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#111827" font-family="ui-monospace,monospace">—</text>
+                                <!-- Verdict label -->
+                                <text id="gauge-label-text" x="100" y="44" text-anchor="middle" font-size="10" font-weight="600" fill="#9ca3af" letter-spacing="0.1em">—</text>
+                                <!-- Bar zones clipped to rounded rect -->
+                                <clipPath id="bar-clip">
+                                    <rect x="20" y="62" width="160" height="10" rx="5"/>
+                                </clipPath>
+                                <rect x="20" y="62" width="160" height="10" rx="5" fill="#e5e7eb"/>
+                                <g clip-path="url(#bar-clip)">
+                                    <!-- Green: score 0–5 -->
+                                    <rect x="20" y="62" width="53.3333" height="10" fill="#22c55e"/>
+                                    <!-- Yellow: score 5–10 -->
+                                    <rect x="73.3333" y="62" width="53.3333" height="10" fill="#facc15"/>
+                                    <!-- Red: score 10–15+ -->
+                                    <rect x="126.6666" y="62" width="53.3334" height="10" fill="#ef4444"/>
+                                </g>
+                                <!-- Triangle marker pointing down at score position -->
+                                <polygon id="gauge-needle" points="100,61 94,53 106,53" fill="#1f2937"/>
+                            </svg>
+                            <div id="rspamd-action" hidden></div>
+                            <div id="rspamd-symbol-count" class="text-[11px] text-neutral-400"></div>
                         </div>
-                        <div id="rspamd-chart"></div>
+                        <!-- Collapsible symbol breakdown -->
+                        <details class="group">
+                            <summary class="flex cursor-pointer list-none items-center justify-between px-4 py-2.5 text-[12px] font-medium text-neutral-600 bg-neutral-100 transition-colors hover:bg-neutral-200">
+                                <span>Breakdown</span>
+                                <svg class="size-3.5 transition-transform group-open:rotate-180" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </summary>
+                            <div id="rspamd-chart" class="border-t border-neutral-200"></div>
+                        </details>
                     </div>
                 </section>
 
-                <!-- Overview -->
-                <section class="flex flex-col gap-2.5">
-                    <h2
-                        class="text-[11px] font-semibold uppercase tracking-widest text-neutral-400"
-                    >
-                        Overview
-                    </h2>
-                    <dl
-                        class="overflow-hidden rounded-md border border-neutral-200"
-                    >
-                        <div
-                            class="grid min-h-9 grid-cols-[100px_1fr] items-center"
-                        >
-                            <dt
-                                class="flex h-full items-center border-r border-neutral-200 bg-neutral-50 px-3 text-[12px] text-neutral-400"
-                            >
-                                Email ID
-                            </dt>
-                            <dd
-                                id="r-email-id"
-                                class="m-0 break-all px-3 py-2 text-[13px] text-neutral-900"
-                            >
-                            </dd>
-                        </div>
-                        <div
-                            class="grid min-h-9 grid-cols-[100px_1fr] items-center border-t border-neutral-200"
-                        >
-                            <dt
-                                class="flex h-full items-center border-r border-neutral-200 bg-neutral-50 px-3 text-[12px] text-neutral-400"
-                            >
-                                Output Dir
-                            </dt>
-                            <dd
-                                id="r-output-dir"
-                                class="m-0 break-all px-3 py-2 text-[13px] text-neutral-500"
-                            >
-                            </dd>
-                        </div>
-                    </dl>
-                </section>
 
                 <!-- Headers -->
                 <section class="flex flex-col">
@@ -349,44 +322,15 @@ import { url } from "../scripts/url";
                             <dt
                                 class="flex h-full items-center border-r border-neutral-200 bg-neutral-50 px-3 text-[12px] text-neutral-400"
                             >
-                                Headers
-                            </dt>
-                            <dd
-                                id="r-headers-file"
-                                class="m-0 break-all px-3 py-2 text-[11px] text-neutral-500"
-                            >
-                            </dd>
-                        </div>
-                        <div
-                            class="grid min-h-9 grid-cols-[100px_1fr] items-center border-t border-neutral-200"
-                        >
-                            <dt
-                                class="flex h-full items-center border-r border-neutral-200 bg-neutral-50 px-3 text-[12px] text-neutral-400"
-                            >
-                                Body
-                            </dt>
-                            <dd
-                                id="r-body-file"
-                                class="m-0 break-all px-3 py-2 text-[11px] text-neutral-500"
-                            >
-                            </dd>
-                        </div>
-                        <div
-                            class="grid min-h-9 grid-cols-[100px_1fr] items-center border-t border-neutral-200"
-                        >
-                            <dt
-                                class="flex h-full items-center border-r border-neutral-200 bg-neutral-50 px-3 text-[12px] text-neutral-400"
-                            >
                                 Attachments
                             </dt>
                             <dd
-                                id="r-attachment-count"
-                                class="m-0 break-all px-3 py-2 text-[13px] text-neutral-900"
+                                id="r-attachments-field"
+                                class="m-0 flex flex-wrap items-center gap-1.5 px-3 py-2 text-[13px] text-neutral-900"
                             >
                             </dd>
                         </div>
                     </dl>
-                    <ul id="r-attachments" class="flex flex-col gap-1.5"></ul>
                     <div id="sender-origin-section" hidden>
                         <h2 class="font-bold text-xl mb-2">
                             Sender Origin
@@ -521,11 +465,9 @@ import { url } from "../scripts/url";
     const fileChip = document.getElementById("file-chip")!;
     const chipName = document.getElementById("file-chip-name")!;
     const chipSize = document.getElementById("file-chip-size")!;
-    const chipRemove = document.getElementById("chip-remove")!;
     const parseBtn = document.getElementById("parse-btn") as HTMLButtonElement;
     const compareBtn = document.getElementById("compare-btn") as HTMLButtonElement;
     const rspamdSection = document.getElementById("rspamd-section")!;
-    const rspamdScore = document.getElementById("rspamd-score")!;
     const rspamdAction = document.getElementById("rspamd-action")!;
     const rspamdSymbolCount = document.getElementById("rspamd-symbol-count")!;
     const rspamdChart = document.getElementById("rspamd-chart")!;
@@ -542,6 +484,7 @@ import { url } from "../scripts/url";
     let lastEmailId: string | null = null;
     let lastEmailFrom: string | null = null;
     let lastEmailSubject: string | null = null;
+    const MAX_UPLOAD_BYTES = 50 * 1024 * 1024;
 
     async function checkApi() {
         try {
@@ -567,6 +510,10 @@ import { url } from "../scripts/url";
     function setFile(file: File) {
         if (!file.name.endsWith(".eml")) {
             showError("Please select a .eml file.");
+            return;
+        }
+        if (file.size > MAX_UPLOAD_BYTES) {
+            showError("File size exceeds 50MB limit.");
             return;
         }
         selectedFile = file;
@@ -618,9 +565,15 @@ import { url } from "../scripts/url";
         if (file) setFile(file);
     });
 
-    chipRemove.addEventListener("click", clearFile);
+    let hasAnalyzed = false;
 
     parseBtn.addEventListener("click", async () => {
+        if (hasAnalyzed) {
+            clearFile();
+            parseBtn.textContent = "Analyze Email";
+            hasAnalyzed = false;
+            return;
+        }
         if (!selectedFile) return;
         hideError();
         results.hidden = true;
@@ -643,8 +596,10 @@ import { url } from "../scripts/url";
             showError(err.message || "Could not connect to API.");
         } finally {
             loadingSpinner.hidden = true;
-            loadingText.textContent = "Ready to receive files.";
+            loadingText.textContent = "";
             parseBtn.disabled = false;
+            parseBtn.textContent = "New Email";
+            hasAnalyzed = true;
         }
     });
 
@@ -708,18 +663,18 @@ import { url } from "../scripts/url";
                     : `left:${50 - widthPct}%;width:${widthPct}%;`;
 
                 return `
-                    <div class="grid grid-cols-[minmax(0,1.35fr)_minmax(180px,2fr)_96px] items-center gap-3 px-4 py-2.5 ${
+                    <div class="grid grid-cols-[minmax(0,1.35fr)_minmax(180px,2fr)_96px] items-start gap-3 px-4 py-2.5 ${
                         index === 0 ? "" : "border-t border-neutral-200"
                     }">
                         <div class="min-w-0">
                             <div class="truncate text-[12px] font-medium text-neutral-900">${escapeHtml(entry.name)}</div>
-                            ${entry.description ? `<div class="truncate text-[10px] text-neutral-400">${escapeHtml(entry.description)}</div>` : ""}
+                            ${entry.description ? `<div class="text-[10px] text-neutral-400 break-words whitespace-normal leading-relaxed mt-0.5">${escapeHtml(entry.description)}</div>` : ""}
                         </div>
-                        <div class="relative h-4 overflow-hidden rounded-full bg-neutral-100">
+                        <div class="relative h-4 overflow-hidden rounded-full bg-neutral-100 mt-1">
                             <div class="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-neutral-300"></div>
                             <div class="absolute top-0 h-full rounded-full ${barColor}" style="${barStyle}"></div>
                         </div>
-                        <div class="justify-self-end">
+                        <div class="justify-self-end mt-0.5">
                             <span class="inline-flex rounded-full px-2 py-0.5 text-[11px] font-medium tabular-nums ${labelColor}">${formatSignedScore(entry.score)}</span>
                         </div>
                     </div>`;
@@ -729,7 +684,7 @@ import { url } from "../scripts/url";
 
     function renderRspamdScore(rspamd: any) {
         const score = Number(rspamd?.score ?? 0);
-        const requiredScore = Number(rspamd?.required_score ?? 0);
+        const requiredScore = Number(rspamd?.required_score ?? 15);
         const action = String(rspamd?.action ?? "");
         const symbols = rspamd?.symbols || {};
         const contributors = Object.values(symbols).filter((value: any) => {
@@ -740,14 +695,42 @@ import { url } from "../scripts/url";
         rspamdSection.hidden = !(rspamd && (Object.keys(symbols).length > 0 || Number.isFinite(score)));
         if (rspamdSection.hidden) return;
 
-        rspamdScore.textContent = Number.isFinite(score) ? score.toFixed(2) : "—";
-        rspamdScore.className =
-            "text-[26px] font-semibold tabular-nums " +
-            (Number.isFinite(score) && Number.isFinite(requiredScore) && score >= requiredScore
-                ? "text-red-600"
-                : "text-neutral-900");
+        const isClean = score <= 0;
+        const isLikelySafe = score > 0 && score < 5;
+        const isSuspicious = score >= 5 && score < 10;
+
         rspamdAction.textContent = action ? `Action: ${action}` : "";
-        rspamdSymbolCount.textContent = `${contributors.length} contributing symbol${contributors.length === 1 ? "" : "s"}`;
+        rspamdSymbolCount.textContent = `${contributors.length} contributing factor${contributors.length === 1 ? "" : "s"}`;
+
+        const maxDisplay   = 15;
+        const clampedScore = Math.max(0, Math.min(score, maxDisplay));
+        const markerX      = 20 + (clampedScore / maxDisplay) * 160;
+
+        const gaugeNeedle = document.getElementById("gauge-needle")!;
+        gaugeNeedle.setAttribute("points", `${markerX.toFixed(1)},61 ${(markerX - 6).toFixed(1)},53 ${(markerX + 6).toFixed(1)},53`);
+
+        const gaugeScoreText = document.getElementById("gauge-score-text")!;
+        gaugeScoreText.textContent = Number.isFinite(score) ? score.toFixed(2) : "—";
+
+        const gaugeLabelText = document.getElementById("gauge-label-text")!;
+        gaugeLabelText.textContent = isClean
+            ? "CLEAN"
+            : isLikelySafe
+                ? "LIKELY SAFE"
+                : isSuspicious
+                    ? "SUSPICIOUS"
+                    : "HIGH RISK";
+        gaugeLabelText.setAttribute(
+            "fill",
+            isClean
+                ? "#16a34a"
+                : isLikelySafe
+                    ? "#65a30d"
+                    : isSuspicious
+                        ? "#d97706"
+                        : "#ef4444",
+        );
+
         rspamdChart.innerHTML = buildRspamdChart(symbols);
     }
 
@@ -872,9 +855,6 @@ import { url } from "../scripts/url";
         set("r-from", data.summary.from);
         set("r-to", data.summary.to);
         set("r-date", data.summary.date);
-        set("r-headers-file", data.files_created.headers);
-        set("r-body-file", data.files_created.body);
-        set("r-attachment-count", String(data.summary.attachment_count));
 
         const senderIps = data.summary?.sender_ips;
         const senderIpsEl = document.getElementById("r-sender-ips");
@@ -909,41 +889,60 @@ import { url } from "../scripts/url";
 
         renderSenderOrigins(senderIps);
 
-        const list = document.getElementById("r-attachments")!;
-        list.innerHTML = "";
-        (data.files_created.attachments as any[]).forEach((attachment) => {
-            const li = document.createElement("li");
-            const filename = attachment.filename || attachment;
-            const clamavStatus = attachment.clamav?.status || "unknown";
-            const threat = attachment.clamav?.threat;
-            const errorDetail = attachment.clamav?.detail;
+        const attachmentsField = document.getElementById("r-attachments-field")!;
+        attachmentsField.innerHTML = "";
 
-            // Determine styling based on status
-            let statusBg = "bg-neutral-100";
-            let statusText = "text-neutral-600";
-            let statusLabel = "Unknown";
+        const attachments = Array.isArray(data.files_created?.attachments)
+            ? data.files_created.attachments
+            : [];
 
-            if (clamavStatus === "clean") {
-                statusBg = "bg-green-100";
-                statusText = "text-green-700";
-                statusLabel = "Clean";
-            } else if (clamavStatus === "infected") {
-                statusBg = "bg-red-100";
-                statusText = "text-red-700";
-                statusLabel = threat ? `Infected: ${threat}` : "Infected";
-            } else if (clamavStatus === "error") {
-                statusBg = "bg-yellow-100";
-                statusText = "text-yellow-700";
-                statusLabel = errorDetail ? `Error: ${errorDetail}` : "Error";
-            }
+        if (attachments.length === 0) {
+            attachmentsField.textContent = "No attachments found";
+        } else {
+            attachments.forEach((attachment: any) => {
+                const filename = attachment.filename || attachment;
+                const clamavStatus = attachment.clamav?.status || "unknown";
+                const threat = attachment.clamav?.threat;
+                const errorDetail = attachment.clamav?.detail;
 
-            li.className = `flex items-center justify-between gap-2 rounded-md border ${statusBg} px-3 py-2 text-[12px]`;
-            li.innerHTML = `
-                <span class="break-all text-neutral-900">${filename}</span>
-                <span class="shrink-0 px-2 py-0.5 rounded-full bg-white ${statusText} font-medium text-[11px]">${statusLabel}</span>
-            `;
-            list.appendChild(li);
-        });
+                let chipBg = "bg-neutral-100";
+                let chipBorder = "border-neutral-300"
+                let statusText = "text-neutral-600";
+                let statusLabel = "Unknown";
+
+                if (clamavStatus === "clean") {
+                    chipBg = "bg-green-100";
+                    chipBorder = "border-green-300"
+                    statusText = "text-green-700";
+                    statusLabel = "Clean";
+                } else if (clamavStatus === "infected") {
+                    chipBg = "bg-red-100";
+                    chipBorder = "border-red-300"
+                    statusText = "text-red-700";
+                    statusLabel = threat ? `Infected: ${threat}` : "Infected";
+                } else if (clamavStatus === "error") {
+                    chipBg = "bg-yellow-100";
+                    chipBorder = "border-yellow-300"
+                    statusText = "text-yellow-700";
+                    statusLabel = errorDetail ? `Error: ${errorDetail}` : "Error";
+                }
+
+                const chip = document.createElement("span");
+                chip.className = `inline-flex max-w-full items-center gap-1.5 rounded-full border ${chipBorder} ${chipBg} px-2 py-0.5 text-[11px]`;
+
+                const nameEl = document.createElement("span");
+                nameEl.className = "break-all text-neutral-900";
+                nameEl.textContent = String(filename);
+
+                const statusEl = document.createElement("span");
+                statusEl.className = `shrink-0 rounded-full bg-white px-1.5 py-0.5 font-medium ${statusText}`;
+                statusEl.textContent = statusLabel;
+
+                chip.appendChild(nameEl);
+                chip.appendChild(statusEl);
+                attachmentsField.appendChild(chip);
+            });
+        }
 
         results.hidden = false;
 
