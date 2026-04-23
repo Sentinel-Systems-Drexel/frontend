@@ -88,7 +88,9 @@ import { url } from "../scripts/url";
                         >browse</span
                     >.
                 </p>
-                <p class="text-[11px] text-neutral-400">Supports .eml files</p>
+                <p class="text-[11px] text-neutral-400">
+                    Supports .eml files up to 50MB
+                </p>
             </div>
 
             <!-- Selected file chip -->
@@ -482,6 +484,7 @@ import { url } from "../scripts/url";
     let lastEmailId: string | null = null;
     let lastEmailFrom: string | null = null;
     let lastEmailSubject: string | null = null;
+    const MAX_UPLOAD_BYTES = 50 * 1024 * 1024;
 
     async function checkApi() {
         try {
@@ -507,6 +510,10 @@ import { url } from "../scripts/url";
     function setFile(file: File) {
         if (!file.name.endsWith(".eml")) {
             showError("Please select a .eml file.");
+            return;
+        }
+        if (file.size > MAX_UPLOAD_BYTES) {
+            showError("File size exceeds 50MB limit.");
             return;
         }
         selectedFile = file;

@@ -153,7 +153,7 @@ import { url } from "../../scripts/url";
                             >.
                         </p>
                         <p class="text-[11px] text-neutral-400">
-                            Supports .eml files
+                            Supports .eml files up to 50MB
                         </p>
                     </div>
 
@@ -247,7 +247,7 @@ import { url } from "../../scripts/url";
                         >.
                     </p>
                     <p class="text-[11px] text-neutral-400">
-                        Supports .eml files
+                        Supports .eml files up to 50MB
                     </p>
                 </div>
 
@@ -867,6 +867,7 @@ import { url } from "../../scripts/url";
     let suspiciousEmailId: string | null = null;
     let suspiciousFile: File | null = null;
     let legitimateFile: File | null = null;
+    const MAX_UPLOAD_BYTES = 50 * 1024 * 1024;
 
     // ───────────────────────────────────
     //  API check
@@ -986,6 +987,10 @@ import { url } from "../../scripts/url";
         function pickFile(file: File) {
             if (!file.name.endsWith(".eml")) {
                 showError("Please select a .eml file.");
+                return;
+            }
+            if (file.size > MAX_UPLOAD_BYTES) {
+                showError("File size exceeds 50MB limit.");
                 return;
             }
             hideError();
