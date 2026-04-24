@@ -1,43 +1,82 @@
-# Astro Starter Kit: Minimal
+# Email Analyzer User Interface
 
-```sh
-pnpm create astro@latest -- --template minimal
-```
+The Sentinel Systems Email Analysis Platform is a containerized email security solution designed to analyze *.eml* files for spam, phishing, and malicious content. The system extracts key email components, performs multilayer analysis, and generates a risk score along with actionable insights for users. This website is designed to interface with our API tool ([view on GitHub](https://github.com/Sentinel-Systems-Drexel/backend)). 
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Technical Overview
 
-## 🚀 Project Structure
+### Network Infrastructure
 
-Inside of your Astro project, you'll see the following folders and files:
+![<Infrastructure Diagram>](https://sentinel-systems.cc/infra-diagram.png)
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+The website and API are only accessible through our registered domain name. Connections to the server are proxied through a Cloudflare Tunnel. This tunnel encrypts traffic using TLS 1.3 and masks the IP address of the origin server to gaurd against direct attacks. Software on the server monitors incoming SSH connections to prevent brute-force attacks as well.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+All containers run on a secure Docker network. The API is the only entry point, so there is no direct access to analysis services or any of the internal containers. Health checks ensure each service is running properly before the API endpoint is exposed and requests can be processed.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### Diff-Checker
 
-Any static assets, like images, can be placed in the `public/` directory.
+The Diff-Checker helps identify spoofing and phishing attempts more effectively by comparing a potenially malicious email to a known legitimate email.
 
-## 🧞 Commands
+**Comparison Factors**
 
-All commands are run from the root of the project, from a terminal:
+- Sender address and domain
+- Authentication results (SPF, DKIM, DMARC, ARC)
+- Risk score differences
+- Symbol differences
+- Shared or mismatched IP addresses
+- Body similarity
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+**Output**
 
-## 👀 Want to learn more?
+- Risk assessment (ex. likely fraudulent)
+- Highlighted anomalies
+- Score comparison
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+### Scoring Model
+
+- The platform currently uses Rspamd as its primary scoring engine
+- Each email is evaluated based on triggered rules (symbols)
+- Each symbol contributes a positive or negative value
+
+**Scoring Behavior**
+
+- Positive values → increase suspicion
+- Negative values → indicate legitimacy
+- Final score = sum of all symbol values
+
+**Interpretation**
+
+- Low or negative score → likely safe
+- Moderate score → suspicious
+- High score → likely malicious
+
+### Limitations
+
+- Score interpretation is not yet user-friendly
+- Some header parsing is still in development
+- UI improvements are ongoing
+
+### Planned Enhancements
+
+Future changes will make the service more user-friendly for everyone. The platform is also being extended to include custom heuristic scoring. These changes will enhance detection by combining rule-based and behavior-based analysis.
+
+- Clear “Safe / Suspicious / Malicious” labels
+- Expanded header parsing with JSON output
+- IP reputation integration
+- Improved UI/UX
+- Additional API endpoints
+
+**Additional changes:**
+- Sender Address Pattern Analysis
+    - Detects random character strings and numeric-heavy addresses
+    - Flags non-human readable sender formats
+- Heuristic Weighting
+    - Adds risk points for known phishing patterns
+    - Detects domain inconsistencies
+- Composite Risk Score
+    - Future score model: Rspamd Score + Custom Heuristic Weights
+
+### Continuous Deployment
+
+![<CD Pipeline Diagram>](https://sentinel-systems.cc/cicd-diagram.png)
+
+This is our process for testing, staging, and deploying updates and bug fixes as they are completed.
