@@ -89,7 +89,7 @@ import { url } from "../scripts/url";
                     >.
                 </p>
                 <p class="text-[11px] text-neutral-400">
-                    Supports .eml files up to 50MB
+                    <span id="upload-hint">Supports .eml files up to the current API limit</span>
                 </p>
             </div>
 
@@ -477,6 +477,7 @@ import { url } from "../scripts/url";
     const results = document.getElementById("results")!;
     const apiStatus = document.getElementById("api-status")!;
     const statusText = document.getElementById("status-text")!;
+    const uploadHint = document.getElementById("upload-hint")!;
     const senderOriginSection = document.getElementById("sender-origin-section")!;
     const senderOriginsList = document.getElementById("sender-origins-list")!;
 
@@ -484,7 +485,45 @@ import { url } from "../scripts/url";
     let lastEmailId: string | null = null;
     let lastEmailFrom: string | null = null;
     let lastEmailSubject: string | null = null;
-    const MAX_UPLOAD_BYTES = 50 * 1024 * 1024;
+    const DEFAULT_MAX_UPLOAD_BYTES = 0;
+    let maxUploadBytes = DEFAULT_MAX_UPLOAD_BYTES;
+
+    function apiPath(path: string) {
+        return `${API_URL.replace(/\/$/, "")}${path}`;
+    }
+
+    function formatUploadLimit(bytes: number) {
+        const megabytes = bytes / (1024 * 1024);
+        return Number.isInteger(megabytes)
+            ? `${megabytes}MB`
+            : `${megabytes.toFixed(1)}MB`;
+    }
+
+    function updateUploadLimitText() {
+        uploadHint.textContent = maxUploadBytes > 0
+            ? `Supports .eml files up to ${formatUploadLimit(maxUploadBytes)}`
+            : "Supports .eml files";
+    }
+
+    updateUploadLimitText();
+
+    async function refreshMaxUploadSize() {
+        try {
+            const response = await fetch(apiPath("/max-upload-size"));
+            if (!response.ok) throw new Error();
+
+            const data = await response.json();
+            const limitInMb = Number(data?.maxUploadSizeMB);
+
+            if (Number.isFinite(limitInMb) && limitInMb > 0) {
+                maxUploadBytes = limitInMb * 1024 * 1024;
+            }
+            updateUploadLimitText();
+        } catch {
+            maxUploadBytes = DEFAULT_MAX_UPLOAD_BYTES;
+            updateUploadLimitText();
+        }
+    }
 
     async function checkApi() {
         try {
@@ -492,6 +531,7 @@ import { url } from "../scripts/url";
             if (r.ok) {
                 apiStatus.dataset.state = "online";
                 statusText.textContent = "API online";
+                await refreshMaxUploadSize();
             } else throw new Error();
         } catch {
             apiStatus.dataset.state = "offline";
@@ -512,8 +552,8 @@ import { url } from "../scripts/url";
             showError("Please select a .eml file.");
             return;
         }
-        if (file.size > MAX_UPLOAD_BYTES) {
-            showError("File size exceeds 50MB limit.");
+        if (maxUploadBytes > 0 && file.size > maxUploadBytes) {
+            showError(`File size exceeds ${formatUploadLimit(maxUploadBytes)} limit.`);
             return;
         }
         selectedFile = file;
