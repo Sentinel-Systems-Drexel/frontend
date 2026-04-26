@@ -127,7 +127,7 @@ The results include:
 | Email Analyzer | Checking a single suspicious email |
 | Diff Checker | Comparing a suspicious email against a known-real one |
 
-Both tools support `.eml` files up to **50MB**.
+Both tools support `.eml` files up to the current API-reported limit.
 
 ---
 
