@@ -899,48 +899,61 @@ import { url } from "../scripts/url";
         if (attachments.length === 0) {
             attachmentsField.textContent = "No attachments found";
         } else {
+            const statusMeta: Record<string, { bg: string; border: string; color: string; dot: string; symbol: string; label: (t?: string, e?: string) => string }> = {
+                clean:    { bg: "#dafbe1", border: "#9fcea9", color: "#1a7f37", dot: "#2da44e", symbol: "✓", label: () => "Clean" },
+                infected: { bg: "#ffd8d3", border: "#f5a9a3", color: "#cf222e", dot: "#cf222e", symbol: "✕", label: (t) => t ? `Infected: ${t}` : "Infected" },
+                error:    { bg: "#fff8c5", border: "#d4a520", color: "#9a6700", dot: "#bf8700", symbol: "⚠", label: (_t, e) => e ? `Error: ${e}` : "Scan Error" },
+                unknown:  { bg: "#f6f8fa", border: "#d0d7de", color: "#57606a", dot: "#8c959f", symbol: "●", label: () => "Unknown" },
+            };
+
             attachments.forEach((attachment: any) => {
                 const filename = attachment.filename || attachment;
                 const clamavStatus = attachment.clamav?.status || "unknown";
                 const threat = attachment.clamav?.threat;
                 const errorDetail = attachment.clamav?.detail;
 
-                let chipBg = "bg-neutral-100";
-                let chipBorder = "border-neutral-300"
-                let statusText = "text-neutral-600";
-                let statusLabel = "Unknown";
+                const meta = statusMeta[clamavStatus] ?? statusMeta.unknown;
+                const labelText = meta.label(threat, errorDetail);
 
-                if (clamavStatus === "clean") {
-                    chipBg = "bg-green-100";
-                    chipBorder = "border-green-300"
-                    statusText = "text-green-700";
-                    statusLabel = "Clean";
-                } else if (clamavStatus === "infected") {
-                    chipBg = "bg-red-100";
-                    chipBorder = "border-red-300"
-                    statusText = "text-red-700";
-                    statusLabel = threat ? `Infected: ${threat}` : "Infected";
-                } else if (clamavStatus === "error") {
-                    chipBg = "bg-yellow-100";
-                    chipBorder = "border-yellow-300"
-                    statusText = "text-yellow-700";
-                    statusLabel = errorDetail ? `Error: ${errorDetail}` : "Error";
-                }
+                const group = document.createElement("span");
+                group.className = "inline-flex items-center gap-1 flex-shrink-0";
 
-                const chip = document.createElement("span");
-                chip.className = `inline-flex max-w-full items-center gap-1.5 rounded-full border ${chipBorder} ${chipBg} px-2 py-0.5 text-[11px]`;
+                // Filename chip — always neutral
+                const nameChip = document.createElement("span");
+                nameChip.style.cssText = "background:#f6f8fa;border:1px solid #d0d7de;color:#24292f;";
+                nameChip.className = "inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-medium max-w-[220px]";
 
-                const nameEl = document.createElement("span");
-                nameEl.className = "break-all text-neutral-900";
-                nameEl.textContent = String(filename);
+                const fileIcon = document.createElement("span");
+                fileIcon.textContent = "📄";
+                fileIcon.className = "text-[10px] shrink-0";
 
-                const statusEl = document.createElement("span");
-                statusEl.className = `shrink-0 rounded-full bg-white px-1.5 py-0.5 font-medium ${statusText}`;
-                statusEl.textContent = statusLabel;
+                const nameText = document.createElement("span");
+                nameText.className = "truncate";
+                nameText.title = String(filename);
+                nameText.textContent = String(filename);
 
-                chip.appendChild(nameEl);
-                chip.appendChild(statusEl);
-                attachmentsField.appendChild(chip);
+                nameChip.appendChild(fileIcon);
+                nameChip.appendChild(nameText);
+
+                // Status chip — colored per scan result
+                const statusChip = document.createElement("span");
+                statusChip.style.cssText = `background:${meta.bg};border:1px solid ${meta.border};color:${meta.color};`;
+                statusChip.className = "inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-semibold shrink-0";
+
+                const dot = document.createElement("span");
+                dot.style.cssText = `color:${meta.dot};`;
+                dot.className = "text-[10px] leading-none";
+                dot.textContent = meta.symbol;
+
+                const statusText = document.createElement("span");
+                statusText.textContent = labelText;
+
+                statusChip.appendChild(dot);
+                statusChip.appendChild(statusText);
+
+                group.appendChild(nameChip);
+                group.appendChild(statusChip);
+                attachmentsField.appendChild(group);
             });
         }
 
