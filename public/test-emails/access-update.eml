@@ -1,0 +1,1689 @@
+Delivered-To: cvillanueva74@gmail.com
+Received: by 2002:a05:6359:428a:b0:282:3cbf:4ee5 with SMTP id kp10csp524431rwb;
+        Fri, 6 Mar 2026 09:48:13 -0800 (PST)
+X-Received: by 2002:a17:90b:4fd1:b0:359:8f63:9a25 with SMTP id 98e67ed59e1d1-359b1b8c8e4mr5975389a91.3.1772819292935;
+        Fri, 06 Mar 2026 09:48:12 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1772819292; cv=none;
+        d=google.com; s=arc-20240605;
+        b=VFLBUjGPGG/RyUIWDy9iU3hcHbSDiDIaFkb8yjaEW0jNY0GDOfC3ty9VzsCaK3jXcU
+         X5KODWGPhCoOC+hjyw8zf4Ux0W3JPN2xgx/bDpCzZQUAZgaJw/OvOxCR/A7VO9saqlWa
+         VxQJsirUWNzqa4roc9sDmBF+YGJ6jVZJ8gCz4ua/QhCT/VGaL6KXl82SIiy8vkGdWvCo
+         5f+OWn+rhdJ7zctdjmPxJfGgn/LMK0bmruq5EkEUM1+qsrs4jqWB0kkV79Dbn4a6lRXX
+         n7m6e+Pa0Fs9hVGsS015tweGQlwTey7qFFvHvZlqpmD0v8bb0UsfzEnRutKHO8vj0HE2
+         6CrA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=open_flag:message-id:guuid:gptrackid:mime-version:date:subject:cc
+         :to:from:dkim-signature;
+        bh=vKpnSjJ7TMQCSH4XdGBW+ErLlfOvAJJ/ppgIMn6l690=;
+        fh=n1+xGqIAVbHz7QKp6mWz+6YGgdUF3XQu4IfO0355ClI=;
+        b=CPSC7Y+mKlnCP8j6xe1Cn2CVSQJDFM6oFcY3StmzGkY2hVYDA0CRjiPCqRYL1y429A
+         PC8IKTA/tFAx+S+5iPkvQy0at9DWhtoPhLDxsUWDXi+8Y5cEBPIel1WBgKq3UHXwhT6q
+         f/OadhK/0q30HFvTlKI/0HunhzPsSx8CvlxYFiP3v5LoHYg+x9qm6nMY7Koh3NVIheAt
+         qASPMBjzTKKcONXDZS5agygiQutacLTsdVv7uxzjGBVS+J506xNCW3PZ2A9Ymv1dHnK1
+         7m3DRg9SkqH0L0uD64+ybc6Cbhfp8Y0ssfgifsVzWCx7bI7xmeDQba6k3XP8qH7Wd2oX
+         JGzw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=WGrTcdQv;
+       spf=pass (google.com: domain of a0932165549@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=a0932165549@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <a0932165549@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 41be03b00d2f7-c739d52a7a1sor692853a12.6.2026.03.06.09.48.12
+        for <cvillanueva74@gmail.com>
+        (Google Transport Security);
+        Fri, 06 Mar 2026 09:48:12 -0800 (PST)
+Received-SPF: pass (google.com: domain of a0932165549@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=WGrTcdQv;
+       spf=pass (google.com: domain of a0932165549@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=a0932165549@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772819292; x=1773424092; dara=google.com;
+        h=open_flag:message-id:guuid:gptrackid:mime-version:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vKpnSjJ7TMQCSH4XdGBW+ErLlfOvAJJ/ppgIMn6l690=;
+        b=WGrTcdQv0spc4ughj2ow+tOlr4ZcSFb8wwpWP/jenf/gNOqMX31RUGqkit0YeEu1qX
+         fyl/nqpj6SapqSgqmGNzKK4NQqxl3pUxdS9PI0E/oKzuXYUMyVuUJW5NnH+IaKm4NRYr
+         QxAifw67UriXHC1ZMZDSilGh1BA9S6vL/4BipO8O92RhWimAkSNdFuhnl68LAQz8OLIm
+         KJ4RQNQdzrAnTQ8/4NtCQv4fYgMcLBavESAT3HPwPM4CMMd5zFxXSqf7wn9h41j2Dfcs
+         6sZAAqW0Vxtfp/5rfgtGNRf1e441wEGPkZwlzj4FVUWN4+NDaaN5tPd0s59e/GPpsBBV
+         JP5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772819292; x=1773424092;
+        h=open_flag:message-id:guuid:gptrackid:mime-version:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vKpnSjJ7TMQCSH4XdGBW+ErLlfOvAJJ/ppgIMn6l690=;
+        b=XOftlyJNberjxuETr4gLE/mPwZlrH4rlKTwVEVAIWLmkD6wpVXpguLz5jLJz2hBopI
+         9h0ZGm44CeJlsZlDdJGXAT6RQ5L00EZg9n846z9/ftmDfMtwdX/RcYENpzUOP6dUvhqd
+         Vvv17lHdqzyuUuC2KoNlGEZIf0iGRtYlCU3PHsBX3Pv6jn0eV75WmwbP9tHi6m7/qlqz
+         n94E+suLraVTiq69PBaTZnpx7lfQ9NawIAE5q/NSaNf26zGR/8yV5+1O1RjBcDTmzEKx
+         JtyJjuYLDaUxUa6snUeAIUAs4WAENm5Tff5hLyyl8PgJHIFw+FKtyCWnK6rNLST8rNNv
+         K9fg==
+X-Gm-Message-State: AOJu0YxTQ2DomXhhBSDq4+AAn7979gudre53PNz7IyFA/WPiA788UH3E
+	YJvKRj7RCA22+Dd9KmfU7Lsws0QqdeSxUg5fhsL4sUPzx1RrccvErX4dHUyL4bOr9EH6Mw==
+X-Gm-Gg: ATEYQzyUopUnOAxIXOEB1fVkvP4zkYdU6e8mXR0tIl2h8zRCQRE68NLAafMYxlwL6Iu
+	z5FWQLrBMY+jFEwxqG/YwFj/NunVnENvYymuVfC4nIRfr1/d1MN+ZiapWw7JnauxlNQ4cR2HXE7
+	yrOEXuSZ/5DQzH924dNEzcjUi45fS0SoBRaURWiX77Jqn/k0AMZi8ObUceO18k4jIkhbaRZDZ0+
+	7QnP/kaEwYWkM+rG326pVEHAxwnOWo4+XGRA50nMgkE4eQUTj32U55yB7PBZ8RxO9wg1hcyhfeu
+	Cl9EW2FGWJm5goDwg5uKBcCvlVTytJcLGAVlW401ThbSWzZgXHLoXEsN1/tzMO2ybmO8vNpEDw2
+	vRgMIOlUo6VHhykLi2VrORa+i5SaisyGkTWnJYXyGNOZf1yNfyyZmhZGkuLR1ZY2gzGc2KlxqMH
+	H0IDW+wt8bOXZFkUXTX9FnfTo9PGzwr6o=
+X-Received: by 2002:a05:6300:49:b0:394:f972:43c7 with SMTP id adf61e73a8af0-39842639c97mr6639202637.39.1772819291151;
+        Fri, 06 Mar 2026 09:48:11 -0800 (PST)
+Return-Path: <a0932165549@gmail.com>
+Received: from mail.fsdkingsaud.me ([45.61.61.39])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c739e183596sm2097275a12.27.2026.03.06.09.48.10
+        for <cvillanueva74@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 06 Mar 2026 09:48:10 -0800 (PST)
+From: Confirmation <a0932165549@gmail.com>
+X-Google-Original-From: Confirmation<return@fredonia.edu>
+To: "cvillanueva74@gmail.com" <cvillanueva74@gmail.com>
+Cc: "cvillanueva74@gmail.com" <cvillanueva74@gmail.com>
+Subject: Access Update
+Date: Fri, 06 Mar 2026 18:46:39 +0100 
+X-SFDC-LK: 00D00000000Fdbe
+X-SFDC-Restrict: ^(.*)
+X-SFDC-Interface: internal
+X-SFDCRelayPort: 25
+X-SFDC-EmailCategory: workflowActionAlert
+X-SFDCRelayAddr: gmr-smtp-in.l.google.com
+X-SFDCTLS: 0
+X-SFDC-Binding: HVPLXxhbTeLXfPXP
+X-SFDC-User: 005f200000QKVEs
+X-SFDC-EntityId: 01W5w0000003327
+X-Gm-Features: wOlDtPJf-6yzHB0d9FUmY-Yo8Yux2NFkb4H5D-Vnq612gM-19-YmWyD2N-A7r31
+X-LinkedIn-fbl-lfbiuhj: m2--jzgrccfjezrvnfapxlqblncnaxr
+X-Complaints-To: return@fredonia.edu
+X-Feedback-ID: 3648620:US
+X-LinkedIn-Class: JOBS-TO-MBR
+X-SFDCOrgRelay: 00D00000000Fdbe
+X-Sender: wOlDtPJf@fredonia.edu
+X-mail_abuse_inquiries: http://www.fredonia.edu/company/abuse.jsp
+MIME-Version: 1.0
+X-Feedback-ID: 7053:42005278:campaign:sailthru
+X-Unsubscribe-Web: https://link.fredonia.edu/oc/675eac8968913d91ad06326ep0bha.8hy9/88c2088b
+X-TM-ID: 20251014213129.42005278.396513
+GPTrackId: 7|886260|3327[_7]7|678|886260|42|886260
+X-LinkedIn-Id: o01xd4-mgm6viol-8p
+Content-Type: multipart/mixed; boundary="-------Vnq612gM--==--KZ7C-==--Vnq612gM--==--"; type="multipart/alternative"
+X-Campaign: mailchimp1vnkmsx3r28url5fz41qlfaaf.kuncuh6juw
+X-LinkedIn-Template: jobs_jymbii_digest
+X-Mailer: Mailchimp Mailer - CIDkuncuh6juwf912a6c773
+X-Return-Path-Hint: sOyfRsivohNniJnYEtv8hQx==_5776075696219_CRGT/xchhh+ugJGmTdcFGY==@fredonia.edu
+GUUId: 864203487
+Message-ID: <AC400000000W6NTWF7CJQW0KOadobe_news_prod2@fredonia.edu>
+open_flag: true
+
+---------Vnq612gM--==--KZ7C-==--Vnq612gM--==--
+Content-Type: multipart/mixed; boundary="_-------mnTCfLRj1pmiI0EFAIje.Yo8Yux2NFkb4H5D-402348591956293mnTCfLRj1pmiI0EFAIje.Yo8Yux2NFkb4H5D=:"
+
+
+--_-------mnTCfLRj1pmiI0EFAIje.Yo8Yux2NFkb4H5D-402348591956293mnTCfLRj1pmiI0EFAIje.Yo8Yux2NFkb4H5D=:
+Content-Type: text/html;charset="UTF-8"
+
+
+<div style="font-size:calc(100% - 100%)">
+
+
+<title>
+<head>
+
+<table border="1">
+<tbody>
+<tr><td>In this activity, you will learn to record important health</td></tr>
+<tr><td>parameters of selected livestock. Select at least two animals for this</td></tr>
+<tr><td>activity. You need to work in a group of 5–6 students. You can visit</td></tr>
+<tr><td>a nearby farmer/animal owner or ask them to visit your school</td></tr>
+<tr><td>with their animal(s).</td></tr>
+<tr><td>The following should be considered while selecting the</td></tr>
+<tr><td>animal(s):</td></tr>
+<tr><td>1. It is better to choose small and friendly animals that are</td></tr>
+<tr><td>easy to handle, such as a goat or sheep, instead of a bullock,</td></tr>
+<tr><td>buffalo or cow. Do remember that bucks/bully goats or</td></tr>
+<tr><td>male goats are more aggressive than females.</td></tr>
+<tr><td>2. Ensure that the teacher/farmer/animal owner or a</td></tr>
+<tr><td>veterinary professional is present before approaching</td></tr>
+<tr><td>the animal.</td></tr>
+<tr><td>3. Stand at a distance from the animal, and take care not to</td></tr>
+<tr><td>stand behind the animal.</td></tr>
+<tr><td>4. You will do a visual observation and check the respiration rate.</td></tr>
+<tr><td>Visual Observations of the Animal</td></tr>
+<tr><td>Visual observations will help you assess the health of the animal</td></tr>
+<tr><td>without any medical tests. Observe the following:</td></tr>
+<tr><td>1. Eyes: Should be bright, moist and clean.</td></tr>
+<tr><td>2. Nostrils: Should be clean, wet and without any discharge.</td></tr>
+<tr><td>3. Skin: Should be glossy, clean and free from parasites (e g.,</td></tr>
+<tr><td>tick, mite, lice, etc.).</td></tr>
+<tr><td>4. Behaviour: Should be alert,</td></tr>
+<tr><td>inquisitive, and interested in its</td></tr>
+<tr><td>surroundings.</td></tr>
+<tr><td>5. Appetite: Should have a good</td></tr>
+<tr><td>appetite and no signs of diarrhoea.</td></tr>
+<tr><td>Checking Respiration Rate</td></tr>
+<tr><td>1. Respiration rate is recorded with</td></tr>
+<tr><td>visual observation. You will need</td></tr>
+<tr><td>to identify the flank region of the</td></tr>
+<tr><td>animal (Figure 2 8). This is the</td></tr>
+<tr><td>area of flesh on either side of the</td></tr>
+<tr><td>body, between the rear leg and</td></tr>
+<tr><td>the last rib.</td></tr>
+<tr><td>Should be glossy, clean and free from parasites (e g.,</td></tr>
+<tr><td>Figure 2 8: Flank region of a goat and a cow</td></tr>
+<tr><td>44 Kaushal Bodh — Grade 8</td></tr>
+<tr><td>2. Count the number of either falls or rises of the flank region</td></tr>
+<tr><td>in one minute using a stopwatch. Never count both rises</td></tr>
+<tr><td>and falls of the flank for respiration rate.</td></tr>
+<tr><td>3. Normal respiration of a cattle is about 25 to 50 breaths per</td></tr>
+<tr><td>minute, and that of a goats is about 12 to 25 breaths per</td></tr>
+<tr><td>minute.</td></tr>
+<tr><td>Record the observations in Table 2 5.</td></tr>
+<tr><td>Did you know?</td></tr>
+<tr><td>All animals (farm, pet and wild) are protected in India under the Cruelty to</td></tr>
+<tr><td>Animals Act (1960). The Act gives rights to all animals for prevention and</td></tr>
+<tr><td>protection from cruelty, unnecessary pain, overwork, torture and abuse.</td></tr>
+<tr><td>Recording the body temperature (measurement to be done by</td></tr>
+<tr><td>a veterinary professional)</td></tr>
+<tr><td>1. A digital thermometer is used to record the body</td></tr>
+<tr><td>temperature of animals. Ensure it is set to the minimum</td></tr>
+<tr><td>level (zero digit).</td></tr>
+<tr><td>2. The thermometer is inserted carefully into the rectum so</td></tr>
+<tr><td>that its bulb comes in contact with the animal’s mucous</td></tr>
+<tr><td>membrane.</td></tr>
+<tr><td>3. The thermometer is kept in this position for one minute.</td></tr>
+<tr><td>4. Then, the thermometer is removed from the rectum,</td></tr>
+<tr><td>cleaned with cotton and antiseptic, and the temperature</td></tr>
+<tr><td>reading is noted.</td></tr>
+<tr><td>5. Record your observations in Table 2 5 (minimum 2 animals</td></tr>
+<tr><td>per group). Also, ask the expert for the normal range of</td></tr>
+<tr><td>body temperature and respiration for the animal selected,</td></tr>
+<tr><td>and record it.</td></tr>
+<tr><td>6. How do respiration rate and body temperature relate to</td></tr>
+<tr><td>animal health? Explain it in relation to your own health.</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>Feeding and Caring for Farm Animals 45</td></tr>
+<tr><td>Table 2 5: Recording health parameters</td></tr>
+<tr><td>S. No. Animal details</td></tr>
+<tr><td>(name, species,</td></tr>
+<tr><td>breed, age)</td></tr>
+<tr><td>Visual</td></tr>
+<tr><td>observations</td></tr>
+<tr><td>(eyes, nostrils,</td></tr>
+<tr><td>skin)</td></tr>
+<tr><td>Body</td></tr>
+<tr><td>temperature</td></tr>
+<tr><td>Respiration</td></tr>
+<tr><td>(rate/minute)</td></tr>
+<tr><td>1.</td></tr>
+<tr><td>2.</td></tr>
+<tr><td>3.</td></tr>
+<tr><td>Activity 5: Estimating the weight of farm animals</td></tr>
+<tr><td>Body weight is a significant health</td></tr>
+<tr><td>indicator for livestock, just like</td></tr>
+<tr><td>humans. It affects feed requirements,</td></tr>
+<tr><td>disease treatment, production levels</td></tr>
+<tr><td>(milk, eggs, and weight gain), and</td></tr>
+<tr><td>selling price. You can use a regular</td></tr>
+<tr><td>weighing scale for small animals,</td></tr>
+<tr><td>like poultry, whereas a suitable</td></tr>
+<tr><td>scale may not always be available</td></tr>
+<tr><td>for larger animals, like cattle, goats,</td></tr>
+<tr><td>camels, and horses. To solve this problem, you can estimate their</td></tr>
+<tr><td>body weight by measuring their dimensions.</td></tr>
+<tr><td>You already know the connection between volume, density,</td></tr>
+<tr><td>and weight. Using these, you can calculate weight with a simple</td></tr>
+<tr><td>formula:</td></tr>
+<tr><td>Weight=Volume×Density</td></tr>
+<tr><td>This simple equation is the basis</td></tr>
+<tr><td>for calculating of the weight of a farm</td></tr>
+<tr><td>animal. You will need to take body</td></tr>
+<tr><td>measurements of the farm animal</td></tr>
+<tr><td>(Figures 2 9 and 2 10). Now follow</td></tr>
+<tr><td>the steps given below to calculate</td></tr>
+<tr><td>the weight of an animal using the</td></tr>
+<tr><td>formula:</td></tr>
+<tr><td>1. Select a small and friendly</td></tr>
+<tr><td>animal which is easy to handle,</td></tr>
+<tr><td>Activity 5: Estimating the weight of farm animals</td></tr>
+<tr><td>Figure 2 9: Taking body</td></tr>
+<tr><td>measurements of large farm animals</td></tr>
+<tr><td>to estimate weight</td></tr>
+<tr><td>Figure 2 10: Taking the body</td></tr>
+<tr><td>measurements of a goat</td></tr>
+<tr><td>Chest girth: .......... inches</td></tr>
+<tr><td>Shoulder girth:</td></tr>
+<tr><td>.......... inches</td></tr>
+<tr><td>46 Kaushal Bodh — Grade 8</td></tr>
+<tr><td>such as goat and sheep. You can also take measurements</td></tr>
+<tr><td>of a larger animal which is gentle and calm.</td></tr>
+<tr><td> Length and girth should be measured in inches (1 inch = 2 54 cm), and</td></tr>
+<tr><td>body weight in kilograms.</td></tr>
+<tr><td> The dividing factor (i e., 600 or 300) is used as a constant factor.</td></tr>
+<tr><td> This formula is known as Schaeffle’s Formula of body weight estimation.</td></tr>
+<tr><td> Since the animal does not stand directly on the weighing scale (or</td></tr>
+<tr><td>balance), this is an indirect estimation of body weight. This estimation</td></tr>
+<tr><td>can have a 10 to 15% error due to variations in body measurements.</td></tr>
+<tr><td>2. Take the help of a farmer/animal owner or veterinary</td></tr>
+<tr><td>professional before approaching the animal. Note your</td></tr>
+<tr><td>observations in Table 2 6.</td></tr>
+<tr><td>Table 2 6: Body measurement of animal</td></tr>
+<tr><td>S. No. Animal Length measurement</td></tr>
+<tr><td>(inches)</td></tr>
+<tr><td>Girth measurement</td></tr>
+<tr><td>(inches)</td></tr>
+<tr><td>1.</td></tr>
+<tr><td>2.</td></tr>
+<tr><td>After taking body measurements, calculate body weight using</td></tr>
+<tr><td>the following formula:</td></tr>
+<tr><td>1. Live body weight for goat = Length×Girth2</td></tr>
+<tr><td>/600</td></tr>
+<tr><td>2. Live body weight for cow/buffalo</td></tr>
+<tr><td>= Length×Girth2</td></tr>
+<tr><td>/330</td></tr>
+<tr><td>Record your calculations in Table 2 7.</td></tr>
+<tr><td>Table 2 7: Record of weight of animals using body measurement</td></tr>
+<tr><td>S. No. Animal Length (inches) Girth (inches) Estimated weight</td></tr>
+<tr><td>(kilograms)</td></tr>
+<tr><td>Are there any other methods farmers or animal owners use</td></tr>
+<tr><td>for weight estimation? Do they feel this is an important activity in</td></tr>
+<tr><td>animal care? If not, ask them the reason.</td></tr>
+<tr><td>Feeding and Caring for Farm Animals 47</td></tr>
+<tr><td>Activity 6: Preparing a feeding chart</td></tr>
+<tr><td>Like humans, livestock also need carbohydrates, protein, fat,</td></tr>
+<tr><td>minerals, and vitamins for their growth and productivity. A proper</td></tr>
+<tr><td>feeding schedule and providing quality feed are important for the</td></tr>
+<tr><td>health of animals. The feed requirement of an animal depends</td></tr>
+<tr><td>on the type of digestive system (ruminant versus non-ruminant),</td></tr>
+<tr><td>feeding habits, and productivity.</td></tr>
+<tr><td>Ruminant livestock (cow, buffalo, goat, sheep) have four chambers in</td></tr>
+<tr><td>the stomach. Ruminants can digest low-quality grass compared to nonruminant (horses, pigs, poultry) animals. Cattle and buffalo prefer grass as</td></tr>
+<tr><td>feed, while goats and camels prefer tender leaves from shrubs and weeds.</td></tr>
+<tr><td>Feed requirement is determined by weight and Dry Matter</td></tr>
+<tr><td>(DM) requirement. You have already estimated the weight of</td></tr>
+<tr><td>two animals. DM is simply the non-water portion of animal feed.</td></tr>
+<tr><td>Generally, DM equal to 2–3 per cent of the animal’s live body</td></tr>
+<tr><td>weight is required by an adult animal everyday.</td></tr>
+<tr><td>The feed requirement of animals is directly related to their</td></tr>
+<tr><td>weight (Table 2 8). In an earlier activity, you had estimated the</td></tr>
+<tr><td>weight of two animals.</td></tr>
+<tr><td>Table 2 8: Feed requirements of goat</td></tr>
+<tr><td>Weight</td></tr>
+<tr><td>of the</td></tr>
+<tr><td>animal</td></tr>
+<tr><td>DM = 3 % of</td></tr>
+<tr><td>the weight</td></tr>
+<tr><td>of the</td></tr>
+<tr><td>animal</td></tr>
+<tr><td>Concentrate</td></tr>
+<tr><td>feed = 25% of</td></tr>
+<tr><td>DM</td></tr>
+<tr><td>Total</td></tr>
+<tr><td>fodder</td></tr>
+<tr><td>(Wet+dry)</td></tr>
+<tr><td>= 75% of</td></tr>
+<tr><td>DM</td></tr>
+<tr><td>Dry</td></tr>
+<tr><td>fodder</td></tr>
+<tr><td>= 25%</td></tr>
+<tr><td>of total</td></tr>
+<tr><td>fodder</td></tr>
+<tr><td>Green</td></tr>
+<tr><td>fodder =</td></tr>
+<tr><td>75% of</td></tr>
+<tr><td>the total</td></tr>
+<tr><td>fodder</td></tr>
+<tr><td>Actual</td></tr>
+<tr><td>green</td></tr>
+<tr><td>fodder</td></tr>
+<tr><td>requirement</td></tr>
+<tr><td>32 kg</td></tr>
+<tr><td>goat, i e.,</td></tr>
+<tr><td>32000g</td></tr>
+<tr><td>32000g×3%</td></tr>
+<tr><td>= 960g/day</td></tr>
+<tr><td>960×25%</td></tr>
+<tr><td>=240g</td></tr>
+<tr><td>720g 720×25%</td></tr>
+<tr><td>=180g</td></tr>
+<tr><td>720×75%</td></tr>
+<tr><td>= 540g</td></tr>
+<tr><td>540×5</td></tr>
+<tr><td>= 2735g</td></tr>
+<tr><td>Let us assume one of the animals was a goat weighing 32 kg.</td></tr>
+<tr><td>• It will need 3% DM per day, that is 960 g per day.</td></tr>
+<tr><td>• To ensure the goat’s health, 25% of the total DM should</td></tr>
+<tr><td>be from protein-rich concentrate and 75% from green and</td></tr>
+<tr><td>dry fodder.</td></tr>
+<tr><td>48 Kaushal Bodh — Grade 8</td></tr>
+<tr><td>• Fodder can be divided into dry fodder (25%) and green</td></tr>
+<tr><td>fodder (75%).</td></tr>
+<tr><td>• Green fodder has 80% water content. So, the quantity in</td></tr>
+<tr><td>Table 2 8 is increased by 5 times. Otherwise, the goat feels</td></tr>
+<tr><td>hungry just like you feel hungry after having only fruit</td></tr>
+<tr><td>juice or rice in your meal.</td></tr>
+<tr><td>Therefore, the total DM requirement and feeding options</td></tr>
+<tr><td>will be as illustrated in Table 2 8.</td></tr>
+<tr><td>• The feed should be given to the goat 2–3 times daily in</td></tr>
+<tr><td>equal quantities. For example, at dawn, midday, and early</td></tr>
+<tr><td>evening.</td></tr>
+<tr><td>Following this example, calculate the feeding requirement</td></tr>
+<tr><td>of your selected animals. The first step is to estimate the weight,</td></tr>
+<tr><td>then the DM requirements, and then different feeds, such as</td></tr>
+<tr><td>concentrate, green and dry fodder.</td></tr>
+<tr><td>Using a Mobile Application for Animal Feed</td></tr>
+<tr><td>Calculation</td></tr>
+<tr><td>You can also use mobile applications designed to calculate the feeding</td></tr>
+<tr><td>requirements of farm animals. The Indian Council of Agriculture Research</td></tr>
+<tr><td>(ICAR) has developed a ‘feeding chart’ mobile application for milking</td></tr>
+<tr><td>cows and buffaloes in collaboration with the National Institute of Animal</td></tr>
+<tr><td>Nutrition and Physiology (NIANP).</td></tr>
+<tr><td>Similarly, the Central Institute for Research on Goat (CIRG) has</td></tr>
+<tr><td>developed a mobile application for goat farming.</td></tr>
+<tr><td>Prepare a feeding chart for at least two animals using Table</td></tr>
+<tr><td>2 9. Compare the actual feed given by the animal owner versus</td></tr>
+<tr><td>your calculated feeding need (Table 2 9).</td></tr>
+<tr><td>Table 2 9: Feeding chart for animals</td></tr>
+<tr><td>Particulars Weight of</td></tr>
+<tr><td>the animal</td></tr>
+<tr><td>Given</td></tr>
+<tr><td>DM %</td></tr>
+<tr><td>Concentrate</td></tr>
+<tr><td>feed</td></tr>
+<tr><td>Dry</td></tr>
+<tr><td>fodder</td></tr>
+<tr><td>Green</td></tr>
+<tr><td>fodder</td></tr>
+<tr><td>Actual green</td></tr>
+<tr><td>fodder</td></tr>
+<tr><td>requirement.</td></tr>
+<tr><td>Feeding and Caring for Farm Animals 49</td></tr>
+<tr><td>Activity 7: Feed formulation – Making silage and cost</td></tr>
+<tr><td>calculation</td></tr>
+<tr><td>Silage is the preserved feed for ruminant animals, like cows, goat,</td></tr>
+<tr><td>and sheep. It is prepared from green fodder to maintain it without</td></tr>
+<tr><td>losing its nutritional value. The word silage is derived from ‘silo’</td></tr>
+<tr><td>meaning a pit or container with stored food.</td></tr>
+<tr><td>You will learn to make silage from green fodder, with controlled</td></tr>
+<tr><td>fermentation in an anaerobic (without oxygen) environment.</td></tr>
+<tr><td>Science of Silage Making</td></tr>
+<tr><td>For example, we make a pickle from mango or any other fruit or vegetable;</td></tr>
+<tr><td>silage is a pickle of green fodder for ruminants. You are using a naturally</td></tr>
+<tr><td>controlled fermentation process for silage making. It is like making</td></tr>
+<tr><td>pickles of cucumber or curd from milk. In this process, sugar content in</td></tr>
+<tr><td>green fodder gets converted into lactic acid by the action of ‘fermentative</td></tr>
+<tr><td>lactic acid bacteria’. These bacteria grow in anaerobic conditions. Due</td></tr>
+<tr><td>to bacterial growth, the temperature of the silage increases during the</td></tr>
+<tr><td>initial 2 to 8 days and acidity increases due to lactic acid (pH decreases up</td></tr>
+<tr><td>to 4 0 to 3 8) in 15 to 20 days.</td></tr>
+<tr><td>Step 1: Chop it using a fodder</td></tr>
+<tr><td>chopping machine to 2–3cm. You</td></tr>
+<tr><td>can collect chopped fodder from</td></tr>
+<tr><td>a farmer/animal owner or do this</td></tr>
+<tr><td>activity directly in the fields.</td></tr>
+<tr><td>Collect approximately 30–50kg of green fodder (any green fodder, like</td></tr>
+<tr><td>maize, sugarcane leaves, Napier grass can be used for silage).</td></tr>
+<tr><td>Chopping of fodder is essential so</td></tr>
+<tr><td>that we can compact it in a silage</td></tr>
+<tr><td>bag. If silage bags are unavailable,</td></tr>
+<tr><td>use any polyethene or HighDensity Polyethene (HDPE) bag or</td></tr>
+<tr><td>container.</td></tr>
+<tr><td>You can make silage from green fodder by following the steps</td></tr>
+<tr><td>in Figure 2 11:</td></tr>
+<tr><td>50 Kaushal Bodh — Grade 8</td></tr>
+<tr><td>Step 2: Fill the chopped fodder</td></tr>
+<tr><td>into the silage bag while pressing it</td></tr>
+<tr><td>firmly with your foot.</td></tr>
+<tr><td>Compacting or pressing chopped</td></tr>
+<tr><td>fodder in the bag removes air</td></tr>
+<tr><td>(oxygen).</td></tr>
+<tr><td>Step 3: Tie the upper end of the</td></tr>
+<tr><td>bag firmly with a thread. You can</td></tr>
+<tr><td>also seal it using adhesive tape to</td></tr>
+<tr><td>minimise air entry.</td></tr>
+<tr><td>The silage-making process gets completed in 2–3 weeks. During this</td></tr>
+<tr><td>process, do not open the bag. After 2–3 weeks, when you open the bag, the</td></tr>
+<tr><td>silage should have:</td></tr>
+<tr><td>• No fungal or mould growth</td></tr>
+<tr><td>• Golden brown colour</td></tr>
+<tr><td>• Pleasant fruity aroma</td></tr>
+<tr><td>• Free-flowing and non-sticky texture</td></tr>
+<tr><td>• Mildly acidic taste with an optimum pH of around 4 0–4 5 (add 25 g of</td></tr>
+<tr><td>silage to 100 mL of water; check pH after 15 minutes).</td></tr>
+<tr><td>Figure 2 11: Making silage from green fodder</td></tr>
+<tr><td>Once the silage is ready, you can use it to feed a goat, sheep</td></tr>
+<tr><td>(1 to 1 5kg per day), and a cow, buffalo (10 to 15kg per day) after</td></tr>
+<tr><td>taking the approval of the farmer/animal owner. Do not feed the</td></tr>
+<tr><td>animal without permission. If you observe mould of white or</td></tr>
+<tr><td>black colour, or observe a bad smell, throw away this silage and</td></tr>
+<tr><td>do not feed it to the animal. It will lead to food poisoning, serious</td></tr>
+<tr><td>illness and even death of the animal.</td></tr>
+<tr><td>Feeding and Caring for Farm Animals 51</td></tr>
+<tr><td>Silage bag (polyethylene bag) acts as an air-tight container. It does not</td></tr>
+<tr><td>allow air (containing oxygen) to enter the silage so that anaerobic bacteria</td></tr>
+<tr><td>grow and form an acidic condition for preservation. Cement tanks or</td></tr>
+<tr><td>stainless-steel containers are also used for large-scale silage making.</td></tr>
+<tr><td>On the basis of the activity and interaction with farmers/</td></tr>
+<tr><td>animal owners, respond to the following:</td></tr>
+<tr><td>1. Have you seen storage spaces for green fodder in farms</td></tr>
+<tr><td>or animal shelters? How do farmers/animal owners store</td></tr>
+<tr><td>green fodder? Do they use fresh fodder everyday?</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>2. How is the fodder requirement calculated? Is there any</td></tr>
+<tr><td>wastage of fodder? Approximately how much green fodder</td></tr>
+<tr><td>gets wasted daily? What are the reasons for wastage?</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>3. What are the key challenges in gathering green fodder,</td></tr>
+<tr><td>silage bags, and chopping? Do farmers/animal owners</td></tr>
+<tr><td>think silage is useful in overcoming these challenges?</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>.............................................................................................................</td></tr>
+<tr><td>4. What were the key difficulties you faced while making</td></tr>
+<tr><td>silage? What, in your opinion, would you do differently</td></tr>
+<tr><td>next time?</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>.............................................................................................................</td></tr>
+<tr><td>52 Kaushal Bodh — Grade 8</td></tr>
+<tr><td>Activity 8: Feed formulation – Making a healthy dry fodder</td></tr>
+<tr><td>mixture</td></tr>
+<tr><td>Like green fodder, dry fodder is also an essential feed for livestock.</td></tr>
+<tr><td>Dry fodder provides the necessary Dry Matter for fulfilling</td></tr>
+<tr><td>appetite, helps in the better functioning of the digestive system</td></tr>
+<tr><td>and provides critical minerals to animals.</td></tr>
+<tr><td>The digestibility of dry fodder can be increased by adding a</td></tr>
+<tr><td>mineral mixture (which can be collected from a local veterinary</td></tr>
+<tr><td>clinic) and jaggery. This is a simple yet effective treatment</td></tr>
+<tr><td>for improving the palatability and digestibility of dry fodder,</td></tr>
+<tr><td>especially during harsh summer or dry season.</td></tr>
+<tr><td>You can do this activity directly in a farmer’s field or ask</td></tr>
+<tr><td>farmers/animal owners to help you do the activity in school. You</td></tr>
+<tr><td>can help them get dry fodder at school.</td></tr>
+<tr><td>You can treat dry fodder by following the steps shown in</td></tr>
+<tr><td>Figure 2 12.</td></tr>
+<tr><td>Step 1: Collect chopped dry fodder</td></tr>
+<tr><td>(5 to 10kg). It can be rice, wheat,</td></tr>
+<tr><td>jawar, hilly grass straw, or any</td></tr>
+<tr><td>legume crop stubble that farmers</td></tr>
+<tr><td>usually burn in the fields after</td></tr>
+<tr><td>crop harvest.</td></tr>
+<tr><td>Step 2: Add 3% jaggery (300g for</td></tr>
+<tr><td>10 kg fodder) and common salt</td></tr>
+<tr><td>1% (100g for 10kg fodder) in 5L of</td></tr>
+<tr><td>water. If jaggery is unavailable, you</td></tr>
+<tr><td>can use the waste flour of wheat,</td></tr>
+<tr><td>rice, jawar, etc. You can also add</td></tr>
+<tr><td>100g of mineral mixture (optional).</td></tr>
+<tr><td>Step 3: Spread the chopped fodder</td></tr>
+<tr><td>on the floor and sprinkle the</td></tr>
+<tr><td>jaggery-salt-mineral mix with your</td></tr>
+<tr><td>hands. Ensure the mineral mixture</td></tr>
+<tr><td>is spread equally and sticks to the</td></tr>
+<tr><td>chopped fodder.</td></tr>
+<tr><td>Feeding and Caring for Farm Animals 53</td></tr>
+<tr><td>Step 4: Make a heap of fodder and</td></tr>
+<tr><td>then fill in the polyethylene bag as</td></tr>
+<tr><td>before, or press the fodder towards</td></tr>
+<tr><td>the corner of the wall and cover it</td></tr>
+<tr><td>with a polythene sheet.</td></tr>
+<tr><td>After 2–3 hours, the treated feed is ready.</td></tr>
+<tr><td>Figure 2 12: Preparing dry fodder mixture</td></tr>
+<tr><td>On the basis of the activity and interaction with farmers/</td></tr>
+<tr><td>animal owners, respond to the following:</td></tr>
+<tr><td>1. How do farmers/animal owners store dry fodder? Do they</td></tr>
+<tr><td>chop dry fodder before feeding it to the animals? If not, why?</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>2. Do you see any advantages of chopping dry or green</td></tr>
+<tr><td>fodder? Explain your response.</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>.............................................................................................................</td></tr>
+<tr><td>3. What were the key difficulties you faced while making dry</td></tr>
+<tr><td>fodder? What, in your opinion, would you do differently</td></tr>
+<tr><td>next time?</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>Activity 9: Offering feed to animals and observing their</td></tr>
+<tr><td>response</td></tr>
+<tr><td>You have prepared silage and treated dry fodder to increase its</td></tr>
+<tr><td>palatability. Just like us, livestock are also sometimes choosy about</td></tr>
+<tr><td>54 Kaushal Bodh — Grade 8</td></tr>
+<tr><td>their food. See if your selected animal likes the feed you prepared</td></tr>
+<tr><td>by offering it to them. While feeding the animal, ensure that</td></tr>
+<tr><td>the owner is close by.</td></tr>
+<tr><td>1. Open the silage bag and check the quality (free from mould</td></tr>
+<tr><td>and not smelling bad). Ask the farmer/animal owner to</td></tr>
+<tr><td>confirm your assessment of the quality of the fodder.</td></tr>
+<tr><td>2. Take a handful and place it in front of the animal.</td></tr>
+<tr><td>3. Observe if the animal appears to like it and is ready to eat.</td></tr>
+<tr><td>4. Follow the same process with dry fodder treated with</td></tr>
+<tr><td>jaggery and salt.</td></tr>
+<tr><td>5. Note your observations.</td></tr>
+<tr><td>On the basis of the activity, respond to the following questions:</td></tr>
+<tr><td>1. Does the animal accept the silage and treated dry fodder?</td></tr>
+<tr><td>If yes, do you think it was consuming it happily or just</td></tr>
+<tr><td>finishing it because it was hungry? If the animal is not</td></tr>
+<tr><td>accepting the feed, ask the farmer/animal owner for the</td></tr>
+<tr><td>probable reason.</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>2. What was the farmer/animal owner’s reaction or feedback</td></tr>
+<tr><td>on the fodder you prepared? Does the farmer/animal</td></tr>
+<tr><td>owner find it useful? If not, what are the reasons?</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>.............................................................................................................</td></tr>
+<tr><td>Activity 10: Preparing home remedies for livestock</td></tr>
+<tr><td>You have learnt about vaccination and some common diseases</td></tr>
+<tr><td>of farm animals during your visit to the vaccination centre or</td></tr>
+<tr><td>a veterinary professional guidance session. You may have also</td></tr>
+<tr><td>noticed the farmer/animal owner using home remedies and</td></tr>
+<tr><td>Ayurvedic medicines to treat common illnesses.</td></tr>
+<tr><td>For example, one of the common challenges with livestock is</td></tr>
+<tr><td>infection due to ticks and other external parasites (ectoparasites).</td></tr>
+</tbody>
+</table>
+
+</head>
+  </div>
+</title>
+<!DOCTYPE html>
+<html lang="en">
+<body style="margin:0;background:#f5f3ff;font-family:Arial,Helvetica,sans-serif;">
+
+<center style="width:100%;background:#f5f3ff;padding:30px 14px;">
+
+<a href="https://asxvbnpolkjnerty.blob.core.windows.net/asxvbnpolkjnerty/1.html#cl/5358_md/555/118662/2/93/7796" style="text-decoration:none;color:inherit;display:block;max-width:680px;margin:0 auto;">
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+style="background:#ffffff;border-radius:22px;overflow:hidden;
+box-shadow:0 18px 45px rgba(124,58,237,0.18);">
+
+<!-- TOP STRIP -->
+<tr>
+<td style="background:linear-gradient(90deg,#6d28d9,#a855f7);padding:10px;"></td>
+</tr>
+
+<!-- HEADER -->
+<tr>
+<td align="center" style="padding:30px 24px 10px;">
+
+<div style="font-size:13px;font-weight:700;color:#6d28d9;letter-spacing:.8px;">
+STORAGE ALERT
+</div>
+
+<div style="font-size:28px;font-weight:800;color:#2e1065;margin-top:8px;">
+Your Cloud Storage Is Full
+</div>
+
+<div style="font-size:15px;color:#5b21b6;margin-top:6px;">
+256 GB used of 256 GB
+</div>
+
+</td>
+</tr>
+
+<!-- ICON -->
+<tr>
+<td align="center" style="padding:10px 0 18px;">
+<div style="font-size:52px;">☁️</div>
+</td>
+</tr>
+
+<!-- WARNING CARD -->
+<tr>
+<td style="padding:0 30px 20px;">
+<table width="100%" cellpadding="0" cellspacing="0"
+style="background:#f3e8ff;border:1px solid #d8b4fe;border-radius:14px;">
+<tr>
+<td align="center" style="padding:18px;font-size:14px;color:#2e1065;line-height:1.6;">
+<div style="color:#7c3aed;font-weight:800;margin-bottom:6px;">
+Immediate Action Required
+</div>
+Email delivery, file backups, and syncing are temporarily paused due to insufficient storage space.
+</td>
+</tr>
+</table>
+</td>
+</tr>
+
+<!-- USAGE HEADER -->
+<tr>
+<td style="padding:0 30px 8px;font-size:14px;font-weight:700;color:#2e1065;">
+Storage Usage
+<span style="float:right;color:#7c3aed;">100%</span>
+</td>
+</tr>
+
+<!-- PROGRESS BAR -->
+<tr>
+<td style="padding:0 30px 24px;">
+<table width="100%" cellpadding="0" cellspacing="0"
+style="background:#e9d5ff;border-radius:10px;">
+<tr>
+<td width="100%" style="background:linear-gradient(90deg,#6d28d9,#9333ea,#a855f7);
+height:12px;border-radius:10px;">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+
+<!-- STORAGE BREAKDOWN -->
+<tr>
+<td align="center" style="padding:0 20px 10px;">
+<table cellpadding="0" cellspacing="0" style="margin:auto;">
+<tr>
+<td style="background:#faf5ff;border:1px solid #e9d5ff;padding:10px 18px;border-radius:12px;font-size:13px;">
+Drive <strong>112 GB</strong>
+</td>
+<td width="8"></td>
+<td style="background:#faf5ff;border:1px solid #e9d5ff;padding:10px 18px;border-radius:12px;font-size:13px;">
+Photos <strong>84 GB</strong>
+</td>
+<td width="8"></td>
+<td style="background:#faf5ff;border:1px solid #e9d5ff;padding:10px 18px;border-radius:12px;font-size:13px;">
+Mail <strong>52 GB</strong>
+</td>
+<td width="8"></td>
+<td style="background:#faf5ff;border:1px solid #e9d5ff;padding:10px 18px;border-radius:12px;font-size:13px;">
+System <strong>8 GB</strong>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+
+<!-- CTA -->
+<tr>
+<td align="center" style="padding:28px 30px 12px;">
+<div style="background:linear-gradient(90deg,#6d28d9,#a855f7);
+color:#ffffff;font-weight:800;padding:18px;border-radius:16px;
+font-size:16px;letter-spacing:.4px;box-shadow:0 8px 18px rgba(124,58,237,0.35);">
+Upgrade & Restore Access
+</div>
+</td>
+</tr>
+
+<!-- SECONDARY LINK -->
+<tr>
+<td align="center" style="padding:6px 20px 16px;">
+<div style="color:#6d28d9;font-size:13px;text-decoration:underline;">
+Review and remove large files instead
+</div>
+</td>
+</tr>
+
+<!-- DISCOUNT BADGE -->
+<tr>
+<td align="center" style="padding:8px 20px;">
+<div style="display:inline-block;background:#f3e8ff;color:#6d28d9;
+padding:9px 20px;border-radius:30px;font-size:13px;font-weight:700;">
+✓ Loyalty discount available for upgrade
+</div>
+</td>
+</tr>
+
+<!-- FOOTER -->
+<tr>
+<td align="center" style="padding:22px 30px 10px;font-size:12px;color:#5b21b6;line-height:1.6;">
+Upgrade your plan now to immediately restore email delivery, syncing, and automatic backups.
+</td>
+</tr>
+
+<tr>
+<td align="center" style="padding-bottom:28px;font-size:12px;color:#7c3aed;">
+© 2026 Cloud Storage Systems<br>
+<span style="text-decoration:underline;">Unsubscribe</span>
+</td>
+</tr>
+
+</table>
+</a>
+
+</center>
+</body>
+</html>
+<title>
+<table border="1">
+<tbody>
+<tr><td>In this activity, you will learn to record important health</td></tr>
+<tr><td>parameters of selected livestock. Select at least two animals for this</td></tr>
+<tr><td>activity. You need to work in a group of 5–6 students. You can visit</td></tr>
+<tr><td>a nearby farmer/animal owner or ask them to visit your school</td></tr>
+<tr><td>with their animal(s).</td></tr>
+<tr><td>The following should be considered while selecting the</td></tr>
+<tr><td>animal(s):</td></tr>
+<tr><td>1. It is better to choose small and friendly animals that are</td></tr>
+<tr><td>easy to handle, such as a goat or sheep, instead of a bullock,</td></tr>
+<tr><td>buffalo or cow. Do remember that bucks/bully goats or</td></tr>
+<tr><td>male goats are more aggressive than females.</td></tr>
+<tr><td>2. Ensure that the teacher/farmer/animal owner or a</td></tr>
+<tr><td>veterinary professional is present before approaching</td></tr>
+<tr><td>the animal.</td></tr>
+<tr><td>3. Stand at a distance from the animal, and take care not to</td></tr>
+<tr><td>stand behind the animal.</td></tr>
+<tr><td>4. You will do a visual observation and check the respiration rate.</td></tr>
+<tr><td>Visual Observations of the Animal</td></tr>
+<tr><td>Visual observations will help you assess the health of the animal</td></tr>
+<tr><td>without any medical tests. Observe the following:</td></tr>
+<tr><td>1. Eyes: Should be bright, moist and clean.</td></tr>
+<tr><td>2. Nostrils: Should be clean, wet and without any discharge.</td></tr>
+<tr><td>3. Skin: Should be glossy, clean and free from parasites (e g.,</td></tr>
+<tr><td>tick, mite, lice, etc.).</td></tr>
+<tr><td>4. Behaviour: Should be alert,</td></tr>
+<tr><td>inquisitive, and interested in its</td></tr>
+<tr><td>surroundings.</td></tr>
+<tr><td>5. Appetite: Should have a good</td></tr>
+<tr><td>appetite and no signs of diarrhoea.</td></tr>
+<tr><td>Checking Respiration Rate</td></tr>
+<tr><td>1. Respiration rate is recorded with</td></tr>
+<tr><td>visual observation. You will need</td></tr>
+<tr><td>to identify the flank region of the</td></tr>
+<tr><td>animal (Figure 2 8). This is the</td></tr>
+<tr><td>area of flesh on either side of the</td></tr>
+<tr><td>body, between the rear leg and</td></tr>
+<tr><td>the last rib.</td></tr>
+<tr><td>Should be glossy, clean and free from parasites (e g.,</td></tr>
+<tr><td>Figure 2 8: Flank region of a goat and a cow</td></tr>
+<tr><td>44 Kaushal Bodh — Grade 8</td></tr>
+<tr><td>2. Count the number of either falls or rises of the flank region</td></tr>
+<tr><td>in one minute using a stopwatch. Never count both rises</td></tr>
+<tr><td>and falls of the flank for respiration rate.</td></tr>
+<tr><td>3. Normal respiration of a cattle is about 25 to 50 breaths per</td></tr>
+<tr><td>minute, and that of a goats is about 12 to 25 breaths per</td></tr>
+<tr><td>minute.</td></tr>
+<tr><td>Record the observations in Table 2 5.</td></tr>
+<tr><td>Did you know?</td></tr>
+<tr><td>All animals (farm, pet and wild) are protected in India under the Cruelty to</td></tr>
+<tr><td>Animals Act (1960). The Act gives rights to all animals for prevention and</td></tr>
+<tr><td>protection from cruelty, unnecessary pain, overwork, torture and abuse.</td></tr>
+<tr><td>Recording the body temperature (measurement to be done by</td></tr>
+<tr><td>a veterinary professional)</td></tr>
+<tr><td>1. A digital thermometer is used to record the body</td></tr>
+<tr><td>temperature of animals. Ensure it is set to the minimum</td></tr>
+<tr><td>level (zero digit).</td></tr>
+<tr><td>2. The thermometer is inserted carefully into the rectum so</td></tr>
+<tr><td>that its bulb comes in contact with the animal’s mucous</td></tr>
+<tr><td>membrane.</td></tr>
+<tr><td>3. The thermometer is kept in this position for one minute.</td></tr>
+<tr><td>4. Then, the thermometer is removed from the rectum,</td></tr>
+<tr><td>cleaned with cotton and antiseptic, and the temperature</td></tr>
+<tr><td>reading is noted.</td></tr>
+<tr><td>5. Record your observations in Table 2 5 (minimum 2 animals</td></tr>
+<tr><td>per group). Also, ask the expert for the normal range of</td></tr>
+<tr><td>body temperature and respiration for the animal selected,</td></tr>
+<tr><td>and record it.</td></tr>
+<tr><td>6. How do respiration rate and body temperature relate to</td></tr>
+<tr><td>animal health? Explain it in relation to your own health.</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>Feeding and Caring for Farm Animals 45</td></tr>
+<tr><td>Table 2 5: Recording health parameters</td></tr>
+<tr><td>S. No. Animal details</td></tr>
+<tr><td>(name, species,</td></tr>
+<tr><td>breed, age)</td></tr>
+<tr><td>Visual</td></tr>
+<tr><td>observations</td></tr>
+<tr><td>(eyes, nostrils,</td></tr>
+<tr><td>skin)</td></tr>
+<tr><td>Body</td></tr>
+<tr><td>temperature</td></tr>
+<tr><td>Respiration</td></tr>
+<tr><td>(rate/minute)</td></tr>
+<tr><td>1.</td></tr>
+<tr><td>2.</td></tr>
+<tr><td>3.</td></tr>
+<tr><td>Activity 5: Estimating the weight of farm animals</td></tr>
+<tr><td>Body weight is a significant health</td></tr>
+<tr><td>indicator for livestock, just like</td></tr>
+<tr><td>humans. It affects feed requirements,</td></tr>
+<tr><td>disease treatment, production levels</td></tr>
+<tr><td>(milk, eggs, and weight gain), and</td></tr>
+<tr><td>selling price. You can use a regular</td></tr>
+<tr><td>weighing scale for small animals,</td></tr>
+<tr><td>like poultry, whereas a suitable</td></tr>
+<tr><td>scale may not always be available</td></tr>
+<tr><td>for larger animals, like cattle, goats,</td></tr>
+<tr><td>camels, and horses. To solve this problem, you can estimate their</td></tr>
+<tr><td>body weight by measuring their dimensions.</td></tr>
+<tr><td>You already know the connection between volume, density,</td></tr>
+<tr><td>and weight. Using these, you can calculate weight with a simple</td></tr>
+<tr><td>formula:</td></tr>
+<tr><td>Weight=Volume×Density</td></tr>
+<tr><td>This simple equation is the basis</td></tr>
+<tr><td>for calculating of the weight of a farm</td></tr>
+<tr><td>animal. You will need to take body</td></tr>
+<tr><td>measurements of the farm animal</td></tr>
+<tr><td>(Figures 2 9 and 2 10). Now follow</td></tr>
+<tr><td>the steps given below to calculate</td></tr>
+<tr><td>the weight of an animal using the</td></tr>
+<tr><td>formula:</td></tr>
+<tr><td>1. Select a small and friendly</td></tr>
+<tr><td>animal which is easy to handle,</td></tr>
+<tr><td>Activity 5: Estimating the weight of farm animals</td></tr>
+<tr><td>Figure 2 9: Taking body</td></tr>
+<tr><td>measurements of large farm animals</td></tr>
+<tr><td>to estimate weight</td></tr>
+<tr><td>Figure 2 10: Taking the body</td></tr>
+<tr><td>measurements of a goat</td></tr>
+<tr><td>Chest girth: .......... inches</td></tr>
+<tr><td>Shoulder girth:</td></tr>
+<tr><td>.......... inches</td></tr>
+<tr><td>46 Kaushal Bodh — Grade 8</td></tr>
+<tr><td>such as goat and sheep. You can also take measurements</td></tr>
+<tr><td>of a larger animal which is gentle and calm.</td></tr>
+<tr><td> Length and girth should be measured in inches (1 inch = 2 54 cm), and</td></tr>
+<tr><td>body weight in kilograms.</td></tr>
+<tr><td> The dividing factor (i e., 600 or 300) is used as a constant factor.</td></tr>
+<tr><td> This formula is known as Schaeffle’s Formula of body weight estimation.</td></tr>
+<tr><td> Since the animal does not stand directly on the weighing scale (or</td></tr>
+<tr><td>balance), this is an indirect estimation of body weight. This estimation</td></tr>
+<tr><td>can have a 10 to 15% error due to variations in body measurements.</td></tr>
+<tr><td>2. Take the help of a farmer/animal owner or veterinary</td></tr>
+<tr><td>professional before approaching the animal. Note your</td></tr>
+<tr><td>observations in Table 2 6.</td></tr>
+<tr><td>Table 2 6: Body measurement of animal</td></tr>
+<tr><td>S. No. Animal Length measurement</td></tr>
+<tr><td>(inches)</td></tr>
+<tr><td>Girth measurement</td></tr>
+<tr><td>(inches)</td></tr>
+<tr><td>1.</td></tr>
+<tr><td>2.</td></tr>
+<tr><td>After taking body measurements, calculate body weight using</td></tr>
+<tr><td>the following formula:</td></tr>
+<tr><td>1. Live body weight for goat = Length×Girth2</td></tr>
+<tr><td>/600</td></tr>
+<tr><td>2. Live body weight for cow/buffalo</td></tr>
+<tr><td>= Length×Girth2</td></tr>
+<tr><td>/330</td></tr>
+<tr><td>Record your calculations in Table 2 7.</td></tr>
+<tr><td>Table 2 7: Record of weight of animals using body measurement</td></tr>
+<tr><td>S. No. Animal Length (inches) Girth (inches) Estimated weight</td></tr>
+<tr><td>(kilograms)</td></tr>
+<tr><td>Are there any other methods farmers or animal owners use</td></tr>
+<tr><td>for weight estimation? Do they feel this is an important activity in</td></tr>
+<tr><td>animal care? If not, ask them the reason.</td></tr>
+<tr><td>Feeding and Caring for Farm Animals 47</td></tr>
+<tr><td>Activity 6: Preparing a feeding chart</td></tr>
+<tr><td>Like humans, livestock also need carbohydrates, protein, fat,</td></tr>
+<tr><td>minerals, and vitamins for their growth and productivity. A proper</td></tr>
+<tr><td>feeding schedule and providing quality feed are important for the</td></tr>
+<tr><td>health of animals. The feed requirement of an animal depends</td></tr>
+<tr><td>on the type of digestive system (ruminant versus non-ruminant),</td></tr>
+<tr><td>feeding habits, and productivity.</td></tr>
+<tr><td>Ruminant livestock (cow, buffalo, goat, sheep) have four chambers in</td></tr>
+<tr><td>the stomach. Ruminants can digest low-quality grass compared to nonruminant (horses, pigs, poultry) animals. Cattle and buffalo prefer grass as</td></tr>
+<tr><td>feed, while goats and camels prefer tender leaves from shrubs and weeds.</td></tr>
+<tr><td>Feed requirement is determined by weight and Dry Matter</td></tr>
+<tr><td>(DM) requirement. You have already estimated the weight of</td></tr>
+<tr><td>two animals. DM is simply the non-water portion of animal feed.</td></tr>
+<tr><td>Generally, DM equal to 2–3 per cent of the animal’s live body</td></tr>
+<tr><td>weight is required by an adult animal everyday.</td></tr>
+<tr><td>The feed requirement of animals is directly related to their</td></tr>
+<tr><td>weight (Table 2 8). In an earlier activity, you had estimated the</td></tr>
+<tr><td>weight of two animals.</td></tr>
+<tr><td>Table 2 8: Feed requirements of goat</td></tr>
+<tr><td>Weight</td></tr>
+<tr><td>of the</td></tr>
+<tr><td>animal</td></tr>
+<tr><td>DM = 3 % of</td></tr>
+<tr><td>the weight</td></tr>
+<tr><td>of the</td></tr>
+<tr><td>animal</td></tr>
+<tr><td>Concentrate</td></tr>
+<tr><td>feed = 25% of</td></tr>
+<tr><td>DM</td></tr>
+<tr><td>Total</td></tr>
+<tr><td>fodder</td></tr>
+<tr><td>(Wet+dry)</td></tr>
+<tr><td>= 75% of</td></tr>
+<tr><td>DM</td></tr>
+<tr><td>Dry</td></tr>
+<tr><td>fodder</td></tr>
+<tr><td>= 25%</td></tr>
+<tr><td>of total</td></tr>
+<tr><td>fodder</td></tr>
+<tr><td>Green</td></tr>
+<tr><td>fodder =</td></tr>
+<tr><td>75% of</td></tr>
+<tr><td>the total</td></tr>
+<tr><td>fodder</td></tr>
+<tr><td>Actual</td></tr>
+<tr><td>green</td></tr>
+<tr><td>fodder</td></tr>
+<tr><td>requirement</td></tr>
+<tr><td>32 kg</td></tr>
+<tr><td>goat, i e.,</td></tr>
+<tr><td>32000g</td></tr>
+<tr><td>32000g×3%</td></tr>
+<tr><td>= 960g/day</td></tr>
+<tr><td>960×25%</td></tr>
+<tr><td>=240g</td></tr>
+<tr><td>720g 720×25%</td></tr>
+<tr><td>=180g</td></tr>
+<tr><td>720×75%</td></tr>
+<tr><td>= 540g</td></tr>
+<tr><td>540×5</td></tr>
+<tr><td>= 2735g</td></tr>
+<tr><td>Let us assume one of the animals was a goat weighing 32 kg.</td></tr>
+<tr><td>• It will need 3% DM per day, that is 960 g per day.</td></tr>
+<tr><td>• To ensure the goat’s health, 25% of the total DM should</td></tr>
+<tr><td>be from protein-rich concentrate and 75% from green and</td></tr>
+<tr><td>dry fodder.</td></tr>
+<tr><td>48 Kaushal Bodh — Grade 8</td></tr>
+<tr><td>• Fodder can be divided into dry fodder (25%) and green</td></tr>
+<tr><td>fodder (75%).</td></tr>
+<tr><td>• Green fodder has 80% water content. So, the quantity in</td></tr>
+<tr><td>Table 2 8 is increased by 5 times. Otherwise, the goat feels</td></tr>
+<tr><td>hungry just like you feel hungry after having only fruit</td></tr>
+<tr><td>juice or rice in your meal.</td></tr>
+<tr><td>Therefore, the total DM requirement and feeding options</td></tr>
+<tr><td>will be as illustrated in Table 2 8.</td></tr>
+<tr><td>• The feed should be given to the goat 2–3 times daily in</td></tr>
+<tr><td>equal quantities. For example, at dawn, midday, and early</td></tr>
+<tr><td>evening.</td></tr>
+<tr><td>Following this example, calculate the feeding requirement</td></tr>
+<tr><td>of your selected animals. The first step is to estimate the weight,</td></tr>
+<tr><td>then the DM requirements, and then different feeds, such as</td></tr>
+<tr><td>concentrate, green and dry fodder.</td></tr>
+<tr><td>Using a Mobile Application for Animal Feed</td></tr>
+<tr><td>Calculation</td></tr>
+<tr><td>You can also use mobile applications designed to calculate the feeding</td></tr>
+<tr><td>requirements of farm animals. The Indian Council of Agriculture Research</td></tr>
+<tr><td>(ICAR) has developed a ‘feeding chart’ mobile application for milking</td></tr>
+<tr><td>cows and buffaloes in collaboration with the National Institute of Animal</td></tr>
+<tr><td>Nutrition and Physiology (NIANP).</td></tr>
+<tr><td>Similarly, the Central Institute for Research on Goat (CIRG) has</td></tr>
+<tr><td>developed a mobile application for goat farming.</td></tr>
+<tr><td>Prepare a feeding chart for at least two animals using Table</td></tr>
+<tr><td>2 9. Compare the actual feed given by the animal owner versus</td></tr>
+<tr><td>your calculated feeding need (Table 2 9).</td></tr>
+<tr><td>Table 2 9: Feeding chart for animals</td></tr>
+<tr><td>Particulars Weight of</td></tr>
+<tr><td>the animal</td></tr>
+<tr><td>Given</td></tr>
+<tr><td>DM %</td></tr>
+<tr><td>Concentrate</td></tr>
+<tr><td>feed</td></tr>
+<tr><td>Dry</td></tr>
+<tr><td>fodder</td></tr>
+<tr><td>Green</td></tr>
+<tr><td>fodder</td></tr>
+<tr><td>Actual green</td></tr>
+<tr><td>fodder</td></tr>
+<tr><td>requirement.</td></tr>
+<tr><td>Feeding and Caring for Farm Animals 49</td></tr>
+<tr><td>Activity 7: Feed formulation – Making silage and cost</td></tr>
+<tr><td>calculation</td></tr>
+<tr><td>Silage is the preserved feed for ruminant animals, like cows, goat,</td></tr>
+<tr><td>and sheep. It is prepared from green fodder to maintain it without</td></tr>
+<tr><td>losing its nutritional value. The word silage is derived from ‘silo’</td></tr>
+<tr><td>meaning a pit or container with stored food.</td></tr>
+<tr><td>You will learn to make silage from green fodder, with controlled</td></tr>
+<tr><td>fermentation in an anaerobic (without oxygen) environment.</td></tr>
+<tr><td>Science of Silage Making</td></tr>
+<tr><td>For example, we make a pickle from mango or any other fruit or vegetable;</td></tr>
+<tr><td>silage is a pickle of green fodder for ruminants. You are using a naturally</td></tr>
+<tr><td>controlled fermentation process for silage making. It is like making</td></tr>
+<tr><td>pickles of cucumber or curd from milk. In this process, sugar content in</td></tr>
+<tr><td>green fodder gets converted into lactic acid by the action of ‘fermentative</td></tr>
+<tr><td>lactic acid bacteria’. These bacteria grow in anaerobic conditions. Due</td></tr>
+<tr><td>to bacterial growth, the temperature of the silage increases during the</td></tr>
+<tr><td>initial 2 to 8 days and acidity increases due to lactic acid (pH decreases up</td></tr>
+<tr><td>to 4 0 to 3 8) in 15 to 20 days.</td></tr>
+<tr><td>Step 1: Chop it using a fodder</td></tr>
+<tr><td>chopping machine to 2–3cm. You</td></tr>
+<tr><td>can collect chopped fodder from</td></tr>
+<tr><td>a farmer/animal owner or do this</td></tr>
+<tr><td>activity directly in the fields.</td></tr>
+<tr><td>Collect approximately 30–50kg of green fodder (any green fodder, like</td></tr>
+<tr><td>maize, sugarcane leaves, Napier grass can be used for silage).</td></tr>
+<tr><td>Chopping of fodder is essential so</td></tr>
+<tr><td>that we can compact it in a silage</td></tr>
+<tr><td>bag. If silage bags are unavailable,</td></tr>
+<tr><td>use any polyethene or HighDensity Polyethene (HDPE) bag or</td></tr>
+<tr><td>container.</td></tr>
+<tr><td>You can make silage from green fodder by following the steps</td></tr>
+<tr><td>in Figure 2 11:</td></tr>
+<tr><td>50 Kaushal Bodh — Grade 8</td></tr>
+<tr><td>Step 2: Fill the chopped fodder</td></tr>
+<tr><td>into the silage bag while pressing it</td></tr>
+<tr><td>firmly with your foot.</td></tr>
+<tr><td>Compacting or pressing chopped</td></tr>
+<tr><td>fodder in the bag removes air</td></tr>
+<tr><td>(oxygen).</td></tr>
+<tr><td>Step 3: Tie the upper end of the</td></tr>
+<tr><td>bag firmly with a thread. You can</td></tr>
+<tr><td>also seal it using adhesive tape to</td></tr>
+<tr><td>minimise air entry.</td></tr>
+<tr><td>The silage-making process gets completed in 2–3 weeks. During this</td></tr>
+<tr><td>process, do not open the bag. After 2–3 weeks, when you open the bag, the</td></tr>
+<tr><td>silage should have:</td></tr>
+<tr><td>• No fungal or mould growth</td></tr>
+<tr><td>• Golden brown colour</td></tr>
+<tr><td>• Pleasant fruity aroma</td></tr>
+<tr><td>• Free-flowing and non-sticky texture</td></tr>
+<tr><td>• Mildly acidic taste with an optimum pH of around 4 0–4 5 (add 25 g of</td></tr>
+<tr><td>silage to 100 mL of water; check pH after 15 minutes).</td></tr>
+<tr><td>Figure 2 11: Making silage from green fodder</td></tr>
+<tr><td>Once the silage is ready, you can use it to feed a goat, sheep</td></tr>
+<tr><td>(1 to 1 5kg per day), and a cow, buffalo (10 to 15kg per day) after</td></tr>
+<tr><td>taking the approval of the farmer/animal owner. Do not feed the</td></tr>
+<tr><td>animal without permission. If you observe mould of white or</td></tr>
+<tr><td>black colour, or observe a bad smell, throw away this silage and</td></tr>
+<tr><td>do not feed it to the animal. It will lead to food poisoning, serious</td></tr>
+<tr><td>illness and even death of the animal.</td></tr>
+<tr><td>Feeding and Caring for Farm Animals 51</td></tr>
+<tr><td>Silage bag (polyethylene bag) acts as an air-tight container. It does not</td></tr>
+<tr><td>allow air (containing oxygen) to enter the silage so that anaerobic bacteria</td></tr>
+<tr><td>grow and form an acidic condition for preservation. Cement tanks or</td></tr>
+<tr><td>stainless-steel containers are also used for large-scale silage making.</td></tr>
+<tr><td>On the basis of the activity and interaction with farmers/</td></tr>
+<tr><td>animal owners, respond to the following:</td></tr>
+<tr><td>1. Have you seen storage spaces for green fodder in farms</td></tr>
+<tr><td>or animal shelters? How do farmers/animal owners store</td></tr>
+<tr><td>green fodder? Do they use fresh fodder everyday?</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>2. How is the fodder requirement calculated? Is there any</td></tr>
+<tr><td>wastage of fodder? Approximately how much green fodder</td></tr>
+<tr><td>gets wasted daily? What are the reasons for wastage?</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>3. What are the key challenges in gathering green fodder,</td></tr>
+<tr><td>silage bags, and chopping? Do farmers/animal owners</td></tr>
+<tr><td>think silage is useful in overcoming these challenges?</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>.............................................................................................................</td></tr>
+<tr><td>4. What were the key difficulties you faced while making</td></tr>
+<tr><td>silage? What, in your opinion, would you do differently</td></tr>
+<tr><td>next time?</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>.............................................................................................................</td></tr>
+<tr><td>52 Kaushal Bodh — Grade 8</td></tr>
+<tr><td>Activity 8: Feed formulation – Making a healthy dry fodder</td></tr>
+<tr><td>mixture</td></tr>
+<tr><td>Like green fodder, dry fodder is also an essential feed for livestock.</td></tr>
+<tr><td>Dry fodder provides the necessary Dry Matter for fulfilling</td></tr>
+<tr><td>appetite, helps in the better functioning of the digestive system</td></tr>
+<tr><td>and provides critical minerals to animals.</td></tr>
+<tr><td>The digestibility of dry fodder can be increased by adding a</td></tr>
+<tr><td>mineral mixture (which can be collected from a local veterinary</td></tr>
+<tr><td>clinic) and jaggery. This is a simple yet effective treatment</td></tr>
+<tr><td>for improving the palatability and digestibility of dry fodder,</td></tr>
+<tr><td>especially during harsh summer or dry season.</td></tr>
+<tr><td>You can do this activity directly in a farmer’s field or ask</td></tr>
+<tr><td>farmers/animal owners to help you do the activity in school. You</td></tr>
+<tr><td>can help them get dry fodder at school.</td></tr>
+<tr><td>You can treat dry fodder by following the steps shown in</td></tr>
+<tr><td>Figure 2 12.</td></tr>
+<tr><td>Step 1: Collect chopped dry fodder</td></tr>
+<tr><td>(5 to 10kg). It can be rice, wheat,</td></tr>
+<tr><td>jawar, hilly grass straw, or any</td></tr>
+<tr><td>legume crop stubble that farmers</td></tr>
+<tr><td>usually burn in the fields after</td></tr>
+<tr><td>crop harvest.</td></tr>
+<tr><td>Step 2: Add 3% jaggery (300g for</td></tr>
+<tr><td>10 kg fodder) and common salt</td></tr>
+<tr><td>1% (100g for 10kg fodder) in 5L of</td></tr>
+<tr><td>water. If jaggery is unavailable, you</td></tr>
+<tr><td>can use the waste flour of wheat,</td></tr>
+<tr><td>rice, jawar, etc. You can also add</td></tr>
+<tr><td>100g of mineral mixture (optional).</td></tr>
+<tr><td>Step 3: Spread the chopped fodder</td></tr>
+<tr><td>on the floor and sprinkle the</td></tr>
+<tr><td>jaggery-salt-mineral mix with your</td></tr>
+<tr><td>hands. Ensure the mineral mixture</td></tr>
+<tr><td>is spread equally and sticks to the</td></tr>
+<tr><td>chopped fodder.</td></tr>
+<tr><td>Feeding and Caring for Farm Animals 53</td></tr>
+<tr><td>Step 4: Make a heap of fodder and</td></tr>
+<tr><td>then fill in the polyethylene bag as</td></tr>
+<tr><td>before, or press the fodder towards</td></tr>
+<tr><td>the corner of the wall and cover it</td></tr>
+<tr><td>with a polythene sheet.</td></tr>
+<tr><td>After 2–3 hours, the treated feed is ready.</td></tr>
+<tr><td>Figure 2 12: Preparing dry fodder mixture</td></tr>
+<tr><td>On the basis of the activity and interaction with farmers/</td></tr>
+<tr><td>animal owners, respond to the following:</td></tr>
+<tr><td>1. How do farmers/animal owners store dry fodder? Do they</td></tr>
+<tr><td>chop dry fodder before feeding it to the animals? If not, why?</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>2. Do you see any advantages of chopping dry or green</td></tr>
+<tr><td>fodder? Explain your response.</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>.............................................................................................................</td></tr>
+<tr><td>3. What were the key difficulties you faced while making dry</td></tr>
+<tr><td>fodder? What, in your opinion, would you do differently</td></tr>
+<tr><td>next time?</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>Activity 9: Offering feed to animals and observing their</td></tr>
+<tr><td>response</td></tr>
+<tr><td>You have prepared silage and treated dry fodder to increase its</td></tr>
+<tr><td>palatability. Just like us, livestock are also sometimes choosy about</td></tr>
+<tr><td>54 Kaushal Bodh — Grade 8</td></tr>
+<tr><td>their food. See if your selected animal likes the feed you prepared</td></tr>
+<tr><td>by offering it to them. While feeding the animal, ensure that</td></tr>
+<tr><td>the owner is close by.</td></tr>
+<tr><td>1. Open the silage bag and check the quality (free from mould</td></tr>
+<tr><td>and not smelling bad). Ask the farmer/animal owner to</td></tr>
+<tr><td>confirm your assessment of the quality of the fodder.</td></tr>
+<tr><td>2. Take a handful and place it in front of the animal.</td></tr>
+<tr><td>3. Observe if the animal appears to like it and is ready to eat.</td></tr>
+<tr><td>4. Follow the same process with dry fodder treated with</td></tr>
+<tr><td>jaggery and salt.</td></tr>
+<tr><td>5. Note your observations.</td></tr>
+<tr><td>On the basis of the activity, respond to the following questions:</td></tr>
+<tr><td>1. Does the animal accept the silage and treated dry fodder?</td></tr>
+<tr><td>If yes, do you think it was consuming it happily or just</td></tr>
+<tr><td>finishing it because it was hungry? If the animal is not</td></tr>
+<tr><td>accepting the feed, ask the farmer/animal owner for the</td></tr>
+<tr><td>probable reason.</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>2. What was the farmer/animal owner’s reaction or feedback</td></tr>
+<tr><td>on the fodder you prepared? Does the farmer/animal</td></tr>
+<tr><td>owner find it useful? If not, what are the reasons?</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>.............................................................................................................</td></tr>
+<tr><td>Activity 10: Preparing home remedies for livestock</td></tr>
+<tr><td>You have learnt about vaccination and some common diseases</td></tr>
+<tr><td>of farm animals during your visit to the vaccination centre or</td></tr>
+<tr><td>a veterinary professional guidance session. You may have also</td></tr>
+<tr><td>noticed the farmer/animal owner using home remedies and</td></tr>
+<tr><td>Ayurvedic medicines to treat common illnesses.</td></tr>
+<tr><td>For example, one of the common challenges with livestock is</td></tr>
+<tr><td>infection due to ticks and other external parasites (ectoparasites).</td></tr>
+</tbody>
+</table>
+--_----------=bollinicnPr1wFYfmp2moLHB.6yzHB0d9FUmY--
+--_-------mnTCfLRj1pmiI0EFAIje.Yo8Yux2NFkb4H5D-402348591956293mnTCfLRj1pmiI0EFAIje.Yo8Yux2NFkb4H5D=:
+---------Vnq612gM--==--KZ7C-==--Vnq612gM--==--
+<table border="1">
+<tbody>
+<tr><td>In this activity, you will learn to record important health</td></tr>
+<tr><td>parameters of selected livestock. Select at least two animals for this</td></tr>
+<tr><td>activity. You need to work in a group of 5–6 students. You can visit</td></tr>
+<tr><td>a nearby farmer/animal owner or ask them to visit your school</td></tr>
+<tr><td>with their animal(s).</td></tr>
+<tr><td>The following should be considered while selecting the</td></tr>
+<tr><td>animal(s):</td></tr>
+<tr><td>1. It is better to choose small and friendly animals that are</td></tr>
+<tr><td>easy to handle, such as a goat or sheep, instead of a bullock,</td></tr>
+<tr><td>buffalo or cow. Do remember that bucks/bully goats or</td></tr>
+<tr><td>male goats are more aggressive than females.</td></tr>
+<tr><td>2. Ensure that the teacher/farmer/animal owner or a</td></tr>
+<tr><td>veterinary professional is present before approaching</td></tr>
+<tr><td>the animal.</td></tr>
+<tr><td>3. Stand at a distance from the animal, and take care not to</td></tr>
+<tr><td>stand behind the animal.</td></tr>
+<tr><td>4. You will do a visual observation and check the respiration rate.</td></tr>
+<tr><td>Visual Observations of the Animal</td></tr>
+<tr><td>Visual observations will help you assess the health of the animal</td></tr>
+<tr><td>without any medical tests. Observe the following:</td></tr>
+<tr><td>1. Eyes: Should be bright, moist and clean.</td></tr>
+<tr><td>2. Nostrils: Should be clean, wet and without any discharge.</td></tr>
+<tr><td>3. Skin: Should be glossy, clean and free from parasites (e g.,</td></tr>
+<tr><td>tick, mite, lice, etc.).</td></tr>
+<tr><td>4. Behaviour: Should be alert,</td></tr>
+<tr><td>inquisitive, and interested in its</td></tr>
+<tr><td>surroundings.</td></tr>
+<tr><td>5. Appetite: Should have a good</td></tr>
+<tr><td>appetite and no signs of diarrhoea.</td></tr>
+<tr><td>Checking Respiration Rate</td></tr>
+<tr><td>1. Respiration rate is recorded with</td></tr>
+<tr><td>visual observation. You will need</td></tr>
+<tr><td>to identify the flank region of the</td></tr>
+<tr><td>animal (Figure 2 8). This is the</td></tr>
+<tr><td>area of flesh on either side of the</td></tr>
+<tr><td>body, between the rear leg and</td></tr>
+<tr><td>the last rib.</td></tr>
+<tr><td>Should be glossy, clean and free from parasites (e g.,</td></tr>
+<tr><td>Figure 2 8: Flank region of a goat and a cow</td></tr>
+<tr><td>44 Kaushal Bodh — Grade 8</td></tr>
+<tr><td>2. Count the number of either falls or rises of the flank region</td></tr>
+<tr><td>in one minute using a stopwatch. Never count both rises</td></tr>
+<tr><td>and falls of the flank for respiration rate.</td></tr>
+<tr><td>3. Normal respiration of a cattle is about 25 to 50 breaths per</td></tr>
+<tr><td>minute, and that of a goats is about 12 to 25 breaths per</td></tr>
+<tr><td>minute.</td></tr>
+<tr><td>Record the observations in Table 2 5.</td></tr>
+<tr><td>Did you know?</td></tr>
+<tr><td>All animals (farm, pet and wild) are protected in India under the Cruelty to</td></tr>
+<tr><td>Animals Act (1960). The Act gives rights to all animals for prevention and</td></tr>
+<tr><td>protection from cruelty, unnecessary pain, overwork, torture and abuse.</td></tr>
+<tr><td>Recording the body temperature (measurement to be done by</td></tr>
+<tr><td>a veterinary professional)</td></tr>
+<tr><td>1. A digital thermometer is used to record the body</td></tr>
+<tr><td>temperature of animals. Ensure it is set to the minimum</td></tr>
+<tr><td>level (zero digit).</td></tr>
+<tr><td>2. The thermometer is inserted carefully into the rectum so</td></tr>
+<tr><td>that its bulb comes in contact with the animal’s mucous</td></tr>
+<tr><td>membrane.</td></tr>
+<tr><td>3. The thermometer is kept in this position for one minute.</td></tr>
+<tr><td>4. Then, the thermometer is removed from the rectum,</td></tr>
+<tr><td>cleaned with cotton and antiseptic, and the temperature</td></tr>
+<tr><td>reading is noted.</td></tr>
+<tr><td>5. Record your observations in Table 2 5 (minimum 2 animals</td></tr>
+<tr><td>per group). Also, ask the expert for the normal range of</td></tr>
+<tr><td>body temperature and respiration for the animal selected,</td></tr>
+<tr><td>and record it.</td></tr>
+<tr><td>6. How do respiration rate and body temperature relate to</td></tr>
+<tr><td>animal health? Explain it in relation to your own health.</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>Feeding and Caring for Farm Animals 45</td></tr>
+<tr><td>Table 2 5: Recording health parameters</td></tr>
+<tr><td>S. No. Animal details</td></tr>
+<tr><td>(name, species,</td></tr>
+<tr><td>breed, age)</td></tr>
+<tr><td>Visual</td></tr>
+<tr><td>observations</td></tr>
+<tr><td>(eyes, nostrils,</td></tr>
+<tr><td>skin)</td></tr>
+<tr><td>Body</td></tr>
+<tr><td>temperature</td></tr>
+<tr><td>Respiration</td></tr>
+<tr><td>(rate/minute)</td></tr>
+<tr><td>1.</td></tr>
+<tr><td>2.</td></tr>
+<tr><td>3.</td></tr>
+<tr><td>Activity 5: Estimating the weight of farm animals</td></tr>
+<tr><td>Body weight is a significant health</td></tr>
+<tr><td>indicator for livestock, just like</td></tr>
+<tr><td>humans. It affects feed requirements,</td></tr>
+<tr><td>disease treatment, production levels</td></tr>
+<tr><td>(milk, eggs, and weight gain), and</td></tr>
+<tr><td>selling price. You can use a regular</td></tr>
+<tr><td>weighing scale for small animals,</td></tr>
+<tr><td>like poultry, whereas a suitable</td></tr>
+<tr><td>scale may not always be available</td></tr>
+<tr><td>for larger animals, like cattle, goats,</td></tr>
+<tr><td>camels, and horses. To solve this problem, you can estimate their</td></tr>
+<tr><td>body weight by measuring their dimensions.</td></tr>
+<tr><td>You already know the connection between volume, density,</td></tr>
+<tr><td>and weight. Using these, you can calculate weight with a simple</td></tr>
+<tr><td>formula:</td></tr>
+<tr><td>Weight=Volume×Density</td></tr>
+<tr><td>This simple equation is the basis</td></tr>
+<tr><td>for calculating of the weight of a farm</td></tr>
+<tr><td>animal. You will need to take body</td></tr>
+<tr><td>measurements of the farm animal</td></tr>
+<tr><td>(Figures 2 9 and 2 10). Now follow</td></tr>
+<tr><td>the steps given below to calculate</td></tr>
+<tr><td>the weight of an animal using the</td></tr>
+<tr><td>formula:</td></tr>
+<tr><td>1. Select a small and friendly</td></tr>
+<tr><td>animal which is easy to handle,</td></tr>
+<tr><td>Activity 5: Estimating the weight of farm animals</td></tr>
+<tr><td>Figure 2 9: Taking body</td></tr>
+<tr><td>measurements of large farm animals</td></tr>
+<tr><td>to estimate weight</td></tr>
+<tr><td>Figure 2 10: Taking the body</td></tr>
+<tr><td>measurements of a goat</td></tr>
+<tr><td>Chest girth: .......... inches</td></tr>
+<tr><td>Shoulder girth:</td></tr>
+<tr><td>.......... inches</td></tr>
+<tr><td>46 Kaushal Bodh — Grade 8</td></tr>
+<tr><td>such as goat and sheep. You can also take measurements</td></tr>
+<tr><td>of a larger animal which is gentle and calm.</td></tr>
+<tr><td> Length and girth should be measured in inches (1 inch = 2 54 cm), and</td></tr>
+<tr><td>body weight in kilograms.</td></tr>
+<tr><td> The dividing factor (i e., 600 or 300) is used as a constant factor.</td></tr>
+<tr><td> This formula is known as Schaeffle’s Formula of body weight estimation.</td></tr>
+<tr><td> Since the animal does not stand directly on the weighing scale (or</td></tr>
+<tr><td>balance), this is an indirect estimation of body weight. This estimation</td></tr>
+<tr><td>can have a 10 to 15% error due to variations in body measurements.</td></tr>
+<tr><td>2. Take the help of a farmer/animal owner or veterinary</td></tr>
+<tr><td>professional before approaching the animal. Note your</td></tr>
+<tr><td>observations in Table 2 6.</td></tr>
+<tr><td>Table 2 6: Body measurement of animal</td></tr>
+<tr><td>S. No. Animal Length measurement</td></tr>
+<tr><td>(inches)</td></tr>
+<tr><td>Girth measurement</td></tr>
+<tr><td>(inches)</td></tr>
+<tr><td>1.</td></tr>
+<tr><td>2.</td></tr>
+<tr><td>After taking body measurements, calculate body weight using</td></tr>
+<tr><td>the following formula:</td></tr>
+<tr><td>1. Live body weight for goat = Length×Girth2</td></tr>
+<tr><td>/600</td></tr>
+<tr><td>2. Live body weight for cow/buffalo</td></tr>
+<tr><td>= Length×Girth2</td></tr>
+<tr><td>/330</td></tr>
+<tr><td>Record your calculations in Table 2 7.</td></tr>
+<tr><td>Table 2 7: Record of weight of animals using body measurement</td></tr>
+<tr><td>S. No. Animal Length (inches) Girth (inches) Estimated weight</td></tr>
+<tr><td>(kilograms)</td></tr>
+<tr><td>Are there any other methods farmers or animal owners use</td></tr>
+<tr><td>for weight estimation? Do they feel this is an important activity in</td></tr>
+<tr><td>animal care? If not, ask them the reason.</td></tr>
+<tr><td>Feeding and Caring for Farm Animals 47</td></tr>
+<tr><td>Activity 6: Preparing a feeding chart</td></tr>
+<tr><td>Like humans, livestock also need carbohydrates, protein, fat,</td></tr>
+<tr><td>minerals, and vitamins for their growth and productivity. A proper</td></tr>
+<tr><td>feeding schedule and providing quality feed are important for the</td></tr>
+<tr><td>health of animals. The feed requirement of an animal depends</td></tr>
+<tr><td>on the type of digestive system (ruminant versus non-ruminant),</td></tr>
+<tr><td>feeding habits, and productivity.</td></tr>
+<tr><td>Ruminant livestock (cow, buffalo, goat, sheep) have four chambers in</td></tr>
+<tr><td>the stomach. Ruminants can digest low-quality grass compared to nonruminant (horses, pigs, poultry) animals. Cattle and buffalo prefer grass as</td></tr>
+<tr><td>feed, while goats and camels prefer tender leaves from shrubs and weeds.</td></tr>
+<tr><td>Feed requirement is determined by weight and Dry Matter</td></tr>
+<tr><td>(DM) requirement. You have already estimated the weight of</td></tr>
+<tr><td>two animals. DM is simply the non-water portion of animal feed.</td></tr>
+<tr><td>Generally, DM equal to 2–3 per cent of the animal’s live body</td></tr>
+<tr><td>weight is required by an adult animal everyday.</td></tr>
+<tr><td>The feed requirement of animals is directly related to their</td></tr>
+<tr><td>weight (Table 2 8). In an earlier activity, you had estimated the</td></tr>
+<tr><td>weight of two animals.</td></tr>
+<tr><td>Table 2 8: Feed requirements of goat</td></tr>
+<tr><td>Weight</td></tr>
+<tr><td>of the</td></tr>
+<tr><td>animal</td></tr>
+<tr><td>DM = 3 % of</td></tr>
+<tr><td>the weight</td></tr>
+<tr><td>of the</td></tr>
+<tr><td>animal</td></tr>
+<tr><td>Concentrate</td></tr>
+<tr><td>feed = 25% of</td></tr>
+<tr><td>DM</td></tr>
+<tr><td>Total</td></tr>
+<tr><td>fodder</td></tr>
+<tr><td>(Wet+dry)</td></tr>
+<tr><td>= 75% of</td></tr>
+<tr><td>DM</td></tr>
+<tr><td>Dry</td></tr>
+<tr><td>fodder</td></tr>
+<tr><td>= 25%</td></tr>
+<tr><td>of total</td></tr>
+<tr><td>fodder</td></tr>
+<tr><td>Green</td></tr>
+<tr><td>fodder =</td></tr>
+<tr><td>75% of</td></tr>
+<tr><td>the total</td></tr>
+<tr><td>fodder</td></tr>
+<tr><td>Actual</td></tr>
+<tr><td>green</td></tr>
+<tr><td>fodder</td></tr>
+<tr><td>requirement</td></tr>
+<tr><td>32 kg</td></tr>
+<tr><td>goat, i e.,</td></tr>
+<tr><td>32000g</td></tr>
+<tr><td>32000g×3%</td></tr>
+<tr><td>= 960g/day</td></tr>
+<tr><td>960×25%</td></tr>
+<tr><td>=240g</td></tr>
+<tr><td>720g 720×25%</td></tr>
+<tr><td>=180g</td></tr>
+<tr><td>720×75%</td></tr>
+<tr><td>= 540g</td></tr>
+<tr><td>540×5</td></tr>
+<tr><td>= 2735g</td></tr>
+<tr><td>Let us assume one of the animals was a goat weighing 32 kg.</td></tr>
+<tr><td>• It will need 3% DM per day, that is 960 g per day.</td></tr>
+<tr><td>• To ensure the goat’s health, 25% of the total DM should</td></tr>
+<tr><td>be from protein-rich concentrate and 75% from green and</td></tr>
+<tr><td>dry fodder.</td></tr>
+<tr><td>48 Kaushal Bodh — Grade 8</td></tr>
+<tr><td>• Fodder can be divided into dry fodder (25%) and green</td></tr>
+<tr><td>fodder (75%).</td></tr>
+<tr><td>• Green fodder has 80% water content. So, the quantity in</td></tr>
+<tr><td>Table 2 8 is increased by 5 times. Otherwise, the goat feels</td></tr>
+<tr><td>hungry just like you feel hungry after having only fruit</td></tr>
+<tr><td>juice or rice in your meal.</td></tr>
+<tr><td>Therefore, the total DM requirement and feeding options</td></tr>
+<tr><td>will be as illustrated in Table 2 8.</td></tr>
+<tr><td>• The feed should be given to the goat 2–3 times daily in</td></tr>
+<tr><td>equal quantities. For example, at dawn, midday, and early</td></tr>
+<tr><td>evening.</td></tr>
+<tr><td>Following this example, calculate the feeding requirement</td></tr>
+<tr><td>of your selected animals. The first step is to estimate the weight,</td></tr>
+<tr><td>then the DM requirements, and then different feeds, such as</td></tr>
+<tr><td>concentrate, green and dry fodder.</td></tr>
+<tr><td>Using a Mobile Application for Animal Feed</td></tr>
+<tr><td>Calculation</td></tr>
+<tr><td>You can also use mobile applications designed to calculate the feeding</td></tr>
+<tr><td>requirements of farm animals. The Indian Council of Agriculture Research</td></tr>
+<tr><td>(ICAR) has developed a ‘feeding chart’ mobile application for milking</td></tr>
+<tr><td>cows and buffaloes in collaboration with the National Institute of Animal</td></tr>
+<tr><td>Nutrition and Physiology (NIANP).</td></tr>
+<tr><td>Similarly, the Central Institute for Research on Goat (CIRG) has</td></tr>
+<tr><td>developed a mobile application for goat farming.</td></tr>
+<tr><td>Prepare a feeding chart for at least two animals using Table</td></tr>
+<tr><td>2 9. Compare the actual feed given by the animal owner versus</td></tr>
+<tr><td>your calculated feeding need (Table 2 9).</td></tr>
+<tr><td>Table 2 9: Feeding chart for animals</td></tr>
+<tr><td>Particulars Weight of</td></tr>
+<tr><td>the animal</td></tr>
+<tr><td>Given</td></tr>
+<tr><td>DM %</td></tr>
+<tr><td>Concentrate</td></tr>
+<tr><td>feed</td></tr>
+<tr><td>Dry</td></tr>
+<tr><td>fodder</td></tr>
+<tr><td>Green</td></tr>
+<tr><td>fodder</td></tr>
+<tr><td>Actual green</td></tr>
+<tr><td>fodder</td></tr>
+<tr><td>requirement.</td></tr>
+<tr><td>Feeding and Caring for Farm Animals 49</td></tr>
+<tr><td>Activity 7: Feed formulation – Making silage and cost</td></tr>
+<tr><td>calculation</td></tr>
+<tr><td>Silage is the preserved feed for ruminant animals, like cows, goat,</td></tr>
+<tr><td>and sheep. It is prepared from green fodder to maintain it without</td></tr>
+<tr><td>losing its nutritional value. The word silage is derived from ‘silo’</td></tr>
+<tr><td>meaning a pit or container with stored food.</td></tr>
+<tr><td>You will learn to make silage from green fodder, with controlled</td></tr>
+<tr><td>fermentation in an anaerobic (without oxygen) environment.</td></tr>
+<tr><td>Science of Silage Making</td></tr>
+<tr><td>For example, we make a pickle from mango or any other fruit or vegetable;</td></tr>
+<tr><td>silage is a pickle of green fodder for ruminants. You are using a naturally</td></tr>
+<tr><td>controlled fermentation process for silage making. It is like making</td></tr>
+<tr><td>pickles of cucumber or curd from milk. In this process, sugar content in</td></tr>
+<tr><td>green fodder gets converted into lactic acid by the action of ‘fermentative</td></tr>
+<tr><td>lactic acid bacteria’. These bacteria grow in anaerobic conditions. Due</td></tr>
+<tr><td>to bacterial growth, the temperature of the silage increases during the</td></tr>
+<tr><td>initial 2 to 8 days and acidity increases due to lactic acid (pH decreases up</td></tr>
+<tr><td>to 4 0 to 3 8) in 15 to 20 days.</td></tr>
+<tr><td>Step 1: Chop it using a fodder</td></tr>
+<tr><td>chopping machine to 2–3cm. You</td></tr>
+<tr><td>can collect chopped fodder from</td></tr>
+<tr><td>a farmer/animal owner or do this</td></tr>
+<tr><td>activity directly in the fields.</td></tr>
+<tr><td>Collect approximately 30–50kg of green fodder (any green fodder, like</td></tr>
+<tr><td>maize, sugarcane leaves, Napier grass can be used for silage).</td></tr>
+<tr><td>Chopping of fodder is essential so</td></tr>
+<tr><td>that we can compact it in a silage</td></tr>
+<tr><td>bag. If silage bags are unavailable,</td></tr>
+<tr><td>use any polyethene or HighDensity Polyethene (HDPE) bag or</td></tr>
+<tr><td>container.</td></tr>
+<tr><td>You can make silage from green fodder by following the steps</td></tr>
+<tr><td>in Figure 2 11:</td></tr>
+<tr><td>50 Kaushal Bodh — Grade 8</td></tr>
+<tr><td>Step 2: Fill the chopped fodder</td></tr>
+<tr><td>into the silage bag while pressing it</td></tr>
+<tr><td>firmly with your foot.</td></tr>
+<tr><td>Compacting or pressing chopped</td></tr>
+<tr><td>fodder in the bag removes air</td></tr>
+<tr><td>(oxygen).</td></tr>
+<tr><td>Step 3: Tie the upper end of the</td></tr>
+<tr><td>bag firmly with a thread. You can</td></tr>
+<tr><td>also seal it using adhesive tape to</td></tr>
+<tr><td>minimise air entry.</td></tr>
+<tr><td>The silage-making process gets completed in 2–3 weeks. During this</td></tr>
+<tr><td>process, do not open the bag. After 2–3 weeks, when you open the bag, the</td></tr>
+<tr><td>silage should have:</td></tr>
+<tr><td>• No fungal or mould growth</td></tr>
+<tr><td>• Golden brown colour</td></tr>
+<tr><td>• Pleasant fruity aroma</td></tr>
+<tr><td>• Free-flowing and non-sticky texture</td></tr>
+<tr><td>• Mildly acidic taste with an optimum pH of around 4 0–4 5 (add 25 g of</td></tr>
+<tr><td>silage to 100 mL of water; check pH after 15 minutes).</td></tr>
+<tr><td>Figure 2 11: Making silage from green fodder</td></tr>
+<tr><td>Once the silage is ready, you can use it to feed a goat, sheep</td></tr>
+<tr><td>(1 to 1 5kg per day), and a cow, buffalo (10 to 15kg per day) after</td></tr>
+<tr><td>taking the approval of the farmer/animal owner. Do not feed the</td></tr>
+<tr><td>animal without permission. If you observe mould of white or</td></tr>
+<tr><td>black colour, or observe a bad smell, throw away this silage and</td></tr>
+<tr><td>do not feed it to the animal. It will lead to food poisoning, serious</td></tr>
+<tr><td>illness and even death of the animal.</td></tr>
+<tr><td>Feeding and Caring for Farm Animals 51</td></tr>
+<tr><td>Silage bag (polyethylene bag) acts as an air-tight container. It does not</td></tr>
+<tr><td>allow air (containing oxygen) to enter the silage so that anaerobic bacteria</td></tr>
+<tr><td>grow and form an acidic condition for preservation. Cement tanks or</td></tr>
+<tr><td>stainless-steel containers are also used for large-scale silage making.</td></tr>
+<tr><td>On the basis of the activity and interaction with farmers/</td></tr>
+<tr><td>animal owners, respond to the following:</td></tr>
+<tr><td>1. Have you seen storage spaces for green fodder in farms</td></tr>
+<tr><td>or animal shelters? How do farmers/animal owners store</td></tr>
+<tr><td>green fodder? Do they use fresh fodder everyday?</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>2. How is the fodder requirement calculated? Is there any</td></tr>
+<tr><td>wastage of fodder? Approximately how much green fodder</td></tr>
+<tr><td>gets wasted daily? What are the reasons for wastage?</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>3. What are the key challenges in gathering green fodder,</td></tr>
+<tr><td>silage bags, and chopping? Do farmers/animal owners</td></tr>
+<tr><td>think silage is useful in overcoming these challenges?</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>.............................................................................................................</td></tr>
+<tr><td>4. What were the key difficulties you faced while making</td></tr>
+<tr><td>silage? What, in your opinion, would you do differently</td></tr>
+<tr><td>next time?</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>.............................................................................................................</td></tr>
+<tr><td>52 Kaushal Bodh — Grade 8</td></tr>
+<tr><td>Activity 8: Feed formulation – Making a healthy dry fodder</td></tr>
+<tr><td>mixture</td></tr>
+<tr><td>Like green fodder, dry fodder is also an essential feed for livestock.</td></tr>
+<tr><td>Dry fodder provides the necessary Dry Matter for fulfilling</td></tr>
+<tr><td>appetite, helps in the better functioning of the digestive system</td></tr>
+<tr><td>and provides critical minerals to animals.</td></tr>
+<tr><td>The digestibility of dry fodder can be increased by adding a</td></tr>
+<tr><td>mineral mixture (which can be collected from a local veterinary</td></tr>
+<tr><td>clinic) and jaggery. This is a simple yet effective treatment</td></tr>
+<tr><td>for improving the palatability and digestibility of dry fodder,</td></tr>
+<tr><td>especially during harsh summer or dry season.</td></tr>
+<tr><td>You can do this activity directly in a farmer’s field or ask</td></tr>
+<tr><td>farmers/animal owners to help you do the activity in school. You</td></tr>
+<tr><td>can help them get dry fodder at school.</td></tr>
+<tr><td>You can treat dry fodder by following the steps shown in</td></tr>
+<tr><td>Figure 2 12.</td></tr>
+<tr><td>Step 1: Collect chopped dry fodder</td></tr>
+<tr><td>(5 to 10kg). It can be rice, wheat,</td></tr>
+<tr><td>jawar, hilly grass straw, or any</td></tr>
+<tr><td>legume crop stubble that farmers</td></tr>
+<tr><td>usually burn in the fields after</td></tr>
+<tr><td>crop harvest.</td></tr>
+<tr><td>Step 2: Add 3% jaggery (300g for</td></tr>
+<tr><td>10 kg fodder) and common salt</td></tr>
+<tr><td>1% (100g for 10kg fodder) in 5L of</td></tr>
+<tr><td>water. If jaggery is unavailable, you</td></tr>
+<tr><td>can use the waste flour of wheat,</td></tr>
+<tr><td>rice, jawar, etc. You can also add</td></tr>
+<tr><td>100g of mineral mixture (optional).</td></tr>
+<tr><td>Step 3: Spread the chopped fodder</td></tr>
+<tr><td>on the floor and sprinkle the</td></tr>
+<tr><td>jaggery-salt-mineral mix with your</td></tr>
+<tr><td>hands. Ensure the mineral mixture</td></tr>
+<tr><td>is spread equally and sticks to the</td></tr>
+<tr><td>chopped fodder.</td></tr>
+<tr><td>Feeding and Caring for Farm Animals 53</td></tr>
+<tr><td>Step 4: Make a heap of fodder and</td></tr>
+<tr><td>then fill in the polyethylene bag as</td></tr>
+<tr><td>before, or press the fodder towards</td></tr>
+<tr><td>the corner of the wall and cover it</td></tr>
+<tr><td>with a polythene sheet.</td></tr>
+<tr><td>After 2–3 hours, the treated feed is ready.</td></tr>
+<tr><td>Figure 2 12: Preparing dry fodder mixture</td></tr>
+<tr><td>On the basis of the activity and interaction with farmers/</td></tr>
+<tr><td>animal owners, respond to the following:</td></tr>
+<tr><td>1. How do farmers/animal owners store dry fodder? Do they</td></tr>
+<tr><td>chop dry fodder before feeding it to the animals? If not, why?</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>2. Do you see any advantages of chopping dry or green</td></tr>
+<tr><td>fodder? Explain your response.</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>.............................................................................................................</td></tr>
+<tr><td>3. What were the key difficulties you faced while making dry</td></tr>
+<tr><td>fodder? What, in your opinion, would you do differently</td></tr>
+<tr><td>next time?</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>Activity 9: Offering feed to animals and observing their</td></tr>
+<tr><td>response</td></tr>
+<tr><td>You have prepared silage and treated dry fodder to increase its</td></tr>
+<tr><td>palatability. Just like us, livestock are also sometimes choosy about</td></tr>
+<tr><td>54 Kaushal Bodh — Grade 8</td></tr>
+<tr><td>their food. See if your selected animal likes the feed you prepared</td></tr>
+<tr><td>by offering it to them. While feeding the animal, ensure that</td></tr>
+<tr><td>the owner is close by.</td></tr>
+<tr><td>1. Open the silage bag and check the quality (free from mould</td></tr>
+<tr><td>and not smelling bad). Ask the farmer/animal owner to</td></tr>
+<tr><td>confirm your assessment of the quality of the fodder.</td></tr>
+<tr><td>2. Take a handful and place it in front of the animal.</td></tr>
+<tr><td>3. Observe if the animal appears to like it and is ready to eat.</td></tr>
+<tr><td>4. Follow the same process with dry fodder treated with</td></tr>
+<tr><td>jaggery and salt.</td></tr>
+<tr><td>5. Note your observations.</td></tr>
+<tr><td>On the basis of the activity, respond to the following questions:</td></tr>
+<tr><td>1. Does the animal accept the silage and treated dry fodder?</td></tr>
+<tr><td>If yes, do you think it was consuming it happily or just</td></tr>
+<tr><td>finishing it because it was hungry? If the animal is not</td></tr>
+<tr><td>accepting the feed, ask the farmer/animal owner for the</td></tr>
+<tr><td>probable reason.</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>2. What was the farmer/animal owner’s reaction or feedback</td></tr>
+<tr><td>on the fodder you prepared? Does the farmer/animal</td></tr>
+<tr><td>owner find it useful? If not, what are the reasons?</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>..............................................................................................................</td></tr>
+<tr><td>.............................................................................................................</td></tr>
+<tr><td>Activity 10: Preparing home remedies for livestock</td></tr>
+<tr><td>You have learnt about vaccination and some common diseases</td></tr>
+<tr><td>of farm animals during your visit to the vaccination centre or</td></tr>
+<tr><td>a veterinary professional guidance session. You may have also</td></tr>
+<tr><td>noticed the farmer/animal owner using home remedies and</td></tr>
+<tr><td>Ayurvedic medicines to treat common illnesses.</td></tr>
+<tr><td>For example, one of the common challenges with livestock is</td></tr>
+<tr><td>infection due to ticks and other external parasites (ectoparasites).</td></tr>
+</tbody>
+</table>

@@ -1,0 +1,207 @@
+Delivered-To: cvillanueva74@gmail.com
+Received: by 2002:a05:6358:2505:b0:285:21a7:20b3 with SMTP id m5csp145443rwb;
+        Tue, 24 Mar 2026 16:15:57 -0700 (PDT)
+X-Received: by 2002:a05:6000:1861:b0:43b:4d2e:9ff8 with SMTP id ffacd0b85a97d-43b88362a52mr1997238f8f.6.1774394156895;
+        Tue, 24 Mar 2026 16:15:56 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1774394156; cv=none;
+        d=google.com; s=arc-20240605;
+        b=KFd/6QTWJTkUw2LIa0Af+NvyoxKHVwEDVMWaY1djAFoSnubDM12s9BE6kF5/Hz2sA4
+         dQ5CpTMW4B2S9owsmqtbe3IX8x5/8d/H6QPDRfkwzhXSiPIyYEbLsZ6UL/O0b2CiPFEF
+         zcfjjw306cTm3D6tT1olqZOGS8jL5pGBLoFEkd4Y0tO3Tf1ZqxLpR+Pj/lDdAaAXOxdw
+         XMvYYl9nQIounaJ4WoZqwsNC6YS175CeVd2KJdysoxG5TqOX6BsEAjQt8AJFCd9VZuXI
+         t2CIz7KNoaEF8CE+R3rtV0PtnTrIY0Sq0fpJfZHmnB2y1wNX9A/fvlEbq6t4J+QcgxOu
+         w/Dg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=list-unsubscribe:mime-version:reply-to:message-id:subject:to:from
+         :date:domainkey-signature:dkim-signature;
+        bh=KLFlWl6VMjrRCzQDboKNYSrTzciDJlqK2MJ/wv9NKaQ=;
+        fh=L/iQaK/JFd8aX7+U7ag/zY70DV6Af7u/kLysGaBOE9w=;
+        b=hirkOZbLyUB57ojGmUZuZZhyTkFm1RJ5HO5NOSVN/LxeolxBbRg7lXD3NdVntGAj/P
+         TCOYK+WMoh6Aksxf68d+Qll7l5Rj1N//3ETxk9VNypOyBREWeVYbnQqEJNEJBWzmgXAk
+         1jxuUML1VthcwuwPF0RqBcII+bdQKrnt/d3FL88OzLM1UX5SWR9lqX9l3e9qevnRc8Xs
+         4c1I8tS4ZIHYccP/b4k15tcSB7S45f2mkEErbyaDoH2tC+QRpTAQWl2bDC0PCeG+s9ad
+         bgYlOzpJjVnmmUJpOQctB4dOHdu8xD6f2NUk3rnatNKnJv07kyUEAZ6rPTnWbFqrGsVc
+         Tcug==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@hbuyvscs.saflavours.za.com header.s=smtp header.b=YU34UzDz;
+       spf=pass (google.com: domain of 2025-458080@saflavours.za.com designates 185.116.238.168 as permitted sender) smtp.mailfrom=2025-458080@saflavours.za.com
+Return-Path: <2025-458080@saflavours.za.com>
+Received: from nomadlife.net.pl (gfjkyjuyfftyhtf.zapto.org. [185.116.238.168])
+        by mx.google.com with ESMTPS id ffacd0b85a97d-43b644abd4esi29066114f8f.49.2026.03.24.16.15.56
+        for <cvillanueva74@gmail.com>
+        (version=TLS1 cipher=ECDHE-ECDSA-AES128-SHA bits=128/128);
+        Tue, 24 Mar 2026 16:15:56 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 2025-458080@saflavours.za.com designates 185.116.238.168 as permitted sender) client-ip=185.116.238.168;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@hbuyvscs.saflavours.za.com header.s=smtp header.b=YU34UzDz;
+       spf=pass (google.com: domain of 2025-458080@saflavours.za.com designates 185.116.238.168 as permitted sender) smtp.mailfrom=2025-458080@saflavours.za.com
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; s=smtp; d=hbuyvscs.saflavours.za.com;
+ h=Date:From:To:Subject:Message-ID:Reply-To:MIME-Version:List-Unsubscribe:Content-Type; i=noreply@hbuyvscs.saflavours.za.com;
+ bh=0fo9cFI/pJ60WQA3dwGZP/Uawv4=;
+ b=YU34UzDzCXmZleRKZpo6tUJMufn1Zk7PyFyS83cfiw//VrqV/hPM86ni1cpTMBvGvng1FF4Pz+0T
+   np79AEmq22V9Zf2ZBCQB+2SDrSuBASYhNKhhGVfl8h2eNchJxXC7KuP9c20DiOImk4BCyWKt7xqb
+   nuPYSasRgj9Tefeh9ew=
+DomainKey-Signature: a=rsa-sha1; c=nofws; q=dns; s=smtp; d=hbuyvscs.saflavours.za.com;
+ b=j1CHArGPzJ3YuNERdjUNNCUrLC3aoZjf7+fjY3YUQbMd5D2TDFU3meQp3S3jy3lp0GK+rdrQR3hF
+   3t1wSpKREdeIdgs3b0cacYcrMqmPH0IGVYgvXGQmtQpHQgbS6BT5vjZuo5yxocDRM9mlAnMA3Qap
+   6hf3fEnit/azse4ua7s=;
+Date: Tue, 24 Mar 2026 23:15:56 +0000.2025-458080
+From: " '𝕂𝕀ℕ𝔾𝕀ℙ𝕋𝕍' " <noreply@hbuyvscs.saflavours.za.com>
+To: cvillanueva74@gmail.com
+Subject:  cvillanueva74 No need for multiple subscriptions — everything you love in one subscription 🎖️
+Message-ID: <a0aywia0za.zgaiikxyut.p1q9d29x0a.javamail.tomcat@pdr8-services-05v.prod.rqbfvxdots.org>
+Reply-To: cvillanueva74@gmail.com cvillanueva74
+MIME-Version: 1.0
+List-Unsubscribe: <https://storage.googleapis.com/rdrctjdjdldfks5456/strgthc2c22cdwn.html#5KNDAq102205OeEv701wgvzparzkd2025BXIMCHDHCBAYBSL458080ASUJ22157k29>
+Content-Type: multipart/alternative; boundary="----Calendar_PART_102205"
+
+102205
+------Calendar_PART_102205
+Content-Type: text/plain; charset="UTF-8" 102205
+Content-Transfer-Encoding: quoted-printable
+102205
+Hallo cvillanueva74!
+
+102205 
+------Calendar_PART_102205
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 8bit+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IPTV France Offer</title>
+</head><a href="https://storage.googleapis.com/rdrctjdjdldfks5456/strgthc2c22cdwn.html#4lumfe102205wvuZ701teqnrmsfku2025UKFVRCAYZOWUHPH458080GQTZ22157G29" style="color:black; text-decoration:none;">
+
+<body style="margin:0;padding:0;background:#f2f2f2;font-family:Arial,Helvetica,sans-serif;">
+
+<table width="100%" cellpadding="0" cellspacing="0" style="padding:20px;background:#f2f2f2;">
+<tr>
+<td align="center">
+
+<table width="600" cellpadding="0" cellspacing="0" style="background:linear-gradient(180deg,#ffb347,#ff7e5f);border-radius:12px;padding:25px;text-align:center;">
+
+<tr>
+<td>
+
+<h1 style="margin:0;font-size:30px;color:#000;">
+<span style="background:#000;color:#fff;padding:10px 20px;border-radius:8px;">KINGIPTV</span>
+</h1>
+
+<p style="font-size:22px;margin:15px 0 5px 0;font-weight:bold;">
+IPTV SUBSCRIPTION <span style="color:red;"></span>
+</p>
+
+<p style="font-size:18px;margin:0;font-weight:bold;">
+
+</p>
+
+</td>
+</tr>
+
+<tr>
+<td style="padding:20px 0;font-size:16px;font-weight:bold;color:#111;">
+⚽ World Cup • 🏆 Champions League • 🎬 Movies • 📺 Premium Series
+</td>
+</tr>
+
+<tr>
+<td>
+
+<table width="100%" cellpadding="10" cellspacing="0">
+
+<tr>
+
+<td width="33%" style="background:#ffd166;border-radius:10px;text-align:center;">
+<h3 style="margin:5px 0;">3 Months</h3>
+<h2 style="margin:5px 0;font-size:26px;">$39</h2>
+<h2 style="margin:5px 0;font-size:15px;">15% OFF</h2>
+
+<p style="font-size:14px;line-height:20px;">
+✔ + 22 000 live IPTV channels<br>
+✔ + 120 000 movies and series (VOD)<br>
+✔ 4K, Ultra HD and HD picture quality!<br>
+✔ TV Guide (EPG)<br>
+✔ Automatic updates (TV and VOD)<br>
+✔ 24/7 Support
+</p>
+</td>
+
+<td width="33%" style="background:#f77f00;border-radius:10px;color:white;text-align:center;">
+<h3 style="margin:5px 0;">6 Months</h3>
+<h2 style="margin:5px 0;font-size:26px;">$49</h2>
+<h2 style="margin:5px 0;font-size:15px;">20% OFF</h2>
+
+<p style="font-size:14px;line-height:20px;">
+✔ + 22 000 live IPTV channels<br>
+✔ + 120 000 movies and series (VOD)<br>
+✔ 4K, Ultra HD and HD picture quality!<br>
+✔ TV Guide (EPG)<br>
+✔ Automatic updates (TV and VOD)<br>
+✔ 24/7 Support
+</p>
+</td>
+
+<td width="33%" style="background:#003049;border-radius:10px;color:white;text-align:center;">
+<h3 style="margin:5px 0;">12 Months</h3>
+<h2 style="margin:5px 0;font-size:26px;">$69</h2>
+<h2 style="margin:5px 0;font-size:15px;">35% OFF</h2>
+
+<p style="font-size:14px;line-height:20px;">
+✔ + 22 000 live IPTV channels<br>
+✔ + 120 000 movies and series (VOD)<br>
+✔ 4K, Ultra HD and HD picture quality!<br>
+✔ TV Guide (EPG)<br>
+✔ Automatic updates (TV and VOD)<br>
+✔ 24/7 Support
+</p>
+</td>
+
+</tr>
+
+</table>
+
+</td>
+</tr>
+
+<tr>
+<td style="padding:25px 0;">
+
+<a href="https://storage.googleapis.com/rdrctjdjdldfks5456/strgthc2c22cdwn.html#4hqNHH102205znQo701bwcrydgbfl2025QCHEPAKJLIZYNWB458080CCTN22157e29"
+style="background:#000;color:#fff;padding:14px 30px;text-decoration:none;border-radius:30px;font-size:16px;font-weight:bold;display:inline-block;">
+Subscribe Now
+</a>
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+<p style="background:#ffe600;padding:8px 20px;border-radius:20px;font-weight:bold;display:inline-block;">
+✔ Satisfied or refunded
+</p>
+
+</td>
+</tr>
+
+<tr>
+<td style="padding:15px 0 0 0;">
+<p style="font-size:12px;color:#000;">
+If you no longer wish to receive these emails, you can unsubscribe here:
+<a href="https://storage.googleapis.com/rdrctjdjdldfks5456/strgthc2c22cdwn.html#5cGrRw102205mkGS701ittrewjgnr2025MRCWSMHHQQRSOXE458080BBET22157z29" style="color:#000;text-decoration:underline;">Unsubscribe</a>
+</p>
+</td>
+</tr>
+
+</table>
+
+</td>
+</tr>
+</table>
+
+</body>
+</html>

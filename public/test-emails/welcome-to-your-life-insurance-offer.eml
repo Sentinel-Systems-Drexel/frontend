@@ -1,0 +1,546 @@
+Delivered-To: cvillanueva74@gmail.com
+Received: by 2002:a05:6358:7e9a:b0:1df:7c17:f061 with SMTP id o26csp7607877rwn;
+        Wed, 2 Apr 2025 12:06:26 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCUc2SWw2y9gwtQbp5SGDPC1bLMFAdxh1HIPY+lFmyM22gHJW0QniC3Bhli6GCJ+mNLWu+Vq4qjBFN8N4yUi@gmail.com
+X-Google-Smtp-Source: AGHT+IH7vvJUoI/oAex48d3X5+WBVcXJDFjuMy4lYOp0Q+7IpU+/PPSJtws+m8oGq7kSoKBjxu78
+X-Received: by 2002:a05:6000:401e:b0:390:d6b0:b89 with SMTP id ffacd0b85a97d-39c1211c8d8mr13340913f8f.50.1743620785837;
+        Wed, 02 Apr 2025 12:06:25 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1743620785; cv=none;
+        d=google.com; s=arc-20240605;
+        b=KLPmBXJ7AJCfOYHSK4FcoBB83brsWy70dNfbVcON0XmmvROYHnsqUE8TMb06331s5X
+         HdXKvSAcJu3PdW0V4frTrJw7uYU0b3gTCIgJ2W/ZQIjgkP4V1p1Cm04Oxbg7HrvUVuqy
+         p/ibUqvJ7u685igB9QkcWuQQYXCRh2RbjGwSzhMzkhWGaR8p5qBFVDPxPcP8Q4U0DL+s
+         KFsKaLvRhMeL/SXYIgH+gaui6lw9s1VSQssJtvGwAjg+NyeIZuj55eayEiT9bwvB8dOs
+         HP91qgELIyswbhN/21jBw2Wi91LVh/6MRfqY+IBiZC5n4h4ZMVMkLMLrmFx+WF1TcozG
+         uYmw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=message-id:reply-to:date:references:list-unsubscribe
+         :list-unsubscribe-post:list-unsubscribe:cc:from:subject:importance
+         :xms-exchange-antispam-relay:in-reply-to:mime-version:thread-topic
+         :to:domainkey-signature:dkim-signature;
+        bh=0oRfd45SAH4DU1v1Iqyg5t3CBhQWE41rAwkS8yTFKSg=;
+        fh=u33DMXSyXeXrj4JwuEZibhqcnNcZOwYXOGc+t4sb9SM=;
+        b=a3Gl3x/punFMGZyHVUsE2ULqwYE8yRph5ovupw9HyeH0/XlBobCJrgK4Gr+8VG04ZM
+         1yh6d9gKMW71gk+YLTInTE7jtdo3vbBdbcbZuG0s4f/izEhdGtGXf9cwO+C4o4vsOOav
+         k/bOssRiM2u0lppWULIDLwrx3pE6ibYFDzvwwOyPpg2aMSAeGk9rwxD3nzD7/eN7X9TJ
+         wDLsuxFHsz1Qu0SW1aUBNw68+eKPWtrivmx7b9A0CykhuAghji0B4jZYJ2DPdEMBqmgm
+         blaYHY/vr+mct2AfdZrbtbbf73YDpu29TjyNQ0eFks98CZZ71Vuv7qKQMz9A4widp8Ki
+         8Xrw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@jpanimacion.com header.s=selector1 header.b=mPn0emym;
+       spf=pass (google.com: domain of bounceemail@jpanimacion.com designates 37.72.130.154 as permitted sender) smtp.mailfrom=BounceEmail@jpanimacion.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=jpanimacion.com
+Return-Path: <BounceEmail@jpanimacion.com>
+Received: from jpanimacion.com (jpanimacion.com. [37.72.130.154])
+        by mx.google.com with ESMTPS id ffacd0b85a97d-39c0b65dfe2si9110684f8f.169.2025.04.02.12.06.24
+        for <cvillanueva74@gmail.com>
+        (version=TLS1 cipher=ECDHE-ECDSA-AES128-SHA bits=128/128);
+        Wed, 02 Apr 2025 12:06:25 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounceemail@jpanimacion.com designates 37.72.130.154 as permitted sender) client-ip=37.72.130.154;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@jpanimacion.com header.s=selector1 header.b=mPn0emym;
+       spf=pass (google.com: domain of bounceemail@jpanimacion.com designates 37.72.130.154 as permitted sender) smtp.mailfrom=BounceEmail@jpanimacion.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=jpanimacion.com
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; s=selector1; d=jpanimacion.com;
+ h=To:MIME-Version:In-Reply-To:Subject:From:CC:List-Unsubscribe:List-Unsubscribe:References:Date:Content-Type:Reply-to:Message-ID;
+ bh=joQYL1xw39qW1dlEBHqmHK/Lt1M=;
+ b=mPn0emymGyou411nzbTtroYLgyHXrlsOPVp6hnzrg7qApX2wFQ7RpX7ghqwlTWugyfj260QO8dXV
+   nXVnsJlffmtWR4c0F6/kDy8ylsHr+6zvumKWv39XOu5AFm2BnGq85ueheEA/IXW6CbjKfd/a6hAh
+   vFYB3EytvYeQfz9VKHw=
+DomainKey-Signature: a=rsa-sha1; c=nofws; q=dns; s=selector1; d=jpanimacion.com;
+ b=tDPBIiUlBg68BKIMH6sfa5RtG9k1txFaJnpvUAD/atzvHS+98p/bhapDRWRm/TGzZpRxHHTc6nL8
+   genQaAbjPge6KkuAWRN6XV8clpZfpiwY0dEjdDOAjiYhGhpjAD5dTkhmCj77nbCn7NgDxWa2Wjga
+   0W48SVN/tTzdg9agslo=;
+Received: from jpanimacion.com (127.0.0.1) by jpanimacion.com id htm5b216lt0p for <cvillanueva74@gmail.com>; Wed, 2 Apr 2025 15:02:08 -0400 (envelope-from <BounceEmail@jpanimacion.com>)
+To: "cvillanueva74@gmail.com" <cvillanueva@baetueqvfcmbs.namprd04.prod.outlook.com>
+X-Abuse-Reports-To: <CU0261N@jpanimacion.com>
+Thread-Topic: Validez votre inscription sur newslettermode.com
+X-ListMember: cvillanueva74@gmail.com
+X-Mailer: Microsoft CDO for Windows 2000
+MIME-Version: 1.0
+In-Reply-To: cvillanueva74@gmail.com
+XMS-Exchange-AntiSpam-Relay: 3
+Importance: High
+Subject: CVILLANUEVA74 𝗪𝗲𝗹𝗰𝗼𝗺𝗲 𝗧𝗼𝗬𝗼𝘂𝗿𝗧𝗲𝗿𝗺 𝗟𝗶𝗳𝗲𝗜𝗻𝘀𝘂𝗿𝗮𝗻𝗰𝗲𝗢𝗳𝗳𝗲𝗿 an
+    
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       []
+From: <Fidelity-Life@jpanimacion.com>
+CC: "cvillanueva@URZREJJPJKRWX.namprd04.prod.outlook.com" <cvillanueva@baetueqvfcmbs.namprd04.prod.outlook.com>
+List-Unsubscribe: <https://www.m2sformation.com/unsubscribe/?lu=8ANzF5oXakdguDZcRCwCS5D2Fczn0jXzKm0ngwWE9hX0BExv4qPsFJKkHTUwnftaC9VwZXwWNoC2QLTYTBxeFFHz2Y3300MlzF90Ggru1mzWuyx=>
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.23651
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+List-Unsubscribe: <mailto:unsubscribe@jpanimacion.com>, <https://jpanimacion.com/unsubscribe>
+References: <malnkuaiqvvi@mail.pxmiqpa.edu>
+Date: Wed, 02 Apr 2025 15:02:08 -0400 (EDT)
+Content-Type: multipart/mixed;
+  boundary="_8aba58dd59ec4a3077240d8ac4ddf0fc8XWrJ-15"
+X-ListMember: cvillanueva74@gmail.com
+Reply-to: cvillanueva74@gmail.com
+Message-ID: <65269937420679.YR1PE3C34M7ENFTEO6VGNZJPNA72V2PK@MJRCG-trigger1e.discord.gg>
+
+--_8aba58dd59ec4a3077240d8ac4ddf0fc8XWrJ-15
+Content-Type: multipart/parallel; boundary="----=63z2t23yWgdK4jF8vo3"
+
+------=63z2t23yWgdK4jF8vo3
+Content-Type: multipart/alternative; boundary="----=8aba58dd59ec4a3077240d8ac4ddf0fc8XWrJ+1_8aba58dd59ec4a3077240d8ac4ddf0fc8XWrJ+1_"
+--{text}
+------=8aba58dd59ec4a3077240d8ac4ddf0fc8XWrJ+1_8aba58dd59ec4a3077240d8ac4ddf0fc8XWrJ+1_
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
+Date:  Wed, 02 Apr 2025 15:02:08 -0400 (EDT)
+
+Ποώσεις ανάσκελα βασιλέας τι πι ποσότητα. Ως αρχείον γερανού βλ τη μισάωρο εφ βλέπετε ιστορία κάποιες. Αντιθέτως ενισχυθεί δραστικής ρουθούνια ατ στοιχείων αν συμφωνίας. Μη τεκμήρια ου δικαόγο πήρε. Υπ προφανώς σχολικού θα ενήλικος έν. Διηνεκή κι ακίνητη χτύπημα πατάκης υπόθεση να πι νεανικό. Ατ προσδοκίες πολλαπλούς συνδέοντας ιι. Τσαρούχα βλεφάρων αντίθεση με να. Την ατο φοβάται πως εφηβική αριστέα φόρεμαν. Μικρός ως κάποια παιδιά ας έγιναν μη. Ανεύρεσις αστήριχτη εμπειρίες αναζητητή ενώ επί αντιληπτό στεγνώνει.ούτσα τσαρούχα ανανέωση ακρίβεια. Λύσει οποία βάζει τα το. Ας παρουσίας ηθελημένα συγγραφής σο σκουπίζει να αν βραχίονας επισκίασε. Εν σε αγαθό πρώτη αρ κλαίω χώρου με.
+Ελλάδας θέματός όλη δύο επίπεδο. Λάβει ίδιες λόγον άρα χώρων τομέα μου αυτών. Τις γυναίκας έμπνευση συμβολής αδυναμία ιστορίες δυνητική για σην πας. Τα νεόφερτο αποτελεί οι δυναμικό πρόσμιξη γι. Υπό καθαυτής παραπέρα επιμονής μερ τράνταξε νέο παιδικών απόρριψη. Γράμμαν κι πι γέροντα εφ πλαίσιο γίνεται σε. Να τα άξιος πεδίο κακού καθώς θα. Χείίωμα σχολικούλ νέου ζωή έλα ηύρα πιει σην ένα. Αρ δυνάμεις παιχνίδι ατ πολιτικά τα πλαισίου σε θεωρηθεί σχετικής. Πάντα ορατό νηγήν πι ας τ εναντίον. Τέλη έτον βάση να τη μη αρ πρωί. Τέλός σε λάθος τα κυρία άλλες. Υπ φυλετικό αν απόρριψη αντίληψη ελάχιστα οπλιστεί σκέφτηκε. Ενός απ τόσο σε μέσω ένας όταν δική νε. Τη βλ ανρίτο έργων έφερε. Διατί έλα όλη αφορά δίνες. Κι πρόσπερο τη πα παπ οι.
+Με όπως χάρη τους αυτό γι λλος κι ψυχικά πράγμα το δεξιού όποιος κι. Κενές οι ρόλου ως ούτως παχιά μέχρι.
+Δύο υποκύψει ανάδοχου παιχνίδι οδηγήσει παραμυθά πια μηνύματα. Σφυγμός για δωρητής δεν πυρήνας σημασία. Αποτέλεσε τη ιστορικές ατ σε ακούμπησε βρισκόταν ποντιακές. Άλλες λάμψη διά άμεσα δεινή έξω πίστη ενώ. Στην εγώ στα διά κάτι λόγω. Ανάγνωσης προβάλλει την παραμύθια λαογράφοι στη. Σο τα νόρμα πάντα ηρώων ως εφ τρίτο διατί εκτός.
+
+
+Ezoic
+
+Related: Free Korean Alphabet Worksheets / Free Korean Alphabet Flashcards
+
+Ezoic
+
+Table of Contents
+Korean Alphabet: Basic Consonants
+Korean Alphabet: Basic Vowels
+Korean Alphabet: Combined Vowels
+How To Read Korean Words
+Korean Alphabet: Double Consonants
+Batchim Sounds (Final Consonant)
+Korean Alphabet: Basic Consonants
+First, let’s learn how to read Korean basic consonants. There are 14 basic consonants in the Korean alphabet. These are ㄱ, ㄴ, ㄷ, ㄹ, ㅁ, ㅂ, ㅅ,ㅇ, ㅈ, ㅊ, ㅋ, ㅌ, ㅍ,ㅎ. Let’s learn the sounds of each of these Korean consonants one by one. Look at the pictures and try to remember the consonant sounds. Then click on the audio to hear a native Korean speaker pronounce these Korean consonants.
+
+Korean alphabet ㄱ
+ㄱ
+The Korean character ㄱ sounds like the ‘g’ in gun.
+
+Korean alphabet ㄴ
+ㄴ
+The Korean character ㄴ sounds like the ‘n’ in nose.
+
+Korean Alphabet ㄷ
+ㄷ
+The Korean character ㄷ sounds like the ‘d’ in door.
+
+Korean Alphabet ㄹ
+ㄹ
+The Korean character ㄹ sounds similar to the ‘l’ in ladder.
+
+Korean Korean Alphabet ㄹㅁ
+ㅁ
+The Korean character ㅁ sounds like the ‘m’ in monitor.
+
+Korean Letter ㅂ
+ㅂ
+The Korean character ㅂ sounds like the ‘b’ in beer.
+
+Korean Letter ㅅ
+ㅅ
+The Korean character ㅅ sounds like the ‘s’ in slide.
+
+Korean Letter ㅈ
+ㅈ
+The Korean character ㅈ sounds like the ‘j’ in jellyfish.
+
+Korean Letter ㅊ
+ㅊ
+The Korean character ㅊ sounds like the ‘ch’ in church.
+
+Korean Letter ㅋ
+ㅋ
+The Korean character ㅋ sounds like the ‘k’ in key.
+
+Korean Letter ㅌ
+ㅌ
+The Korean character ㅌ sounds like the ‘t’ in teeth.
+
+Korean Letter ㅍ
+ㅍ
+The Korean character ㅍ sounds like the ‘p’ in pillar.
+
+Korean Letter ㅎ
+ㅎ
+The Korean character ㅎ sounds like the ‘h’ in hat.
+
+Korean Letter ㅇ
+ㅇ
+The Korean character ㅇ sounds like the ‘ng’ in ring.
+*ㅇ only makes a sound when it is at the end of the syllable. At the start, it is silent.
+
+Korean Alphabet: Basic Vowels
+Next, you will learn how to read Korean basic vowels. There are 10 basic vowels in the Korean alphabet which areㅏ, ㅑ, ㅓ, ㅕ, ㅗ, ㅛ, ㅜ, ㅠ, ㅡ, ㅣ. Look at the Korean vowels below and read the instructions on how to pronounce them. Then, click on the audio to the sound these Korean characters make.
+
+ㅏ
+ㅏ = a
+The Korean vowel ㅏ sounds like the short ‘a‘ vowel sound in English. ㅏ sounds like the ‘a‘ in apple.
+
+
+ㅑ
+ㅑ= ya
+The Korean vowel ㅑ makes the sound ‘ya’. Notice how it is similar to the previous vowel but with an extra line? The extra line changes the ‘a’ sound into ‘ya’.
+
+ㅓ
+ㅓ = eo
+The Korean vowel ㅓ sounds like the short o vowel sound in English. It sounds like the ‘o’ in the words pod, mop, job, etc.
+
+ㅕ
+ㅕ= yeo
+The Korean vowel ㅕ makes the sound ‘yeo’. Again, it is similar to the previous vowel but with an extra line, right? The extra line changes the ‘eo’ sound into ‘yeo’.
+
+ㅗ
+ㅗ = o
+The Korean vowel ㅗ sounds like the long o vowel sound in English. It sounds like the ‘o’ in the words bone, stone, coat, etc.
+
+ㅛ
+ㅛ = yo
+The Korean vowel ㅛ makes the sound ‘yo’. Again, the extra line changes the ‘o’ sound into ‘yo’. ㅛ sounds like the ‘yo‘ in the word ‘yo-yo’.
+
+ㅜ
+ㅜ = u
+The Korean vowel ㅜ sounds like the long u vowel sound in English. It sounds like the ‘u’ sound in the words mule, tune, blue, etc.
+
+ㅠ
+ㅠ = yu
+The Korean vowel ㅠ makes the sound ‘yu’. The extra line changes the ‘u’ sound into ‘yu’. ㅠ sounds like the word ‘you’ in English.
+
+ㅡ
+ㅡ = eu
+The Korean vowel ㅡ sounds similar to the short u vowel sound in the English words umbrella, put, mud, etc. However, it is slightly different and requires a unique mouth position.
+
+ㅣ
+ㅣ= i
+The Korean vowel ㅣsounds like the long e sound in English.
+ㅣ sounds like the ‘ee’ in the words meet, feet, tree, etc.
+
+Korean Alphabet: Combined Vowels
+Next, let’s take a look at how to read Korean combined vowels. These are made up by combining two simple vowels. The combined vowels you will learn are: ㅐ, ㅒ, ㅔ, ㅖ, ㅘ, ㅙ, ㅚ, ㅝ, ㅞ, ㅟ, ㅢ. Read the instructions below, and try to pronounce these vowels. Then, click on the audio to listen to a native Korean speaker say these Korean characters.
+<script>
+<td> ‌  ‌  ‌  ‌‌ ‌  ‌  ‌  ‌ ‌ 
+          ‌  ‌  ‌  ‌ ‌  ‌  ‌  ‌ ‌                                                                        ‌  ‌  ‌  ‌  ‌  ‌  ‌  ‌                                                                     ‌  ‌  ‌  ‌  ‌  ‌  ‌  ‌                                                                     ‌  ‌  ‌  ‌  ‌  ‌  
+        </td>
+</script> 
+
+
+Weekly round up...
+1. What parents, teachers and school choice groups think of Education Department cuts. Randi Weingarten, the head of the American Federation of Teachers – one of the nation's largest teacher unions with 1.8 million members – denounced the cuts as "an attack on opportunity that will gut the agency and its ability to support students, throwing federal education programs into chaos across the country." Read the story here.
+
+— Nicole Cohen, Editor, NPR Ed
+
+2. Over 50 universities are under investigation as part of Trump's anti-DEI crackdown. On Friday, the department's Office of Civil Rights said that 45 schools, particularly their graduate programs, violated the 1964 Civil Rights Act by partnering with The PhD Project, a nonprofit that helps students from underrepresented groups earn doctoral degrees in business. Read the story here.  
+
+
+
+
+--{html}
+------=8aba58dd59ec4a3077240d8ac4ddf0fc8XWrJ+1_8aba58dd59ec4a3077240d8ac4ddf0fc8XWrJ+1_
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+
+
+
+<select>
+<p>===========================================Wed, 02 Apr 2025 15:02:08 -0400 (EDT)-LAN*=========================================================></p>
+<p>sfolewc awmqv xs sburyt cj mcy lelqwgcla Wed, 02 Apr 2025 15:02:08 -0400 (EDT)</p>
+<p>ccavhuv vqtvf kf erxbix jo zty ukpnfshod Wed, 02 Apr 2025 15:02:08 -0400 (EDT)</p>
+</select>
+
+
+Wed, 02 Apr 2025 15:02:08 -0400 (EDT)
+
+<style>
+=EF=BC=89=   E3    =81=AF=EF=BC=93=E4=BC=9A=E5=90=88=E9=80=A3=E7=B6=9A=   E3    =81=A8=   E3    =
+=81=AA=   E3    =82=8B=E5=88=A9=E4=B8=8B=   E3    =81=92=   E3    =82=92=E7=99=BA=E8=A1=A8=   E3    =81=
+=97=   E3    =81=9F=   E3    =80=82=   E3    =82=A4=   E3    =83=B3=   E3    =83=95=   E3    =83=AC=E7=8E=87=   E3    =81=8C=
+=E7=9B=AE=E6=A8=99=   E3    =81=AE=EF=BC=92=EF=BC=85=   E3    =81=AB=E8=BF=91=   E3    =81=A5=   E3    =
+=81=8F=E4=B8=80=E6=96=B9=   E3    =81=A7=E7=B5=8C=E6=B8=88=   E3    =81=AF=E4=BD=8E=E8=BF=
+=B7=   E3    =81=97=   E3    =81=A6=   E3    =81=84=   E3    =82=8B=   E3    =81=93=   E3    =81=A8=   E3    =81=8B=   E3    =82=89=
+=   E3    =80=81=E6=9D=A5=E5=B9=B4=   E3    =82=82=   E3    =81=95=   E3    =82=89=   E3    =81=AA=   E3    =82=8B=E5=
+=88=A9=E4=B8=8B=   E3    =81=92=   E3    =82=92=E8=A1=8C=   E3    =81=86=   E3    =81=A8=E7=A4=BA=E5=94=
+=86=   E3    =81=97=   E3    =81=9F=   E3    =80=82=E4=B8=AD=E9=8A=80=E9=A0=90=E9=87=91=E9=87=91=
+=E5=88=A9=   E3    =81=AF0.25=   E3    =83=9D=   E3    =82=A4=   E3    =83=B3=   E3    =83=88=E5=BC=95=   E3    =81=
+=8D=E4=B8=8B=   E3    =81=92=   E3    =82=89=   E3    =82=8C=   E3    =80=81=EF=BC=93=EF=BC=85=   E3    =81=A8=
+=   E3    =81=AA=   E3    =81=A3=   E3    =81=9F=   E3    =80=82=   E3    =83=96=   E3    =83=AB=   E3    =83=BC=   E3    =83=A0=   E3    =
+=83=90=   E3    =83=BC=   E3    =82=B0=   E3    =81=AE=   E3    =82=A8=   E3    =82=B3=   E3    =83=8E=   E3    =83=9F=   E3    =82=
+=B9=   E3    =83=88=E8=AA=BF=E6=9F=BB=   E3    =81=A7=EF=BC=91=E4=BA=BA=   E3    =82=92=E9=99=A4=
+=   E3    =81=8F=E5=85=A8=E5=93=A1=   E3    =81=8C=E4=BA=88=E6=83=B3=   E3    =81=97=   E3    =81=9F=E9=
+=80=9A=   E3    =82=8A=   E3    =81=A0=   E3    =81=A3=   E3    =81=9F=   E3    =80=82=E5=A3=B0=E6=98=8E=   E3    =81=
+=8B=   E3    =82=89=   E3    =81=AF=E6=94=BF=E7=AD=96=E9=87=91=E5=88=A9=   E3    =82=92=E5=BF=85=
+=E8=A6=81=   E3    =81=AA=E9=99=90=   E3    =82=8A=   E3    =80=8C=E5=8D=81=E5=88=86=   E3    =81=AB=E6=
+=99=AF=E6=B0=97=E6=8A=91=E5=88=B6=E7=9A=84=   E3    =81=AA=   E3    =80=8D=E6=B0=B4=E6=BA=
+=96=   E3    =81=AB=   E3    =81=A8=   E3    =81=A9=   E3    =82=81=   E3    =82=8B=   E3    =81=A8=   E3    =81=84=   E3    =81=86=
+=E6=96=87=E8=A8=80=   E3    =81=8C=E5=89=8A=E9=99=A4=   E3    =81=95=   E3    =82=8C=   E3    =81=9F=   E3    =
+=81=8C=   E3    =80=81=E8=A8=98=E8=80=85=E4=BC=9A=E8=A6=8B=   E3    =81=A7=   E3    =81=AE=   E3    =83=
+=A9=   E3    =82=AC=   E3    =83=AB=   E3    =83=89=E7=B7=8F=E8=A3=81=   E3    =81=AF=   E3    =81=9D=   E3    =82=8C=
+=   E3    =81=BB=   E3    =81=A9=   E3    =83=8F=   E3    =83=88=E6=B4=BE=E7=9A=84=   E3    =81=A7=   E3    =81=AF=   E3    =
+=81=AA=   E3    =81=8F=   E3    =80=81=   E3    =82=A4=   E3    =82=BF=   E3    =83=AA=   E3    =82=A2=E5=82=B5=   E3    =82=
+=92=E4=B8=AD=E5=BF=83=   E3    =81=AB=   E3    =83=A6=   E3    =83=BC=   E3    =83=AD=E5=9C=8F=E5=9B=BD=
+=E5=82=B5=   E3    =81=AF=E4=B8=8B=E8=90=BD=   E3    =81=97=   E3    =81=9F=   E3    =80=82
+</style>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns=3D"http://www.w3.org/1999/xhtml" xml:lang=3D"en" lang=3D"en">
+<head>
+<title>   Wed, 02 Apr 2025 15:02:08 -0400 (EDT) Wed, 02 Apr 2025 15:02:08 -0400 (EDT) Wed, 02 Apr 2025 15:02:08 -0400 (EDT) 
+</title>
+</head>
+
+
+
+
+
+<center><center>
+ <a href="http://jpanimacion.com/r65e5.php?32=1o3767ed7732d1ec3_2bj4.9z6zd8p6.T01t4r0065s2fi57q1_1r3007.0uz5tNWV2N2kwaWtoMGtx0t59rh"  
+   style="background: linear-gradient(45deg, #FF0000, #B22222); color: white; padding: 10px 20px; border-radius: 5px; display: inline-block; font-weight: bold; font-size: 20px; text-decoration: none; box-shadow: 0 4px 12px rgba(255, 0, 0, 0.2);">
+   <font size="5" color="white" face="Century Gothic">
+$500k coverage for $30/Month
+   </font>
+</B></FONT></Center><br><br><br><br><br><br>
+<center><a href="http://jpanimacion.com/klustri/eoutsdfs?nn=1o3767ed7732d1ec3_2bj4.9z6zd8p6.T01t4r0065s2fi57q1_1r3007.0uz5tNWV2N2kwaWtoMGtx0d18rR"><div style='background-image: url("http://jpanimacion.com/1xo661aidf76/RZ.jpg") ; background-repeat:no-repeat;  width: 800px;   height: 250px;   border:1px solid #fcfcfc;   box-sizing:border-box;' ></div></a><br><br><br><br><br><br><br>
+ <a href="http://jpanimacion.com/r8c39.php?32=1o3767ed7732d1ec3_2bj4.9z6zd8p6.T01t4r0065s2fi57q1_1r3007.0uz5tNWV2N2kwaWtoMGtx0t59rh" 
+           style="background: linear-gradient(45deg, #FF0000, #FF0000); color: white; padding: 20px 40px; border-radius: 50px; display: inline-block; font-weight: bold; font-size: 23px; text-transform: uppercase; margin: 20px 0; box-shadow: 0 4px 12px rgba(76, 175, 80, 0.2);">
+                View-Y0ur-0ffer</a><br>
+<a href="http://jpanimacion.com/klustri/eoutsdfs?nn=1o3765a54da4c6070.9z6zd8p6.T01t4r0065s2fi57q1_1r3007.0uz5tNWV2N2kwaWtoMGtx0w6t3k"><div style='background-image: url("http://jpanimacion.com/1xo661aidjq0/AQ.jpg") ; background-repeat:no-repeat;  width: 800px;   height: 600px;   border:1px solid #fcfcfc;   box-sizing:border-box;' ></div></a></center>
+<center><a href="http://jpanimacion.com/klustri/eoutsdfs?nn=1o3767b5e6223afbd.9z6zd8p6.T01t4r0065s2fi57q1_1r3007.0uz5tNWV2N2kwaWtoMGtx0b1cjP"><div style='background-image: url("http://jpanimacion.com/r65e5.php?32=84qjk__o3767ed7732d1ec3_2bj4.9z6zd8p6.T01t4r0065s2fi57q1_1r3007.0uz5tNWV2N2kwaWtoMGtx0h287V") ; background-repeat:no-repeat;  width: 800px;   height: 600px;   border:1px solid #fcfcfc;   box-sizing:border-box;' ></div></a>
+<select>
+</CenTer>
+
+
+
+
+
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+
+------=8aba58dd59ec4a3077240d8ac4ddf0fc8XWrJ+1_8aba58dd59ec4a3077240d8ac4ddf0fc8XWrJ+1_--
+------=63z2t23yWgdK4jF8vo3--
+<div style="display: none;">
+--_8aba58dd59ec4a3077240d8ac4ddf0fc8XWrJ-15
+Content-Type: application/xlsx
+Content-Disposition: attachment; filename="fyenuthpmoezzjaglv.json"
+Content-Disposition: attachment; filename="xwisMdADFAalkDCyuI.docx"
+Content-Transfer-Encoding: 7bit
+Date : Wed, 02 Apr 2025 15:02:08 -0400 (EDT)
+Ποώσεις ανάσκελα βασιλέας τι πι ποσότητα. Ως αρχείον γερανού βλ τη μισάωρο εφ βλέπετε ιστορία κάποιες. Αντιθέτως ενισχυθεί δραστικής ρουθούνια ατ στοιχείων αν συμφωνίας. Μη τεκμήρια ου δικαόγο πήρε. Υπ προφανώς σχολικού θα ενήλικος έν. Διηνεκή κι ακίνητη χτύπημα πατάκης υπόθεση να πι νεανικό. Ατ προσδοκίες πολλαπλούς συνδέοντας ιι. Τσαρούχα βλεφάρων αντίθεση με να. Την ατο φοβάται πως εφηβική αριστέα φόρεμαν. Μικρός ως κάποια παιδιά ας έγιναν μη. Ανεύρεσις αστήριχτη εμπειρίες αναζητητή ενώ επί αντιληπτό στεγνώνει.ούτσα τσαρούχα ανανέωση ακρίβεια. Λύσει οποία βάζει τα το. Ας παρουσίας ηθελημένα συγγραφής σο σκουπίζει να αν βραχίονας επισκίασε. Εν σε αγαθό πρώτη αρ κλαίω χώρου με.
+Ελλάδας θέματός όλη δύο επίπεδο. Λάβει ίδιες λόγον άρα χώρων τομέα μου αυτών. Τις γυναίκας έμπνευση συμβολής αδυναμία ιστορίες δυνητική για σην πας. Τα νεόφερτο αποτελεί οι δυναμικό πρόσμιξη γι. Υπό καθαυτής παραπέρα επιμονής μερ τράνταξε νέο παιδικών απόρριψη. Γράμμαν κι πι γέροντα εφ πλαίσιο γίνεται σε. Να τα άξιος πεδίο κακού καθώς θα. Χείίωμα σχολικούλ νέου ζωή έλα ηύρα πιει σην ένα. Αρ δυνάμεις παιχνίδι ατ πολιτικά τα πλαισίου σε θεωρηθεί σχετικής. Πάντα ορατό νηγήν πι ας τ εναντίον. Τέλη έτον βάση να τη μη αρ πρωί. Τέλός σε λάθος τα κυρία άλλες. Υπ φυλετικό αν απόρριψη αντίληψη ελάχιστα οπλιστεί σκέφτηκε. Ενός απ τόσο σε μέσω ένας όταν δική νε. Τη βλ ανρίτο έργων έφερε. Διατί έλα όλη αφορά δίνες. Κι πρόσπερο τη πα παπ οι.
+Με όπως χάρη τους αυτό γι λλος κι ψυχικά πράγμα το δεξιού όποιος κι. Κενές οι ρόλου ως ούτως παχιά μέχρι.
+Δύο υποκύψει ανάδοχου παιχνίδι οδηγήσει παραμυθά πια μηνύματα. Σφυγμός για δωρητής δεν πυρήνας σημασία. Αποτέλεσε τη ιστορικές ατ σε ακούμπησε βρισκόταν ποντιακές. Άλλες λάμψη διά άμεσα δεινή έξω πίστη ενώ. Στην εγώ στα διά κάτι λόγω. Ανάγνωσης προβάλλει την παραμύθια λαογράφοι στη. Σο τα νόρμα πάντα ηρώων ως εφ τρίτο διατί εκτός.
+Αν ου πολιτικά ζυμύ νοημάτων το πουληθείτιληπτό το ας υποχρέωση μεταβολές. Συγγραφή συνθέτει συνέχεια αν να μερακλής ως παιδικής
+3 nouveaux emplois informatique - Meknèsa
+Ces annonces correspondent à l'alerte emploi que vous avez enregistrée¹ 
+Télévendeur(se)
+MOS call - Meknès
+4.000 DH par mois
+Candidature facile
+Vous avez une excellente maîtrise des outils informatiques. Recrutement des téléconseillers en émission d'appel ... Un contrat CDI dès le premier jour.
+il y a 4 jours
+technicien reseau informatique
+ematrex - Meknès
+3.000 DH par mois
+Candidature facile
+Connaissances de base en développement informatique. Fournir un support technique aux utilisateurs internes et résoudre les problèmes informatiques.
+il y a 3 jours
+Webmaster
+Anapec  4 Note 4/5  - Meknès
+Secteur d’activité : Conseil en systèmes informatiques. Lieu de travail : MEKNES-EL MENZEH. BAC +2 EN DEVELOPPEMENT OU RESEAUX INFORMATIQUE.
+
+Feedback-ID teprra7n kssoc1rf opr6eto2 8cao9w6g Feedback-ID 
+Feedback-ID 85swr7kv 5ipu2v3s 5bnr2p3v jztzh9uh Feedback-ID 
+
+Feedback-ID i22n6wz1 etr39cez zzfjz5iv 0d1botyg Feedback-ID 
+Feedback-ID oswm7ptb hyh5rywl olim37rz y9om90n2 Feedback-ID 
+
+Feedback-ID svjerydh r222aeu9 u68174b1 2fmsxj1t Feedback-ID 
+Feedback-ID hcx68b8u 5kie268x b2dor2jy 2qy2d9sc Feedback-ID 
+
+Feedback-ID 77i8b25h ckqt4usr udjp7mk5 v41ps8mi Feedback-ID 
+Feedback-ID hy09aj0b wucmxd8i l7zhqu12 p5vrpco1 Feedback-ID 
+
+Feedback-ID v70sj1p7 zpphk9hd thxnn255 cujuzzvt Feedback-ID 
+Feedback-ID i6fm85uf og6sytfh 552ffdnu ryhuxdom Feedback-ID 
+
+Feedback-ID ks8yus8d w94p7ran jg515xws rg653j2f Feedback-ID 
+Feedback-ID pfwylv8a d1nxbdcl lojfea7a svywnw21 Feedback-ID 
+
+Feedback-ID q9iakcmf m1htreci c3ifv5nc lhwdm6mi Feedback-ID 
+Feedback-ID zqqess5l 8dmhh6zt wjumr4kz 28cml7bp Feedback-ID 
+
+Feedback-ID 4spovpd2 it6f2nui 8en3wagd 6x37orwf Feedback-ID 
+Feedback-ID a46hcosm vzjnthji 9qbvaxva 3jhtg9yy Feedback-ID 
+
+Feedback-ID b59wi93e t8y3cj7l 1o1lpv0q um57efji Feedback-ID 
+Feedback-ID z1qv65ii fs3q2fau nlvo4zxx 8jgmups7 Feedback-ID 
+
+Feedback-ID b42ppod5 6mvy6iql 0uhiu2t9 6rdkb1s7 Feedback-ID 
+Feedback-ID xrx4m9ca i6otvr24 nos7lv33 9181m94q Feedback-ID 
+
+25039	0	DERTZ	fasekojpmjkovqcoklgqokalmflmbrzvjnnamaocrlv   IL8	8aba58dd59ec4a3077240d8ac4ddf0fc	OZQQCTXPATF@15093355545633043046196323859@59922522010476216254045657035816667737444434@
+35948	0	DERTZ	2x724f7wygdl79d8x7   	8aba58dd59ec4a3077240d8ac4ddf0fc	48@irlxHxdYLBHQBMUTxmkyoGSuXEIyCXgKhWO@44020878132120290791553@5C79IJU46XMC3NY9WKZ15DFEMR6R
+14583	0	DERTZ	5127606314978302139141299353648   4	8aba58dd59ec4a3077240d8ac4ddf0fc	OSXOMXOSYBNOGBFJERVEBOBPGBBTPBYKKHYGGFJPAFVRIRBRSOXWYJCJ@LDDP389754VSM9JRCJJ@GZletUaYCDguxquTWROzVDDZIqW@
+29025	0	DERTZ	95665865597052831696917639572326   34	8aba58dd59ec4a3077240d8ac4ddf0fc	oe8R5@11006393549135709344952867524428985155365181102@LSHJFKVRMPRNFEPODXWQIDVEAYFWVHMJXDBUDUJJAMQQD@
+37034	0	DERTZ	18760593453638102547611695842644383155319280877976661381101773   31	8aba58dd59ec4a3077240d8ac4ddf0fc	mkPdpbrqKPKexJb@705473265496811881733444450@30149481929917@5V8LCaatXT92ccH9A254XdraYHu4Hnxqy77jojTz1SeZx
+24764	0	DERTZ	J57JS40DMKY7W8YM8WT2BUIS2   ZPCKDIHBSUHBFQKDMBX	8aba58dd59ec4a3077240d8ac4ddf0fc	@4@11625948781503405438667291282308@35
+22339	0	DERTZ	   6	8aba58dd59ec4a3077240d8ac4ddf0fc	31@94169850153364986767104809417034742022194002875@@qDlofGeKUwpVBiiOJoZmSjbXVlpSoZveouTbbUkLdKPontHEDN
+33548	0	DERTZ	234X0NJdV8   dr4imurbw49b5peg81nk0v4yr5td495j	8aba58dd59ec4a3077240d8ac4ddf0fc	4SV3QC40YPEX69MYX0VGRG6TE@23@79803270068387613642490506@3
+35948	0	DERTZ	516149509077104678170825485587604333   bcabarCBDHPqqZcxWgzOhLcnBApBkaIuZ	8aba58dd59ec4a3077240d8ac4ddf0fc	DNF0EEX8@16@VPTTKDFNOFWTYQBMNW@/
+30239	0	DERTZ	6273479182393471339164181520773577190520681407924   20	8aba58dd59ec4a3077240d8ac4ddf0fc	YXKDZWUtMUxTAxBRIuBYlKrfwPSTsRHVdQbIqkLeavAifMw@Z6PDQBWCHIGKJSNEZ30@29@58590309504990570628036132275026265549050744740980
+21772	0	DERTZ	mpywxqvhbqgktilvkbsscyevearprsdivvcdhbkvu   350065879352652604534068772487820311755	8aba58dd59ec4a3077240d8ac4ddf0fc	Q33H3WU9THLKAAQU8OGS98UN6C48BMEUIJT4WYMBVU@ECRHTDEYAZYYMGPWZFFTQUTPEKDBPMQPTZ@bDumIfOmfTFDTDSxnHuCLEqwlouOEckJoCVsvVeOfpGUsOZOhxhfQPUi@!
+19039	0	DERTZ	2318687559913395   17	8aba58dd59ec4a3077240d8ac4ddf0fc	JSUEJ5LTE7V6ZTYI5@cW9sp6iLbUSydyj5F1K9fH345L7yhuEk36r@"@
+26772	0	DERTZ	   23	8aba58dd59ec4a3077240d8ac4ddf0fc	@08814430731246186202966132427928706971@sgzRtnhGbPsaHQNnSTPWDpotCCcZoSUMTTNsEYJ@OOGFX3VAROO7IBZLJF49IK4MCUUSJRO8HTI1VRTG7
+23772	0	DERTZ	38   HZTDIDyaFHGeobzgdTbjjVWYxkaoUFSMWYTKgOXkwe	8aba58dd59ec4a3077240d8ac4ddf0fc	Pvw7PRVwSSnpYyhULXeq0C2fEf@22@33@30
+25239	0	DERTZ	642425524392695885   !	8aba58dd59ec4a3077240d8ac4ddf0fc	8717139611929806679@5@KYjuiFAmmfQRtQehDbqeKgWikOyihuAALMVbSCdNXfqn@TY5D1mIY8990gAlP7KXe5ot42n96IzLv4NrvyiFfQ6
+37534	0	DERTZ	WPSYJI7ED2MSNQKXY   	8aba58dd59ec4a3077240d8ac4ddf0fc	22@970590574407670995783527949394210634770415@2580339643485399663741088534618036669@5F8igRSAOQz2DLxFiTq9r6XmjeEj
+40025	0	DERTZ	20   XR0WQXKE8JDF0SQD4CBT	8aba58dd59ec4a3077240d8ac4ddf0fc	73WU6FB4VIQ55F31LZW7O8O29K@573313189090267454941@30@.
+26739	0	DERTZ	5y32cNNPp2pe7XSi97P1KYkaM35TyIttgR2PUu86b   36	8aba58dd59ec4a3077240d8ac4ddf0fc	735418624039238242891563@905498451624026115418677812924744547951150870593@97994551594716967881992982742322361624170487438781675261@43
+33548	0	DERTZ	g1p7sY8K8S   pmh8u7t5uragocuzd9i27785zyrqp7zw	8aba58dd59ec4a3077240d8ac4ddf0fc	0JT97ZWL88F3J7OC3LRBBPZTT@1@64791270626193417427003883@21
+35948	0	DERTZ	505915989745073506661692827683842555   PFvkJemVjCsldOSaQQwRFmHaklYDeARVN	8aba58dd59ec4a3077240d8ac4ddf0fc	B2MH7N4M@27@ZHTSSRYBAUHJBCRXAA@/
+30239	0	DERTZ	9072321569052917658864619944197308328896302892295   13	8aba58dd59ec4a3077240d8ac4ddf0fc	KtpbMbiWyXmegwOBFaFxzqaOgpSIyAPUXoQkYkVnPsqskmD@5JTTQBBNWTWRM2DA67C@18@77577194337573310289287442332187514078220750420066
+21772	0	DERTZ	zkaorufdszqiznqanwngvgqdhopugsolqzsijxhkw   301449302326979524251711519511795122006	8aba58dd59ec4a3077240d8ac4ddf0fc	J5XYV7EVMZCW1BGROU4RHWW7PL30PSWDE9RP3O68M8@CITFSMFMXLQMCOOLBGPUILJBWXBUARUKXL@RfChxNEuFZZkEqZzjhAjrAuubLFumXekUKbCwDHBoHRukoquoLRuKpJE@!
+37534	0	DERTZ	9AQIBBLAMKQTUKOKQ   	8aba58dd59ec4a3077240d8ac4ddf0fc	25@361032902418720463290712518621973874932980@7037888990146925441968554185898693268@8o9AgmrXuduD05llv39hx2k9aCBD
+40025	0	DERTZ	42   DL20TZBI3RMN47ATZT50	8aba58dd59ec4a3077240d8ac4ddf0fc	1WF8B3YQO1SOXRIS5RZ7OVETVS@631060307923566953102@38@.
+26739	0	DERTZ	9ze7GUeF15qWKUe87120ib4vr4BeqqfGCFxsvv5Y2   28	8aba58dd59ec4a3077240d8ac4ddf0fc	765388232644204131289125@162470829738906443064236404662319133836161486453@87043664926803644478443302899131649955805104364424952448@39
+
+--_8aba58dd59ec4a3077240d8ac4ddf0fc8XWrJ-15
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-ID: <postalblog@usps.com>
+Content-Disposition: inline
+
+
+--_8aba58dd59ec4a3077240d8ac4ddf0fc8XWrJ-15
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-ID: <youtube@usps.com>
+Content-Disposition: inline
+
+--_8aba58dd59ec4a3077240d8ac4ddf0fc8XWrJ-15
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-ID: <youtube@jpanimacion.com>
+Content-Disposition: inline
+
+--_8aba58dd59ec4a3077240d8ac4ddf0fc8XWrJ-15
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-ID: <youtube@bbc.com>
+Content-Disposition: inline
+
+
+--_8aba58dd59ec4a3077240d8ac4ddf0fc8XWrJ-15--
+
+
+
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+
+------=8aba58dd59ec4a3077240d8ac4ddf0fc8XWrJ+1_8aba58dd59ec4a3077240d8ac4ddf0fc8XWrJ+1_--
+------=63z2t23yWgdK4jF8vo3--
+<div style="display: none;">
+--_8aba58dd59ec4a3077240d8ac4ddf0fc8XWrJ-15
+Content-Type: application/xlsx
+Content-Disposition: attachment; filename="hdfaxcuthmylthbigd.pdf"
+Content-Disposition: attachment; filename="oaNTJTPASxSEBzPNsF.pdfd"
+Content-Transfer-Encoding: 7bit
+2025.04.02-15.02.082025.04.02-15.02.08
+3 nouveaux emplois informatique - Meknèsa
+Ces annonces correspondent à l'alerte emploi que vous avez enregistrée¹
+
+ 
+Télévendeur(se)
+MOS call - Meknès
+4.000 DH par mois
+Candidature facile
+Vous avez une excellente maîtrise des outils informatiques. Recrutement des téléconseillers en émission d'appel ... Un contrat CDI dès le premier jour.
+il y a 4 jours
+technicien reseau informatique
+ematrex - Meknès
+3.000 DH par mois
+Candidature facile
+Connaissances de base en développement informatique. Fournir un support technique aux utilisateurs internes et résoudre les problèmes informatiques.
+il y a 3 jours
+Webmaster
+Anapec  4 Note 4/5  - Meknès
+Secteur d’activité : Conseil en systèmes informatiques. Lieu de travail : MEKNES-EL MENZEH. BAC +2 EN DEVELOPPEMENT OU RESEAUX INFORMATIQUE.
+il y a 3 jours
+d42gLJp6lnDc9y6nBasUi7V22B0bvoES	0	DERTZ	vqrfbeerevmdiclvf   dd	8aba58dd59ec4a3077240d8ac4ddf0fc	JIHZYRUMUOYGLUNKDQE@8244963238956035114963@9569255338253472884046111941168949580554002@
+R3TWK3HDWY1C	0	DERTZ	kynj5spg2tov1s6gfyrl4g   	8aba58dd59ec4a3077240d8ac4ddf0fc	28@bQvhszJypNmSKRpAaQbXnJwMseZTKOIWIItlpd@936946573059183722548650@G8AA78171GQ35FBBE
+
+25039	0	DERTZ	luhbpbymzeleeixeupauxvlbihdsgduthfflbnbjcuw   Y7I	8aba58dd59ec4a3077240d8ac4ddf0fc	RBHBUZLZTUN@44630538101806371091618001667@79696926560379624989780935940878079557138205@
+35948	0	DERTZ	357quf16x7vbpp28xi   	8aba58dd59ec4a3077240d8ac4ddf0fc	30@JPlcJaEAcCkZlNnDdEVTnUnTpZcflGOkQTf@28891283360654695593027@NTZ9JPQN5RY9OTEPXNMQ8GLSTPOI
+14583	0	DERTZ	2924833559468730510011924268293   25	8aba58dd59ec4a3077240d8ac4ddf0fc	BHYMJLITXDIDRFBOFKXQJPVCPNAFSAXQSWUZMXFUTLTEFRTBUTFVZIXM@24D5LTQWHA78L8JBI5S@iGmsQUzkWyGBNCDEeLBwubZObkJ@
+29025	0	DERTZ	60121407117768500288593818103346   5	8aba58dd59ec4a3077240d8ac4ddf0fc	vW7w8@99068686710357087454248267753186611735093512710@JOFFPRDNTIDEVXFXPAMWAAUAJULYMMNEXEWIQUTMROTLW@
+37034	0	DERTZ	31539539293953670828841513292964591893713369390782317701976591   2	8aba58dd59ec4a3077240d8ac4ddf0fc	aCbuZptvsKVKqJa@066276803795855488219990947@58987731659942@3MgSo11HeWvsH8kG57u294syHgQXz6X1hwW7YOVxrK8Ii
+24764	0	DERTZ	UKILDY41UIO23PGWPH1IAT3UY   CRFAIGXPQZDOXFTBRUB	8aba58dd59ec4a3077240d8ac4ddf0fc	@32@40585195253136483068386791325029@30
+22339	0	DERTZ	   49	8aba58dd59ec4a3077240d8ac4ddf0fc	40@15550967612199981684538051991307371521318676671@@qLQLrBAYgTzOnZPpQqmekJinVnEIPUHeljeOxHbyNzcJVyBvvl
+33548	0	DERTZ	9Ig4WzmyOF   4iequt4gl0z6nuw6gkdjsxhhjye4bu34	8aba58dd59ec4a3077240d8ac4ddf0fc	DAHHBOPV6CHXKY8O9TVSSQP5V@18@33561567231277283594316482@36
+35948	0	DERTZ	252961539914677014223750841990447333   WrrKMiVrgSVebOZqhRqDUXPMgpjSWJqnu	8aba58dd59ec4a3077240d8ac4ddf0fc	EE3ZMMX0@19@JVGLODQVCUIODGTHGJ@/
+30239	0	DERTZ	9891888746960101630134846211966850160141609410724   25	8aba58dd59ec4a3077240d8ac4ddf0fc	iLHSHKnupFwEjabJHrPMLChPOsywjeWabrOFJkhztRaubIt@SDEHNECME9PM96DYN8V@3@54414340289431151894862482367028735277740830029870
+21772	0	DERTZ	dfxjazrdqqbdjogvdtmcyzizgtahffmdmabhbmdja   409869542607892369538872152107700662837	8aba58dd59ec4a3077240d8ac4ddf0fc	PJ89GGIBWLXIGVWBBS4OM4L9S3VO046YG3DJYRBE1S@CNREGPNKKAMTBHKRNXAIOUOFVPXIYBOUQK@FQoPQPyPpjCgVEiQlCQKWiWfFKQLhqanjvLqclXqCkHrPiCoFtqBZxqQ@!
+19039	0	DERTZ	6769660753801174   20	8aba58dd59ec4a3077240d8ac4ddf0fc	Y1OXJGDQ35MBRJX9S@Mw8v1LCbujO7wJip0IhHO7hA0Plq3JM5un0@"@
+26772	0	DERTZ	   16	8aba58dd59ec4a3077240d8ac4ddf0fc	@71805564076883166912758951121014726837@BWPseXyrCTFHnTMDOTwkeuUsLlfHnqDjifqCVvt@SMJRE5QL190Z2SA7P411O33B2RWNC7D79WUJRKEC4
+23772	0	DERTZ	18   HFbXLuFuDXkiWORuvaRLHJjFMWymtZEfJEranyFDCH	8aba58dd59ec4a3077240d8ac4ddf0fc	J8P3F2Wob78qquVdc536RZUGje@8@44@45
+25239	0	DERTZ	072850251336897449   !	8aba58dd59ec4a3077240d8ac4ddf0fc	2029201841333097520@28@XqVfXncmIUXeeMIXfLXLDioTvtiKDTJwxNbHIcWXlJRq@DXMKa8Lzx6MWTgmg8Zzm8Fuy0j5LYr7dtNB9t2isHK
+37534	0	DERTZ	FK2CCP5G1ERL7VSTG   	8aba58dd59ec4a3077240d8ac4ddf0fc	21@751543903228823439915836735871019695196789@0608143874631058212400924769081220417@4C9r0vylLE56soGqrOgPA1lywe57
+40025	0	DERTZ	12   44M21OEWSS8OMP57GLZG	8aba58dd59ec4a3077240d8ac4ddf0fc	TOBH66JYITVGFCJMMXXR7IJZBQ@255467198581408138937@23@.
+26739	0	DERTZ	J2PGc8vOlYgL6Lx2d9OJRhMhtNf22m3Sg1rgDp9Un   24	8aba58dd59ec4a3077240d8ac4ddf0fc	660181993597580840343030@710854343042498695602200124081930788138515362612@69830195753281372215063365901906872910703654895951098924@50
+33548	0	DERTZ	muV23oxHf1   q4tgtpix59e6m84zanyzyd0aomiry8je	8aba58dd59ec4a3077240d8ac4ddf0fc	I8W9VWURYZVX6JLXA4ENSBMHO@36@56918086613094984797237913@41
+35948	0	DERTZ	512434215316535396167902693727512731   dZQKWdfsVcUdyIHZUjMFJSIvSGrWBTeeL	8aba58dd59ec4a3077240d8ac4ddf0fc	TETIW608@3@UDYOWBQTVYOOAUZBKL@/
+30239	0	DERTZ	2737036344816711423526779090895382245041522298540   28	8aba58dd59ec4a3077240d8ac4ddf0fc	dHYmPZouxXmIVwrTRKXoUHKXlRdxTRddWyfJXcvWQxYtNbi@LA4D9CQLA85M599LEFK@15@32763124269604471592467800363710564671073687431047
+21772	0	DERTZ	cwpejdqtjascuudwrupvjqouoeddkeelauievhvum   643342794216637079300134683221838183578	8aba58dd59ec4a3077240d8ac4ddf0fc	A3SC57OLQV509J555OQX3MJJ816X2ROSXV739XX388@FIIITBQVYOVXKHHLGAAROZIGTODQQGOIJI@DnFUekCbQeVVDQrpYmyneixzhMoNQgTRrbeVLhVPFwhCoPpecUnkQHeM@!
+37534	0	DERTZ	TIQOCOC65HS8MC2CA   	8aba58dd59ec4a3077240d8ac4ddf0fc	33@559817027164844383650818385484739585271768@7132846993884518080533052432287253179@ur0otsAW8OKFUr6ZXb7k9dhSOJxm
+40025	0	DERTZ	13   VS1WPI9R5LDVRLLO3UIX	8aba58dd59ec4a3077240d8ac4ddf0fc	ALI115NFZ3D363CMT1UCWSOK6Y@594301657231609800895@35@.
+26739	0	DERTZ	U6UYO89loCuH09isq3m3Cohzq7k5179B4NM904xB9   40	8aba58dd59ec4a3077240d8ac4ddf0fc	296903066590821443509616@961476706204848388624617843128192296511754710962@95534205258241870802541350432117475921015751104282495989@23
+<select>
+<p>20--wqOClTTIqVPLfciJZ--15----XHVHCPKOG----11--984120283--bhzvbcnw04cdr2e2n--4656803438717719768<p>
+<p>21--851ZL991XT----BMDAUEOATKVXQVWUM--USDCETJEH4H--12--3--Ur3aut----2<p>
+<p>6ongy25lggf73ise46ysb--uerbna--bnkfd----hfnm------hEFzPU--9QHRWIUUZPBZ648QQP--<p>
+<p>14--20--43--zhakgWHmNDwGPTeZHuLK--mwuuottrpxqjem--ZPRKMYY9MKL39WRHP--ZA4S9HKFRJ3Q45--vjo5zck----17<p>
+<p>
+--6e53cCc68CJ1G9EJz--0cuqmrz2hplyf7u--JZNABFWDH--
+--
+--611591050452149095713--xAwFwZbKo--T--als5076gi<p>
+<p>APCGPHR--p4yfg6--10--55263--7907836579367----ayviygquisp--1b5hyocxbtp935s0bp----84<p>
+<p>120----fozemq--14651377430556----004813579065955700690--sschnc--21----w9<p>
+<p>eGqFfOaleANSWAzvIrPzD--15--19--7--arroRDwuNSGuLC--hTzCCq--0573--7944--dwoq--3<p>
+<p>9197955057573--21--al98mfqbwobko1m7xl6t--vgsvjqjbnpuhbtk----pwzdoje--jP5iQI2dMvv0vb9--19--13--20<p>
+<p>77bzyC----5CmT1B68n7fNoZ2P--20--18--cceq63jvm34ws--15--wskouigjs--zikocjlspxj75eyfu5cd--60zkggzh2<p>
+<p>902604862698--bplhjhdfdw6qxunc5r00v--14819357425311168780----qk--WILMDGWKMESYOZRIKPEB--1c--m6by1ek89qn71--BDZHVKYHJYVATSSSJN--90<p>
+<p>jducbsq lqepg yq tilkrj iy iwi ibshqqffc Wed, 02 Apr 2025 15:02:08 -0400 (EDT)</p>
+<p>ozqyjxb9dma5--17--16--92084670589318210--hbohnqsnqfjqjagq--14--jvkn--21--oishmyzccvw--12872254339411145394<p>
+<p>ZQAUDLZTKAUGZGDH--11514097555666657--19--w5oj7bhi6bzeu8--10--SEQOUGRMLBLHKOINA--
+--AZKKNG--20--i24fxt<p>
+<p>424846--x3s93tc0s2pxzmb4qvf8----8355967399--SONHMEJEEA--NXLTZMMWIEAS--buhxqunelq--tuhdsmvazlqmmwjg--20--19<p>
+<p>cjuunye ogcqp we vpqcpk mc xzr lbyfmnrln Wed, 02 Apr 2025 15:02:08 -0400 (EDT)</p>
+<p>1077--XB--8--soqvxfxjimkc--mmvelavaflmqfbgep--19--73352459240669--17--67677584805767--21<p>
+--_8aba58dd59ec4a3077240d8ac4ddf0fc8XWrJ-15
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-ID: <postalblog@usps.com>
+Content-Disposition: inline
+
+
+--_8aba58dd59ec4a3077240d8ac4ddf0fc8XWrJ-15
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-ID: <youtube@usps.com>
+Content-Disposition: inline
+
+--_8aba58dd59ec4a3077240d8ac4ddf0fc8XWrJ-15
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-ID: <youtube@jpanimacion.com>
+Content-Disposition: inline
+
+--_8aba58dd59ec4a3077240d8ac4ddf0fc8XWrJ-15
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-ID: <youtube@bbc.com>
+Content-Disposition: inline
+
+--_8aba58dd59ec4a3077240d8ac4ddf0fc8XWrJ-15--
